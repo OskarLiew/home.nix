@@ -1,4 +1,4 @@
-{ pkgs, config, nix-colors, dotfiles, ... }: {
+{ pkgs,  ... }: {
 
   imports = [
     ./theme
@@ -28,4 +28,12 @@
     };
   };
 
+  home.sessionVariables = {
+    TERMINAL = "kitty";
+    BROWSER = "firefox";
+  };
+
+  xdg.mimeApps.defaultApplications = {
+    "text/plain" = [ "nvim.desktop" ];
+  };
 }

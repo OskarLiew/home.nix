@@ -16,22 +16,6 @@
         "type": "github"
       }
     },
-    "dotfiles": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1697288241,
-        "narHash": "sha256-z+BM9Rjr9mp0T3N0fUJsxeMPDRaz8pEnIlIRTzSU+ww=",
-        "owner": "OskarLiew",
-        "repo": "dotfiles",
-        "rev": "1564ea5124d0455a3e2e2c8293aa498339592d58",
-        "type": "github"
-      },
-      "original": {
-        "owner": "OskarLiew",
-        "repo": "dotfiles",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -105,7 +89,6 @@
     },
     "root": {
       "inputs": {
-        "dotfiles": "dotfiles",
         "home-manager": "home-manager",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs"

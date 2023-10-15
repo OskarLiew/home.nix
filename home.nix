@@ -1,4 +1,4 @@
-{ pkgs, config, nix-colors, dotfiles, ... }: {
+{ pkgs, config, nix-colors, ... }: {
   home.username = "oskar";
   home.homeDirectory = "/home/oskar";
 
@@ -80,11 +80,13 @@
   home.stateVersion = "23.05";
 
   home.file = {
-    ".zshenv".source = "${dotfiles}/.zshenv";
-    ".local/bin/tat".source = "${dotfiles}/config/tmux/tat";
+    ".zshenv".source = ./config/.zshenv;
+    ".local/bin/tat".source = ./config/tmux/tat;
   };
 
   home.sessionVariables = rec {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
     XDG_BIN_HOME = "$HOME/.local/bin";
     PATH = "$PATH:${XDG_BIN_HOME}";
   };
@@ -97,13 +99,13 @@
       createDirectories = true;
     };
     configFile = {
-      "zsh".source = "${dotfiles}/config/zsh";
-      "tmux".source = "${dotfiles}/config/tmux";
-      "nvim".source = "${dotfiles}/config/nvim";
-      "picom".source = "${dotfiles}/config/picom";
-      "rofi".source = "${dotfiles}/config/rofi";
-      "aliases".source = "${dotfiles}/config/aliases";
-      "awesome".source = "${dotfiles}/config/awesome";
+      "zsh".source = ./config/zsh;
+      "tmux".source = ./config/tmux;
+      "nvim".source = ./config/nvim;
+      "picom".source = ./config/picom;
+      "rofi".source = ./config/rofi;
+      "aliases".source = ./config/aliases;
+      "awesome".source = ./config/awesome;
     };
   };
 

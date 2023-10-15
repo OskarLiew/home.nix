@@ -1,6 +1,6 @@
 # home.nix
 
-This is my home manager configuration.
+This is my home manager configuration for declaratively setting up my linux user environment.
 
 ## Prerequisites
 
@@ -11,11 +11,10 @@ This is my home manager configuration.
 
 ### Non-NixOS
 
-To ensure that environment variables are added to the shell, and that desktop files
-are detected correctly, add the following to `~/.profile`
+To ensure that desktop files are detected correctly, and that Nix apps have priority,
+add the following to `~/.profile`
 
 ```sh
-. $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
 export XDG_DATA_DIRS=$HOME/.nix-profile/share:$HOME/.share:"${XDG_DATA_DIRS:-/usr/local/share/:/usr/share/}"
 ```
 

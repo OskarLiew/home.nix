@@ -9,13 +9,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
-    dotfiles = {
-        url = "github:OskarLiew/dotfiles";
-        flake = false;
-    };
   };
 
-  outputs = { nixpkgs, home-manager, nix-colors, dotfiles, ... }:
+  outputs = { nixpkgs, home-manager, nix-colors, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -27,7 +23,7 @@
           ./home.nix 
           ./graphical.nix
         ];
-        extraSpecialArgs = { inherit nix-colors dotfiles; };
+        extraSpecialArgs = { inherit nix-colors; };
       };
       # Generic linux, with graphical interface
       homeConfigurations."oskar-generic" = home-manager.lib.homeManagerConfiguration {
@@ -37,7 +33,7 @@
           ./graphical.nix
           { targets.genericLinux.enable = true; }
         ];
-        extraSpecialArgs = { inherit nix-colors dotfiles; };
+        extraSpecialArgs = { inherit nix-colors; };
       };
       # Generic linux, without graphical interface
       homeConfigurations."oskar-generic-term" = home-manager.lib.homeManagerConfiguration {
@@ -46,7 +42,7 @@
           ./home.nix 
           { targets.genericLinux.enable = true; }
         ];
-        extraSpecialArgs = { inherit nix-colors dotfiles; };
+        extraSpecialArgs = { inherit nix-colors; };
       };
     };
 }
