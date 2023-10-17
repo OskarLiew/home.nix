@@ -22,7 +22,7 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # Colour output
-alias cat='bat --paging=never'
+alias cat='bat --style=plain --paging=never'
 alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 alias ip='ip -color=auto'
