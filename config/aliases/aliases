@@ -42,7 +42,7 @@ if [[ -v WSL_DISTRO_NAME ]]; then
 fi
 
 # Python stuff
-alias vact='source venv/bin/activate'
+alias vact='source .venv/bin/activate'
 
 # Lazygit and lazydocker
 alias lg='lazygit'

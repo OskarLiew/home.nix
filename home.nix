@@ -106,6 +106,7 @@
       "rofi".source = ./config/rofi;
       "aliases".source = ./config/aliases;
       "awesome".source = ./config/awesome;
+      "pypoetry".source = ./config/pypoetry;
     };
   };
 
