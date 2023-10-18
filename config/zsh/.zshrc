@@ -1,4 +1,7 @@
 ### Comlpetion
+source $HOME/.local/share/zsh/nix-zsh-completions/nix-zsh-completions.plugin.zsh
+fpath+=($HOME/.local/share/zsh/nix-zsh-completions)
+fpath+=($HOME/.local/share/zsh/pure)
 
 autoload -Uz compinit promptinit select-word-style
 
@@ -12,8 +15,9 @@ select-word-style bash
 
 ### Theme
 
-source $ZDOTDIR/prompts/pure/async.zsh
-source $ZDOTDIR/prompts/pure/pure.zsh
+# source $ZDOTDIR/prompts/pure/async.zsh
+# source $ZDOTDIR/prompts/pure/pure.zsh
+prompt pure
 RPROMPT="%F{yellow}%D{%H:%M:%S}"  # Clock on right side
 
 ### Key bindings
@@ -106,8 +110,10 @@ fi
 
 # Syntax highlighting and autosuggestions
 
-source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.local/share/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.local/share/zsh/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 # bd
 source $ZDOTDIR/plugins/bd.zsh
@@ -133,5 +139,3 @@ elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
     ssh-add
 fi
 
-# Run profile, which is not version controlled
-[ -f ~/.profile ] && . ~/.profile

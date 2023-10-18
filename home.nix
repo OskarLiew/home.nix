@@ -20,6 +20,7 @@
     tree
     parallel
     tldr
+    less
     # TUI apps
     tmux
     neovim
@@ -69,19 +70,18 @@
 
   programs = {
     home-manager.enable = true;
-    firefox.enable = true;
-    kitty = {
-      enable = true;
-      theme = "Everforest Dark Hard";
-      settings = { confirm_os_window_close = 2; };
-    };
   };
 
   home.stateVersion = "23.05";
 
   home.file = {
-    ".zshenv".source = ./config/.zshenv;
     ".local/bin/tat".source = ./config/tmux/tat;
+    # Zsh config
+    ".zshenv".source = ./config/.zshenv;
+    ".local/share/zsh/zsh-autosuggestions".source = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
+    ".local/share/zsh/zsh-fast-syntax-highlighting".source = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+    ".local/share/zsh/nix-zsh-completions".source = "${pkgs.nix-zsh-completions}/share/zsh/plugins/nix";
+    ".local/share/zsh/pure".source = "${pkgs.pure-prompt}/share/zsh/site-functions";
   };
 
   home.sessionVariables = rec {
