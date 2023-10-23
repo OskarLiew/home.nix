@@ -21,6 +21,8 @@
     parallel
     tldr
     less
+    openssh
+    neofetch
     # TUI apps
     tmux
     neovim
@@ -59,10 +61,9 @@
     lua
     stylua
     lua-language-server
-    love
     # - Go
     go
-    hugo
+    gopls
     # Misc
     dconf
     mpd
@@ -70,6 +71,10 @@
 
   programs = {
     home-manager.enable = true;
+    go = {
+        enable = true;
+        goPath = "$XDG_DATA_HOME/go";
+    };
   };
 
   home.stateVersion = "23.05";
