@@ -50,6 +50,7 @@
     python311Packages.mypy
     python311Packages.isort
     python311Packages.black
+    nodePackages.pyright
     poetry
     ruff
     # - Rust
