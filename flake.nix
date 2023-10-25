@@ -31,6 +31,7 @@
         modules = [
           ./home.nix 
           ./graphical.nix
+          ./packages/awesome.nix
           { targets.genericLinux.enable = true; }
         ];
         extraSpecialArgs = { inherit nix-colors; };
