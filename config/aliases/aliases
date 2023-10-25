@@ -15,6 +15,11 @@ alias gds='git diff --stat'
 alias gdc="git diff --cached"
 # List branches sorted by last modified
 alias gb="git for-each-ref --sort='-authordate' --format='%(authordate:format:%Y-%m-%d %H:%M:%S)    %(objectname:short)    %(refname)' refs/heads | sed -e 's-refs/heads/--'"
+alias gwt="git worktree"
+# new_branch dir remote_branch
+newgwt () {
+    git worktree add -b $1 $(echo $1 | sed -e "s/\//_/g") origin/$2
+}
 
 # ls
 alias ll='ls -alFh'
@@ -42,7 +47,9 @@ if [[ -v WSL_DISTRO_NAME ]]; then
 fi
 
 # Python stuff
-alias vact='source .venv/bin/activate'
+vact () {
+    . $1/bin/activate
+}
 
 # Lazygit and lazydocker
 alias lg='lazygit'

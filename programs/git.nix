@@ -13,6 +13,9 @@
         enable = true;
         options = { syntax-theme = "ansi"; };
       };
+      extraConfig = {
+          remote.origin.fetch = "+refs/heads/*:refs/remotes/origin/*";  # For worktrees in bare repos
+      };
     };
     lazygit = {
       enable = true;
