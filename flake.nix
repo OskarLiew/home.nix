@@ -36,7 +36,7 @@
         ];
         extraSpecialArgs = { inherit nix-colors; };
       };
-      # Generic linux, without graphical interface
+      # Generic linux, without graphical applications
       homeConfigurations."oskar-generic-term" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
