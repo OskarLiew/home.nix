@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, upkgs, ... }:
 let
   awesome = pkgs.awesome.overrideAttrs (oa: {
     version = "d36e1324d17efd571cec252374a2ef5f1eeae4fd";
@@ -34,7 +34,7 @@ in
   };
 
   home.packages = with pkgs; [
-    picom
+    upkgs.picom
     rofi
     betterlockscreen
     lm_sensors

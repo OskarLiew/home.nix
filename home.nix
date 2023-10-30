@@ -29,18 +29,6 @@
     lazydocker
     neofetch
     ranger
-    # Apps
-    obsidian
-    arandr
-    inkscape
-    deluge
-    gimp
-    gnome.nautilus
-    # vscode
-    spotify
-    discord
-    deluge-gtk
-    vlc
     # Programming
     # - Nix
     nil
@@ -62,6 +50,7 @@
     lua
     stylua
     lua-language-server
+    luarocks
     # - Go
     go
     gopls

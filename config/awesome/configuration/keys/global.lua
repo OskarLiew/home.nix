@@ -172,11 +172,11 @@ awful.keyboard.append_global_keybindings({
 	end),
 	awful.key({}, "XF86AudioRaiseVolume", function()
 		awesome.emit_signal("volume_change")
-		awful.util.spawn("amixer -c 0 set Master 3dB+")
+		awful.util.spawn("pactl -- set-sink-volume 0 +5%")
 	end),
 	awful.key({}, "XF86AudioLowerVolume", function()
 		awesome.emit_signal("volume_change")
-		awful.util.spawn("amixer -c 0 set Master 3dB-")
+		awful.util.spawn("pactl -- set-sink-volume 0 -5%")
 	end),
 	awful.key({}, "XF86AudioMute", function()
 		awesome.emit_signal("volume_change")

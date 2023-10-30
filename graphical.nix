@@ -1,4 +1,4 @@
-{ pkgs,  ... }: {
+{ pkgs, upkgs, ... }: {
 
   imports = [
     ./theme
@@ -7,7 +7,7 @@
 
   home.packages = with pkgs; [
     # Apps
-    obsidian
+    upkgs.obsidian
     arandr
     inkscape
     deluge
@@ -17,12 +17,15 @@
     discord
     deluge-gtk
     vlc
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
+    slack
   ];
 
   programs = {
     firefox.enable = true;
     kitty = {
       enable = true;
+      package = upkgs.kitty;
       theme = "Everforest Dark Hard";
       settings = { confirm_os_window_close = 2; };
     };
