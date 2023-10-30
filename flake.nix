@@ -10,9 +10,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
+    nixd.url = "github:nix-community/nixd";
   };
 
-  outputs = { nixpkgs, home-manager, nix-colors, nixpkgs-unstable, ... }:
+  outputs = { nixpkgs, home-manager,nixpkgs-unstable, nix-colors, nixd, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -23,7 +24,11 @@
         inherit pkgs;
         modules = [
           ./home.nix 
-          ./graphical.nix 
+          ./graphical.nix
+          {
+            nixpkgs.overlays = [ nixd.overlays.default ];
+            home.packages = with pkgs; [ nixd ];
+          }
         ];
         extraSpecialArgs = { inherit nix-colors upkgs; };
       };
