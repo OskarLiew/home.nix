@@ -10,31 +10,26 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
-    nixd.url = "github:nix-community/nixd";
   };
 
-  outputs = { nixpkgs, home-manager,nixpkgs-unstable, nix-colors, nixd, ... }:
+  outputs = { nixpkgs, home-manager,nixpkgs-unstable, nix-colors, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       upkgs = import nixpkgs-unstable { system = "${system}"; config.allowUnfree = true;};
+      extraSpecialArgs = { inherit nix-colors upkgs; };
     in {
       # NixOS
       homeConfigurations."oskar" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+        inherit pkgs extraSpecialArgs;
         modules = [
           ./home.nix 
           ./graphical.nix
-          {
-            nixpkgs.overlays = [ nixd.overlays.default ];
-            home.packages = with pkgs; [ nixd ];
-          }
         ];
-        extraSpecialArgs = { inherit nix-colors upkgs; };
       };
       # Generic linux, with graphical interface
       homeConfigurations."oskar-generic" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+        inherit pkgs extraSpecialArgs;
         modules = [
           ./home.nix 
           ./graphical.nix
@@ -42,16 +37,14 @@
           ./programs/syncthing.nix
           { targets.genericLinux.enable = true; }
         ];
-        extraSpecialArgs = { inherit nix-colors upkgs; };
       };
       # Generic linux, without graphical applications
       homeConfigurations."oskar-generic-term" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+        inherit pkgs extraSpecialArgs;
         modules = [
           ./home.nix 
           { targets.genericLinux.enable = true; }
         ];
-        extraSpecialArgs = { inherit nix-colors upkgs; };
       };
     };
 }
