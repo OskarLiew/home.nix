@@ -65,9 +65,13 @@
         enable = true;
         goPath = "$XDG_DATA_HOME/go";
     };
+    autorandr.enable = true;
   };
 
-  home.stateVersion = "23.05";
+  services = {
+      autorandr.enable = true;
+  };
+
 
   home.file = {
     ".local/bin/tat".source = ./config/tmux/tat;
@@ -104,5 +108,7 @@
       "pypoetry".source = ./config/pypoetry;
     };
   };
+
+  home.stateVersion = "23.05";
 
 }

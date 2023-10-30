@@ -93,7 +93,7 @@ case ${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-        betterlockscreen -l & betterlockscreen -u ~/pics/wallpapers/
+        betterlockscreen -l & betterlockscreen -u $XDG_PICTURES_DIR/wallpapers/
         ;;
     $suspend)
 		run_cmd --suspend
