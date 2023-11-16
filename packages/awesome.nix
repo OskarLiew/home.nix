@@ -35,9 +35,10 @@ in
 
   home.packages = with pkgs; [
     upkgs.picom
+    upkgs.betterlockscreen
     rofi
-    betterlockscreen
     lm_sensors
     playerctl
   ];
+
 }

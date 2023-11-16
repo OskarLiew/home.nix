@@ -65,13 +65,7 @@
         enable = true;
         goPath = "$XDG_DATA_HOME/go";
     };
-    autorandr.enable = true;
   };
-
-  services = {
-      autorandr.enable = true;
-  };
-
 
   home.file = {
     ".local/bin/tat".source = ./config/tmux/tat;

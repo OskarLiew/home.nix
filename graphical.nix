@@ -19,6 +19,8 @@
     vlc
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
     slack
+    simplescreenrecorder
+    zotero
   ];
 
   programs = {
@@ -29,6 +31,11 @@
       theme = "Everforest Dark Hard";
       settings = { confirm_os_window_close = 2; };
     };
+    autorandr.enable = true;
+  };
+
+  services = {
+      autorandr.enable = true;
   };
 
   home.sessionVariables = {
