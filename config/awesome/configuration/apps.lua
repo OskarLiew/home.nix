@@ -23,6 +23,7 @@ local default_apps = {
 	rofi_powermenu = rofi_dir .. "/config/powermenu.sh",
 	network_manager = terminal .. " -e nmtui",
 	volume_mixer = terminal .. " -e alsamixer",
+	screenshot = "flameshot gui",
 }
 
 return {

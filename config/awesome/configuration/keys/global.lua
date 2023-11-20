@@ -217,4 +217,16 @@ awful.keyboard.append_global_keybindings({
 		s = awful.screen.focused()
 		s.sidebar.visible = not s.sidebar.visible
 	end, { description = "open firefox", group = "launcher" }),
+	-- Screenshot
+	awful.key({}, "", function()
+		awful.util.spawn(apps.default.screenshot)
+	end, { description = "screenshot", group = "launcher" }),
+})
+
+-- etc
+awful.keyboard.append_global_keybindings({
+	-- Screenshot
+	awful.key({}, "Print", function()
+		awful.util.spawn(apps.default.screenshot)
+	end, { description = "screenshot", group = "etc" }),
 })

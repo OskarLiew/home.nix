@@ -36,6 +36,7 @@ in
   home.packages = with pkgs; [
     upkgs.picom
     upkgs.betterlockscreen
+    upkgs.flameshot
     rofi
     lm_sensors
     playerctl
