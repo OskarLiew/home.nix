@@ -35,7 +35,7 @@ local top_panel = function(s)
 	})
 
 	panel:struts({
-		top = panel.height + panel.y - beautiful.useless_gap,
+		top = panel.height,
 	})
 
 	-- Initialize widgets

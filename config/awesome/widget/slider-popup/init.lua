@@ -16,8 +16,8 @@ local function slider(args)
 
 	local container = wibox({
 		screen = screen,
-		x = screen.geometry.width - container_width - 3 * beautiful.useless_gap,
-		y = (container_height / 2),
+		x = screen.geometry.x + screen.geometry.width - container_width - 3 * beautiful.useless_gap,
+		y = screen.geometry.y + (container_height / 2),
 		width = container_width,
 		height = container_height,
 		shape = gears.shape.rounded_rect,

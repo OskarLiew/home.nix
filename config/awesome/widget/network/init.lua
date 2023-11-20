@@ -4,7 +4,6 @@ local gears = require("gears")
 local dpi = require("beautiful").xresources.apply_dpi
 local naughty = require("naughty")
 
-local config = require("configuration.widget").network
 local apps = require("configuration.apps")
 local clickable_container = require("widget.clickable-container")
 
