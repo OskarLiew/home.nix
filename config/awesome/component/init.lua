@@ -2,4 +2,4 @@
 -- Components are pieces of functionality which are not tied to any widgets
 
 require("component.brightness")
-require("widget.layout-grid")({})
+require("widget.layout-grid")()
