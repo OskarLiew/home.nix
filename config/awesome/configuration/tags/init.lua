@@ -11,12 +11,14 @@ local tags = {
 		icon = icons.terminal,
 		default_app = apps.default.terminal,
 		gap = beautiful.useless_gap,
+		layout = awful.layout.suit.tile,
 	},
 	{
 		type = "web",
 		icon = icons.web_browser,
 		default_app = apps.default.web_browser,
 		gap = beautiful.useless_gap,
+		layout = awful.layout.suit.tile,
 	},
 	{
 		type = "code",
