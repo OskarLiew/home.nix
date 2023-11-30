@@ -21,6 +21,8 @@
     slack
     simplescreenrecorder
     zotero
+    insomnia
+    dbeaver
   ];
 
   programs = {
