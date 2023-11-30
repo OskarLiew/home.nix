@@ -222,7 +222,7 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ modkey }, "d", function()
 		s = awful.screen.focused()
 		s.sidebar.visible = not s.sidebar.visible
-	end, { description = "open firefox", group = "launcher" }),
+	end, { description = "open sidebar", group = "launcher" }),
 	-- Screenshot
 	awful.key({}, "", function()
 		awful.util.spawn(apps.default.screenshot)
