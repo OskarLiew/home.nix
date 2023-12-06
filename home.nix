@@ -44,6 +44,7 @@
     # - Rust
     cargo
     rustc
+    rust-analyzer
     # - js
     nodejs_20
     # - lua
