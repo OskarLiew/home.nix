@@ -21,19 +21,25 @@
         rust-lang.rust-analyzer
         redhat.vscode-yaml
       ] ++ upkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        # {
-        #   name = "everforest";
-        #   publisher = "sainnhe";
-        #   version = "0.3.0";
-        #   sha256 = "";
-        # }
+        {
+          name = "everforest";
+          publisher = "sainnhe";
+          version = "0.3.0";
+          sha256 = "sha256-nZirzVvM160ZTpBLTimL2X35sIGy5j2LQOok7a2Yc7U=";
+        }
+        {
+          name = "everforest-custom";
+          publisher = "djprophet";
+          version = "0.0.1";
+          sha256 = "sha256-3Me7vs+dP+oUhJOjX0eRxflLVJiNTbRaIfvbmv6mzj0=";
+        }
       ];
     mutableExtensionsDir = false;
     enableUpdateCheck = false;
     userSettings = {
       "window.titleBarStyle" = "custom";
       "telemetry.telemetryLevel" = "off";
-      "workbench.colorTheme" = "Everforest Dark";
+      "workbench.colorTheme" = "Everforest Custom";
       "editor.cursorSurroundingLines" = 8;
       "editor.fontFamily" = "Fira Code";
       "notebook.lineNumbers" = "on";

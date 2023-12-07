@@ -42,4 +42,9 @@ in
     playerctl
   ];
 
+  programs.autorandr = {
+      hooks.postswitch = {
+          "reload-awesome" = ''echo 'awesome.restart()' | awesome-client'';
+      };
+  };
 }

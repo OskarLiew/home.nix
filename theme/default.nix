@@ -34,7 +34,7 @@ in {
   home.pointerCursor = {
     package = pkgs.capitaine-cursors;
     name = "capitaine-cursors";
-    size = 38;
+    size = 28;
     x11.enable = true;
     gtk.enable = true;
   };
