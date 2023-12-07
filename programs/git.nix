@@ -13,9 +13,7 @@
         enable = true;
         options = { syntax-theme = "ansi"; };
       };
-      extraConfig = {
-          init.defaultBranch = "main";
-      };
+      extraConfig = { init.defaultBranch = "main"; };
     };
     lazygit = {
       enable = true;

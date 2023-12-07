@@ -1,9 +1,6 @@
 { pkgs, upkgs, ... }: {
 
-  imports = [
-    ./theme
-    ./programs/vscode.nix
-  ];
+  imports = [ ./theme ./programs/vscode.nix ];
 
   home.packages = with pkgs; [
     # Apps
@@ -22,7 +19,6 @@
     simplescreenrecorder
     zotero
     insomnia
-    dbeaver
   ];
 
   programs = {
@@ -36,16 +32,12 @@
     autorandr.enable = true;
   };
 
-  services = {
-      autorandr.enable = true;
-  };
+  services = { autorandr.enable = true; };
 
   home.sessionVariables = {
     TERMINAL = "kitty";
     BROWSER = "firefox";
   };
 
-  xdg.mimeApps.defaultApplications = {
-    "text/plain" = [ "nvim.desktop" ];
-  };
+  xdg.mimeApps.defaultApplications = { "text/plain" = [ "nvim.desktop" ]; };
 }

@@ -3,12 +3,10 @@
   home.homeDirectory = "/home/oskar";
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate = (_: true);  # https://github.com/nix-community/home-manager/issues/2942
+  nixpkgs.config.allowUnfreePredicate =
+    (_: true); # https://github.com/nix-community/home-manager/issues/2942
 
-  imports = [
-    nix-colors.homeManagerModules.default
-    ./programs/git.nix
-  ];
+  imports = [ nix-colors.homeManagerModules.default ./programs/git.nix ];
 
   colorScheme = nix-colors.colorSchemes.everforest;
 
@@ -45,6 +43,7 @@
     cargo
     rustc
     rust-analyzer
+    rustfmt
     # - js
     nodejs_20
     # - lua
@@ -63,8 +62,8 @@
   programs = {
     home-manager.enable = true;
     go = {
-        enable = true;
-        goPath = "$XDG_DATA_HOME/go";
+      enable = true;
+      goPath = "$XDG_DATA_HOME/go";
     };
   };
 
@@ -72,10 +71,14 @@
     ".local/bin/tat".source = ./config/tmux/tat;
     # Zsh config
     ".zshenv".source = ./config/.zshenv;
-    ".local/share/zsh/zsh-autosuggestions".source = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
-    ".local/share/zsh/zsh-fast-syntax-highlighting".source = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
-    ".local/share/zsh/nix-zsh-completions".source = "${pkgs.nix-zsh-completions}/share/zsh/plugins/nix";
-    ".local/share/zsh/pure".source = "${pkgs.pure-prompt}/share/zsh/site-functions";
+    ".local/share/zsh/zsh-autosuggestions".source =
+      "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
+    ".local/share/zsh/zsh-fast-syntax-highlighting".source =
+      "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+    ".local/share/zsh/nix-zsh-completions".source =
+      "${pkgs.nix-zsh-completions}/share/zsh/plugins/nix";
+    ".local/share/zsh/pure".source =
+      "${pkgs.pure-prompt}/share/zsh/site-functions";
   };
 
   home.sessionVariables = rec {

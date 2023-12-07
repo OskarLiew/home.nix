@@ -15,7 +15,7 @@ let
       patchShebangs tests/examples/_postprocess.lua
     '';
   });
-in 
+in
 {
   nixpkgs.overlays = [
     (self: super: { awesome = super.awesome.override { gtk3Support = true; }; })
@@ -28,9 +28,9 @@ in
   ];
 
   xsession.windowManager.awesome = {
-      enable = true;
-      package = awesome;
-      luaModules = [ pkgs.luaPackages.cjson ];
+    enable = true;
+    package = awesome;
+    luaModules = [ pkgs.luaPackages.cjson ];
   };
 
   home.packages = with pkgs; [
