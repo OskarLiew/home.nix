@@ -2,7 +2,6 @@ local wibox = require("wibox")
 local awful = require("awful")
 local gears = require("gears")
 local dpi = require("beautiful").xresources.apply_dpi
-local naughty = require("naughty")
 
 local apps = require("configuration.apps")
 local clickable_container = require("widget.clickable-container")
@@ -66,73 +65,34 @@ local function return_button(wireless_interface)
 		get_network_info()
 	end)
 
-	local connected = false
-	local show_disconnected_notification = function()
-		naughty.notification({
-			icon = widget_icon_dir .. "wifi-disconnected.svg",
-			app_name = "System notification",
-			title = "Disconnection",
-			message = "You have been disconnected from a network",
-			urgency = "normal",
-		})
-	end
+	local function update_network_strength(network_strength)
+		-- Stop if null
+		if not network_strength then
+			return
+		end
 
-	local show_connected_notification = function()
-		naughty.notification({
-			icon = widget_icon_dir .. "wifi-high.svg",
-			app_name = "System notification",
-			title = "Connection",
-			message = "You have been connected to a network",
-			urgency = "normal",
-		})
-	end
+		network_widget.spacing = dpi(5)
 
-	local function update_network()
-		local cmd = "iwconfig " .. wireless_interface .. [[ | awk '/Link Quality=/ {print $2}' | tr -d 'Quality=']]
-		awful.spawn.easy_async_with_shell(cmd, function(stdout)
-			stdout = stdout:gsub("\n", "")
-			local numer, denom = stdout:match("([^,]+)/([^,]+)")
-			local network_strength = tonumber(numer) / tonumber(denom)
+		local icon_name = "wifi"
 
-			-- Stop if null
-			if not network_strength then
-				return
-			end
-
-			network_widget.spacing = dpi(5)
-
-			local icon_name = "wifi"
-
-			if network_strength < 0.33 then
-				icon_name = icon_name .. "-low"
-			elseif network_strength < 0.67 then
-				icon_name = icon_name .. "-mid"
-			else
-				icon_name = icon_name .. "-high"
-			end
-			network_imagebox.icon:set_image(gears.surface.load_uncached(widget_icon_dir .. icon_name .. ".svg"))
-		end)
-	end
-
-	local refresh_rate = 5 -- In seconds
-	awful.widget.watch("iw dev " .. wireless_interface .. " link", refresh_rate, function(widget, stdout)
-		-- Disconnected
-		local connected_tmp = false
-		if string.find(stdout, "^Connected") then
-			connected_tmp = true
-			update_network()
+		if network_strength < 0.33 then
+			icon_name = icon_name .. "-low"
+		elseif network_strength < 0.67 then
+			icon_name = icon_name .. "-mid"
 		else
-			network_widget.spacing = dpi(0)
-			network_imagebox.icon:set_image(gears.surface.load_uncached(widget_icon_dir .. "wifi-disconnected.svg"))
+			icon_name = icon_name .. "-high"
 		end
+		network_imagebox.icon:set_image(gears.surface.load_uncached(widget_icon_dir .. icon_name .. ".svg"))
+	end
 
-		if connected and not connected_tmp then
-			show_disconnected_notification()
-		elseif not connected and connected_tmp then
-			show_connected_notification()
-		end
-		connected = connected_tmp
-	end)
+	local function update_network_disconnected()
+		network_widget.spacing = dpi(0)
+		network_imagebox.icon:set_image(gears.surface.load_uncached(widget_icon_dir .. "wifi-disconnected.svg"))
+	end
+
+	awesome.connect_signal("daemon::network-strength", update_network_strength)
+	awesome.connect_signal("daemon::network-connected", update_network_strength)
+	awesome.connect_signal("daemon::network-disconnected", update_network_disconnected)
 
 	return network_button
 end

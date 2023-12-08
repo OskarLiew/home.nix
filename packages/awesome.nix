@@ -43,8 +43,8 @@ in
   ];
 
   programs.autorandr = {
-      hooks.postswitch = {
-          "reload-awesome" = ''echo 'awesome.restart()' | awesome-client'';
-      };
+    hooks.postswitch = {
+      "reload-awesome" = ''echo 'awesome.restart()' | awesome-client'';
+    };
   };
 }
