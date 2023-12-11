@@ -2,13 +2,12 @@ myfzf () {
     fzf --scroll-off=4 --reverse --height 40% $@
 }
 
-
 # Git
 alias gco='git checkout'
 alias gcob='git checkout -b'
 gcol () {  # List branches with fzf and checkout selected
     if [ -d "./.git" ]; then
-        git branch --format='%(refname:short)' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | myfzf --preview='git diff --name-only {} | xargs tree --fromfile' | xargs git checkout
+        git branch --format='%(refname:short)' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | myfzf --preview='git diff --stat {} --color=always' | xargs git checkout
     else
         echo "Error: Not a git repository"
     fi
