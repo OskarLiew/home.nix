@@ -20,6 +20,7 @@
         davidanson.vscode-markdownlint
         rust-lang.rust-analyzer
         redhat.vscode-yaml
+        vadimcn.vscode-lldb
       ] ++ upkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "everforest";
