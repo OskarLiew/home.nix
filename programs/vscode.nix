@@ -1,4 +1,4 @@
-{ upkgs, ... }: {
+{ upkgs, lib, ... }: {
   programs.vscode = {
     enable = true;
     package = upkgs.vscode;
@@ -131,7 +131,7 @@
       }
     ];
     languageSnippets = {
-      python = builtins.fromJSON (builtins.readFile "$XDG_CONFIG_DIR/snippets/python.json");
+      python = builtins.fromJSON (builtins.readFile ../config/snippets/python.json);
     };
   };
 }
