@@ -94,7 +94,7 @@
       {
         key = "ctrl+p";
         command = "workbench.action.quickOpen";
-        when = "!listFocus && inputFocus";
+        when = "!listFocus";
       }
       {
         key = "ctrl+p";
