@@ -130,5 +130,8 @@
         when = "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus";
       }
     ];
+    languageSnippets = {
+      python = builtins.fromJSON (builtins.readFile "$XDG_CONFIG_DIR/snippets/python.json");
+    };
   };
 }

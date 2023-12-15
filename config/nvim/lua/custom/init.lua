@@ -34,4 +34,4 @@ opt.signcolumn = "yes"
 opt.colorcolumn = "88"
 
 -- Snippets
-vim.g.vscode_snippets_path = "$XDG_CACHE_HOME/snippets"
+vim.g.vscode_snippets_path = os.getenv("XDG_CONFIG_HOME") .. "/snippets"
