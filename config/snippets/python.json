@@ -1,0 +1,15 @@
+{
+    "decorator": {
+        "prefix": "decorator",
+        "body": [
+            "import functools",
+            "def ${0:decorator}(func):",
+            "    @functools.wraps(func)",
+            "    def wrapper(*args, **kwargs):",
+            "        # Do something",
+            "        return func(*args, **kwargs)",
+            "    return wrapper"
+        ],
+        "description": "Boilerplate for decorator"
+    }
+}

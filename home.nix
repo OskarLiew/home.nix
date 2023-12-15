@@ -3,8 +3,6 @@
   home.homeDirectory = "/home/oskar";
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate =
-    (_: true); # https://github.com/nix-community/home-manager/issues/2942
 
   imports = [ nix-colors.homeManagerModules.default ./programs/git.nix ];
 
@@ -23,7 +21,6 @@
     neofetch
     # TUI apps
     tmux
-    neovim
     lazydocker
     neofetch
     ranger
@@ -65,6 +62,11 @@
       enable = true;
       goPath = "$XDG_DATA_HOME/go";
     };
+    neovim = {
+        enable = true;
+        defaultEditor = true;
+        vimAlias = true;
+    };
   };
 
   home.file = {
@@ -104,6 +106,7 @@
       "aliases".source = ./config/aliases;
       "awesome".source = ./config/awesome;
       "pypoetry".source = ./config/pypoetry;
+      "snippets".source = ./config/snippets;
     };
   };
 

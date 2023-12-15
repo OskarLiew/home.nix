@@ -2,8 +2,8 @@ local autocmd = vim.api.nvim_create_autocmd
 
 -- Auto resize panes when resizing nvim window
 autocmd("VimResized", {
-	pattern = "*",
-	command = "tabdo wincmd =",
+    pattern = "*",
+    command = "tabdo wincmd =",
 })
 
 local opt = vim.opt
@@ -32,3 +32,6 @@ opt.scrolloff = 8
 opt.signcolumn = "yes"
 
 opt.colorcolumn = "88"
+
+-- Snippets
+vim.g.vscode_snippets_path = "$XDG_CACHE_HOME/snippets"
