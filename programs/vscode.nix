@@ -59,6 +59,7 @@
           "commands" = [ "editor.action.commentLine" ];
         }
       ];
+      "vim.whichwrap" = "b,s,h,l,w,e,W,E";
       "[python]" = { "editor.defaultFormatter" = "ms-python.black-formatter"; };
       "[yaml]" = { "editor.defaultFormatter" = "redhat.vscode-yaml"; };
       "[markdown]" = {
@@ -72,6 +73,21 @@
         when = "editorTextFocus && vim.active && vim.use<C-p> && !inDebugRepl || vim.active && vim.use<C-p> && !inDebugRepl && vim.mode == 'CommandlineInProgress' || vim.active && vim.use<C-p> && !inDebugRepl && vim.mode == 'SearchInProgressMode'";
       }
       {
+        key = "ctrl+n";
+        command = "-extension.vim_ctrl+n";
+        when = "editorTextFocus && vim.active && vim.use<C-n> && !inDebugRepl || vim.active && vim.use<C-n> && !inDebugRepl && vim.mode == 'CommandlineInProgress' || vim.active && vim.use<C-n> && !inDebugRepl && vim.mode == 'SearchInProgressMode'";
+      }
+      {
+        key = "ctrl+c";
+        command = "-extension.vim_ctrl+c";
+        when = "editorTextFocus && vim.active && vim.overrideCtrlC && vim.use<C-c> && !inDebugRepl";
+      }
+      {
+        key = "ctrl+v";
+        command = "-extension.vim_ctrl+v";
+        when = "editorTextFocus && vim.active && vim.use<C-v> && !inDebugRepl";
+      }
+      {
         key = "alt+j";
         command = "terminal.focus";
         when = "!terminalFocus";
@@ -82,19 +98,19 @@
         when = "terminalFocus";
       }
       {
-        key = "ctrl+p";
-        command = "list.focusUp";
-        when = "listFocus && !inputFocus";
+        key = "ctrl+n";
+        command = "selectNextSuggestion";
+        when = "suggestWidgetVisible";
       }
       {
-        key = "ctrl+n";
-        command = "list.focusDown";
-        when = "listFocus && !inputFocus";
+        key = "ctrl+p";
+        command = "selectPrevSuggestion";
+        when = "suggestWidgetVisible";
       }
       {
         key = "ctrl+p";
         command = "workbench.action.quickOpen";
-        when = "!listFocus";
+        when = "!(inQuickOpen || suggestWidgetVisible)";
       }
       {
         key = "ctrl+p";
@@ -128,6 +144,26 @@
         key = "ctrl+k";
         command = "workbench.action.terminal.focusPrevious";
         when = "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus";
+      }
+      {
+        key = "ctrl+h";
+        command = "workbench.action.focusLeftGroup";
+        when = "editorTextFocus && vim.active && vim.mode != 'Insert'";
+      }
+      {
+        key = "ctrl+l";
+        command = "workbench.action.focusRightGroup";
+        when = "editorTextFocus && vim.active && vim.mode != 'Insert'";
+      }
+      {
+        key = "ctrl+k";
+        command = "workbench.action.focusAboveGroup";
+        when = "editorTextFocus && vim.active && vim.mode != 'Insert'";
+      }
+      {
+        key = "ctrl+j";
+        command = "workbench.action.focusBelowGroup";
+        when = "editorTextFocus && vim.active && vim.mode != 'Insert'";
       }
     ];
     languageSnippets = {
