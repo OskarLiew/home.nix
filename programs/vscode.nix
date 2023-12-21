@@ -165,6 +165,11 @@
         command = "workbench.action.focusBelowGroup";
         when = "editorTextFocus && vim.active && vim.mode != 'Insert'";
       }
+      {
+        key = "shift+k";
+        command = "editor.action.showHover";
+        when = "editorTextFocus";
+      }
     ];
     languageSnippets = {
       python = builtins.fromJSON (builtins.readFile ../config/snippets/python.json);
