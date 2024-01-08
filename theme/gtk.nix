@@ -19,6 +19,8 @@
     @define-color window_fg_color #${base05};
     @define-color view_bg_color #${base01};
     @define-color view_fg_color #${base05};
+    @define-color sidebar_bg_color #${base00};
+    @define-color sidebar_fg_color #${base05};
     @define-color headerbar_bg_color mix(#${base00},black,0.2);
     @define-color headerbar_fg_color #${base05};
     @define-color headerbar_border_color #${base05};
