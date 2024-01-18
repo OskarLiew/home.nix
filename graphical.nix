@@ -23,6 +23,13 @@
 
   programs = {
     firefox.enable = true;
+    chromium = {
+      enable = true;
+      extensions = [
+        { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
+      ];
+    };
+
     kitty = {
       enable = true;
       package = upkgs.kitty;
