@@ -168,7 +168,7 @@
       {
         key = "shift+k";
         command = "editor.action.showHover";
-        when = "editorTextFocus";
+        when = "editorTextFocus && vim.active && vim.mode != 'Insert'";
       }
     ];
     languageSnippets = {
