@@ -18,6 +18,7 @@ local theme = {}
 theme.font = "sans 10"
 
 theme.bg_opacity = "CC"
+theme.bg_opacity2 = "90"
 theme.fg_opacity = "CC"
 
 -- Everforest colours
@@ -99,12 +100,11 @@ theme.hotkeys_modifiers_fg = theme.bg_focus
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
-theme.notification_shape = function(cr, width, height)
-	return gears.shape.rounded_rect(cr, width, height, theme.edge_radius)
-end
-theme.notification_bg = theme.bg_popup .. theme.bg_opacity
+theme.notification_bg = theme.bg_normal .. theme.bg_opacity2
 theme.notification_fg = theme.fg_normal
-theme.notification_border_color = theme.bg_popup .. theme.bg_opacity
+theme.notification_border_color = theme.transparent
+theme.notification_action_bg_normal = theme.bg_popup
+theme.notification_action_underline_normal = false
 
 -- Menu
 -- Variables set for theming the menu:
@@ -199,7 +199,7 @@ theme.icon_theme = nil
 rnotification.connect_signal("request::rules", function()
 	rnotification.append_rule({
 		rule = { urgency = "critical" },
-		properties = { bg = theme.bg_urgent .. theme.bg_opacity, fg = theme.fg_normal },
+		properties = { bg = theme.fg_urgent .. theme.bg_opacity2, fg = theme.fg_normal },
 	})
 end)
 
