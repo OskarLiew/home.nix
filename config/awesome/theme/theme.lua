@@ -18,7 +18,7 @@ local theme = {}
 theme.font = "sans 10"
 
 theme.bg_opacity = "CC"
-theme.bg_opacity2 = "90"
+theme.bg_opacity2 = "70"
 theme.fg_opacity = "CC"
 
 -- Everforest colours
@@ -100,11 +100,16 @@ theme.hotkeys_modifiers_fg = theme.bg_focus
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
-theme.notification_bg = theme.bg_normal .. theme.bg_opacity2
+theme.notification_bg = theme.bg1 .. theme.bg_opacity2
 theme.notification_fg = theme.fg_normal
-theme.notification_border_color = theme.transparent
+theme.notification_border_color = theme.bg2 .. theme.bg_opacity2
+theme.notification_border_width = 0 -- There is still a tiny border
 theme.notification_action_bg_normal = theme.bg_popup
 theme.notification_action_underline_normal = false
+theme.notification_spacing = dpi(6)
+theme.notification_shape = function(cr, w, h)
+	gears.shape.rounded_rect(cr, w, h, theme.edge_radius)
+end
 
 -- Menu
 -- Variables set for theming the menu:
