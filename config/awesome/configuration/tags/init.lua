@@ -25,12 +25,14 @@ local tags = {
 		icon = icons.text_editor,
 		default_app = apps.default.text_editor,
 		gap = beautiful.useless_gap,
+		layout = awful.layout.suit.tile,
 	},
 	{
 		type = "notes",
 		icon = icons.notepad,
 		default_app = apps.default.notes,
 		gap = beautiful.useless_gap,
+		layout = awful.layout.suit.tile,
 	},
 	{
 		type = "files",
@@ -50,7 +52,7 @@ local tags = {
 		type = "sandbox",
 		icon = icons.sandbox,
 		default_app = apps.default.sandbox,
-		layout = awful.layout.suit.max,
+		layout = awful.layout.suit.tile,
 		gap = beautiful.useless_gap,
 	},
 	{

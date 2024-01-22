@@ -32,20 +32,23 @@ naughty.connect_signal("request::display", function(n)
 		widget_template = {
 			{
 				{
-					id = "text_role",
-					widget = wibox.widget.textbox,
+					{
+						id = "text_role",
+						widget = wibox.widget.textbox,
+					},
+					widget = wibox.container.margin,
+					left = dpi(12),
+					right = dpi(12),
+					top = dpi(4),
+					bottom = dpi(4),
 				},
-				widget = wibox.container.margin,
-				left = dpi(12),
-				right = dpi(12),
-				top = dpi(4),
-				bottom = dpi(4),
+				widget = clickable_container,
 			},
 			shape = function(cr, w, h)
 				gears.shape.rounded_rect(cr, w, h, dpi(4))
 			end,
-			widget = clickable_container,
 			bg = beautiful.notification_action_bg_normal,
+			widget = wibox.container.background,
 		},
 		widget = naughty.list.actions,
 	}
@@ -80,9 +83,13 @@ naughty.connect_signal("request::display", function(n)
 								widget = wibox.layout.fixed.vertical,
 								spacing = dpi(6),
 							},
+							{
+								widget = wibox.container.margin,
+								top = dpi(12),
+								visible = n.actions and #n.actions > 0,
+							},
 							action,
 							widget = wibox.layout.fixed.vertical,
-							spacing = dpi(12),
 						},
 						widget = wibox.layout.fixed.horizontal,
 						spacing = dpi(12),
