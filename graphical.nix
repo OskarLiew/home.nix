@@ -46,5 +46,15 @@
     BROWSER = "firefox";
   };
 
-  xdg.mimeApps.defaultApplications = { "text/plain" = [ "nvim.desktop" ]; };
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/plain" = [ "nvim.desktop" ];
+      "text/html" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "x-scheme-handler/about" = "firefox.desktop";
+      "x-scheme-handler/unknown" = "firefox.desktop";
+    };
+  };
 }
