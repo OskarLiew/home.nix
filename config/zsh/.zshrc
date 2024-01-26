@@ -1,3 +1,6 @@
+# Run profile, which is not version controlled
+[ -f $HOME/.profile ] && . $HOME/.profile
+
 ### Comlpetion
 source $HOME/.local/share/zsh/nix-zsh-completions/nix-zsh-completions.plugin.zsh
 fpath+=($HOME/.local/share/zsh/nix-zsh-completions)

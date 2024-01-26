@@ -1,6 +1,3 @@
-# Run profile, which is not version controlled
-[ -f $HOME/.profile ] && . $HOME/.profile
-
 # Read nix env vars
 . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
