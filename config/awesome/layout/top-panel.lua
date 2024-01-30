@@ -42,6 +42,7 @@ local top_panel = function(s)
 	local textclock = wibox.widget.textclock()
 	local battery = require("widget.battery")()
 	local volume = require("widget.volume")()
+	local mic = require("widget.microphone")()
 	local keyboardlayout = require("widget.keyboard-layout")
 	local network = require("widget.network")(config.network.wireless_interface)
 	local power_button = require("widget.power-button")(icon_margins)
@@ -54,7 +55,13 @@ local top_panel = function(s)
 		horizontal = true,
 		screen = "primary",
 		widget = wibox.widget.systray,
+		opacity = 0.5,
 	})
+	s.systray:connect_signal("widget::layout_changed", function()
+		-- hide systray if there are no visible entries
+		local visible_entries, _ = awesome.systray()
+		s.systray.visible = visible_entries > 0
+	end)
 
 	-- Create layouts
 	local left = {
@@ -84,10 +91,10 @@ local top_panel = function(s)
 	})
 
 	local right_widgets = {
-		-- s.systray,
 		s.systray,
 		network,
 		volume,
+		mic,
 		battery,
 		keyboardlayout,
 		s.layoutbox,
@@ -108,6 +115,10 @@ local top_panel = function(s)
 			bg = beautiful.bg_normal .. beautiful.bg_opacity,
 			shape = panel_shape,
 		})
+		-- Hide when child is empty or invisible
+		w:connect_signal("widget::redraw_needed", function()
+			widget.visible = w.visible
+		end)
 		right_widgets_layout:add(widget)
 	end
 	right_widgets_layout:add(power_button)

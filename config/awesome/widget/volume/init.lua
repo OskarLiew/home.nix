@@ -106,7 +106,7 @@ local function return_button()
 	end
 
 	-- Trigger events
-	awesome.connect_signal("volume_change", set_volume)
+	awesome.connect_signal("volume-change", set_volume)
 	volume_widget:connect_signal("mouse::enter", set_volume)
 
 	set_volume()

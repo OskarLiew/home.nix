@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="192"
+   height="192"
+   viewBox="0 0 192 192"
+   version="1.1"
+   id="svg9"
+   sodipodi:docname="microphone-mute.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs9" />
+  <sodipodi:namedview
+     id="namedview9"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.62728646"
+     inkscape:cx="-8.7679239"
+     inkscape:cy="23.91252"
+     inkscape:window-width="1920"
+     inkscape:window-height="1050"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="surface1" />
+  <g
+     id="surface1">
+    <path
+       style="fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(20%,20%,20%);stroke-opacity:1;stroke-miterlimit:4;"
+       d="M 24 4 C 28.417969 4 32 7.582031 32 12 L 32 24 C 32 28.417969 28.417969 32 24 32 C 19.582031 32 16 28.417969 16 24 L 16 12 C 16 7.582031 19.582031 4 24 4 Z M 24 4 "
+       transform="matrix(4,0,0,4,0,0)"
+       id="path1" />
+    <path
+       style="fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(20%,20%,20%);stroke-opacity:1;stroke-miterlimit:4;"
+       d="M 10 21 L 10 24 C 10 31.730469 16.269531 38 24 38 C 31.730469 38 38 31.730469 38 24 L 38 21 "
+       transform="matrix(4,0,0,4,0,0)"
+       id="path2" />
+    <path
+       style="fill:none;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(20%,20%,20%);stroke-opacity:1;stroke-miterlimit:4;"
+       d="M 24 38 L 24 44 "
+       transform="matrix(4,0,0,4,0,0)"
+       id="path8" />
+    <path
+       style="fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(20%,20%,20%);stroke-opacity:1;stroke-miterlimit:4;"
+       d="M 16 44 L 32 44 "
+       transform="matrix(4,0,0,4,0,0)"
+       id="path9" />
+    <path
+       style="fill:#000000;stroke:#333333;stroke-width:16;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+       d="M 152.15604,151.52765 39.562391,15.980834"
+       id="path10"
+       sodipodi:nodetypes="cc" />
+  </g>
+</svg>

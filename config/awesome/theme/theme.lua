@@ -59,7 +59,6 @@ theme.bg_normal = theme.bg0
 theme.bg_focus = theme.green
 theme.bg_urgent = theme.red
 theme.bg_popup = theme.bg3
-theme.bg_systray = theme.bg_normal
 
 theme.fg_normal = theme.fg
 theme.fg_focus = theme.bg_green
@@ -192,6 +191,9 @@ theme.layout_cornernw = themes_path .. "default/layouts/cornernww.png"
 theme.layout_cornerne = themes_path .. "default/layouts/cornernew.png"
 theme.layout_cornersw = themes_path .. "default/layouts/cornersww.png"
 theme.layout_cornerse = themes_path .. "default/layouts/cornersew.png"
+
+-- Systray
+theme.systray_icon_spacing = dpi(6)
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, theme.bg_focus, theme.fg_focus)
