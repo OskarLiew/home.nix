@@ -24,9 +24,10 @@ local function init_mic_widget()
 	})
 
 	local mic_widget = wibox.widget({
+		mic_imagebox,
 		layout = wibox.layout.fixed.horizontal,
 		spacing = dpi(0),
-		mic_imagebox,
+		visible = false,
 	})
 
 	-- Functionality

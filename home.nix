@@ -63,9 +63,9 @@
       goPath = "$XDG_DATA_HOME/go";
     };
     neovim = {
-        enable = true;
-        defaultEditor = true;
-        vimAlias = true;
+      enable = true;
+      defaultEditor = true;
+      vimAlias = true;
     };
   };
 

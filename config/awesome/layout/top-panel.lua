@@ -6,15 +6,25 @@ local awful = require("awful")
 
 local config = require("configuration.widget")
 
-local top_panel = function(s)
-	-- Playground
-	local offsetx = 2 * beautiful.useless_gap
-	local panel_height = dpi(30)
-	local bg_opacity = "60"
-	local widget_spacing = 0.1 * panel_height
-	local widget_margins = 0.1 * panel_height
-	local icon_margins = 0.1 * panel_height
+-- Settings
+local offsetx = 2 * beautiful.useless_gap
+local panel_height = dpi(30)
+local bg_opacity = "60"
+local widget_spacing = 0.1 * panel_height
+local widget_margins = 0.1 * panel_height
+local icon_margins = 0.1 * panel_height
 
+-- Initialize widgets
+local textclock = wibox.widget.textclock()
+local battery = require("widget.battery")()
+local volume = require("widget.volume")()
+local mic = require("widget.microphone")()
+local keyboardlayout = require("widget.keyboard-layout")
+local network = require("widget.network")(config.network.wireless_interface)
+local power_button = require("widget.power-button")(icon_margins)
+local systray = require("widget.systray")(panel_height - 2 * icon_margins - 2 * widget_margins)
+
+local top_panel = function(s)
 	local panel_shape = function(cr, width, height)
 		gears.shape.rounded_rect(cr, width, height, panel_height / 2)
 	end
@@ -38,30 +48,9 @@ local top_panel = function(s)
 		top = panel.height,
 	})
 
-	-- Initialize widgets
-	local textclock = wibox.widget.textclock()
-	local battery = require("widget.battery")()
-	local volume = require("widget.volume")()
-	local mic = require("widget.microphone")()
-	local keyboardlayout = require("widget.keyboard-layout")
-	local network = require("widget.network")(config.network.wireless_interface)
-	local power_button = require("widget.power-button")(icon_margins)
+	-- Initialize screen-specific widgets
 	s.layoutbox = require("widget.layoutbox")(s)
 	s.tag_list = require("widget.tag-list")(s, { spacing = widget_spacing, margins = icon_margins })
-
-	s.systray = wibox.widget({
-		visible = true,
-		base_size = dpi(20),
-		horizontal = true,
-		screen = "primary",
-		widget = wibox.widget.systray,
-		opacity = 0.5,
-	})
-	s.systray:connect_signal("widget::layout_changed", function()
-		-- hide systray if there are no visible entries
-		local visible_entries, _ = awesome.systray()
-		s.systray.visible = visible_entries > 0
-	end)
 
 	-- Create layouts
 	local left = {
@@ -91,7 +80,7 @@ local top_panel = function(s)
 	})
 
 	local right_widgets = {
-		s.systray,
+		systray,
 		network,
 		volume,
 		mic,
@@ -114,6 +103,7 @@ local top_panel = function(s)
 			widget = wibox.container.background,
 			bg = beautiful.bg_normal .. beautiful.bg_opacity,
 			shape = panel_shape,
+			visible = w.visible,
 		})
 		-- Hide when child is empty or invisible
 		w:connect_signal("widget::redraw_needed", function()
