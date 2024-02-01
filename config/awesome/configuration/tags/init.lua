@@ -1,9 +1,7 @@
 local awful = require("awful")
-local gears = require("gears")
 local beautiful = require("beautiful")
-local icons = require("theme.icons")
+local icons = require("theme.icons").taglist
 local apps = require("configuration.apps")
-local dpi = require("beautiful").xresources.apply_dpi
 
 local tags = {
 	{
@@ -56,9 +54,9 @@ local tags = {
 		gap = beautiful.useless_gap,
 	},
 	{
-		type = "games",
-		icon = icons.games,
-		layout = awful.layout.suit.floating,
+		type = "meeting",
+		icon = icons.meeting,
+		layout = awful.layout.suit.tile,
 	},
 	{
 		type = "chat",
