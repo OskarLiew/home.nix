@@ -23,7 +23,7 @@ ruled.notification.connect_signal("request::rules", function()
 	})
 end)
 
-naughty.connect_signal("request::display", function(n)
+local function get_notif_template(n)
 	local action = {
 		base_layout = wibox.widget({
 			spacing = 12,
@@ -53,47 +53,60 @@ naughty.connect_signal("request::display", function(n)
 		widget = naughty.list.actions,
 	}
 
+	local icon = n.icon
+	if icon == nil and #n.clients > 0 then
+		local c = n.clients[1]
+		icon = c.icon
+	end
+
+	return {
+		{
+			{
+				widget = wibox.widget.imagebox,
+				image = icon,
+				resize = true,
+				clip_shape = function(cr, w, h)
+					gears.shape.rounded_rect(cr, w, h, dpi(6))
+				end,
+			},
+			widget = wibox.container.constraint,
+			width = dpi(42),
+			strategy = "max",
+		},
+		{
+			{
+				{
+					font = beautiful.notification_font or "Sans 12",
+					markup = "<b>" .. n.title .. "</b>",
+					widget = wibox.widget.textbox,
+				},
+				{
+					markup = n.message,
+					widget = wibox.widget.textbox,
+				},
+				widget = wibox.layout.fixed.vertical,
+				spacing = dpi(6),
+			},
+			{
+				widget = wibox.container.margin,
+				top = dpi(12),
+				visible = n.actions and #n.actions > 0,
+			},
+			action,
+			widget = wibox.layout.fixed.vertical,
+		},
+		widget = wibox.layout.fixed.horizontal,
+		spacing = dpi(12),
+	}
+end
+
+naughty.connect_signal("request::display", function(n)
 	return naughty.layout.box({
 		notification = n,
 		widget_template = {
 			{
 				{
-					{
-						{
-							{
-								widget = wibox.widget.imagebox,
-								image = n.icon,
-								resize = true,
-								clip_shape = function(cr, w, h)
-									gears.shape.rounded_rect(cr, w, h, dpi(6))
-								end,
-							},
-							widget = wibox.container.constraint,
-							width = dpi(42),
-							strategy = "max",
-						},
-						{
-							{
-								{
-									font = beautiful.notification_font or "Sans 12",
-									markup = "<b>" .. n.title .. "</b>",
-									widget = wibox.widget.textbox,
-								},
-								naughty.widget.message,
-								widget = wibox.layout.fixed.vertical,
-								spacing = dpi(6),
-							},
-							{
-								widget = wibox.container.margin,
-								top = dpi(12),
-								visible = n.actions and #n.actions > 0,
-							},
-							action,
-							widget = wibox.layout.fixed.vertical,
-						},
-						widget = wibox.layout.fixed.horizontal,
-						spacing = dpi(12),
-					},
+					get_notif_template(n),
 					widget = wibox.container.margin,
 					margins = dpi(12),
 				},
@@ -102,7 +115,9 @@ naughty.connect_signal("request::display", function(n)
 			},
 			widget = wibox.container.constraint,
 			width = dpi(372),
-			strategy = "exact",
+			strategy = "max",
 		},
 	})
 end)
+
+return get_notif_template

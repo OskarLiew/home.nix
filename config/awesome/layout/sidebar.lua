@@ -19,7 +19,6 @@ function init_sidebar(s)
 	end
 
 	-- Create panel
-	local top_margin = dpi(20)
 	local panel = wibox({
 		visible = false,
 		ontop = true,

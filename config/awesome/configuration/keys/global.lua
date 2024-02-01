@@ -224,9 +224,14 @@ awful.keyboard.append_global_keybindings({
 	end, { description = "open firefox", group = "launcher" }),
 	-- Sidebar
 	awful.key({ modkey }, "d", function()
-		s = awful.screen.focused()
+		local s = awful.screen.focused()
 		s.sidebar.visible = not s.sidebar.visible
 	end, { description = "open sidebar", group = "launcher" }),
+	-- Notification center
+	awful.key({ modkey }, "o", function()
+		local s = awful.screen.focused()
+		s.notification_center.toggle()
+	end, { description = "open notification center", group = "launcher" }),
 	-- Screenshot
 	awful.key({}, "", function()
 		awful.util.spawn(apps.default.screenshot)

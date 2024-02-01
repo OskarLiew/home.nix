@@ -10,6 +10,8 @@ local function init_icon(image, size, color)
 		forced_height = size,
 		forced_width = size,
 		widget = wibox.widget.imagebox,
+		valign = "center",
+		halign = "center",
 	})
 end
 
