@@ -11,8 +11,8 @@ M.general = {
         ["<N>"] = { "Nzzzv" },
         ["<leader>y"] = { '"+y', "yank to clipboard" },
         ["<leader>Y"] = { '"+Y', "yank row to clipboard" },
-        ["<A-n>"] = { "<cmd> cnext <CR>", "next item in quickfix list" },
-        ["<A-p>"] = { "<cmd> cprev <CR>", "previous item in quickfix list" },
+        ["<A-n>"] = { "<cmd> cnext <CR>zz", "next item in quickfix list" },
+        ["<A-p>"] = { "<cmd> cprev <CR>zz", "previous item in quickfix list" },
     },
     x = {
         ["<leader>p"] = { '"_dP', "paste and keep buffer" },
