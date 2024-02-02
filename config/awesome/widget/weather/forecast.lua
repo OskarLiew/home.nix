@@ -1,11 +1,7 @@
 local awful = require("awful")
-local gears = require("gears")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
-local naughty = require("naughty")
-
-local icon_dir = require("helpers.widget").get_icon_dir("weather")
 
 local json = require("cjson")
 

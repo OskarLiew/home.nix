@@ -6,15 +6,16 @@ local dpi = beautiful.xresources.apply_dpi
 
 local clickable_container = require("widget.clickable-container")
 
-local icon_dir = require("helpers.widget").get_icon_dir("music-player")
 local init_icon = require("helpers.icon").init_icon
+
+local icons = beautiful.icons.audio
 
 function init_music_player()
 	-- Create icons
-	local play_icon = init_icon(icon_dir .. "play.svg", dpi(80), beautiful.green)
-	local pause_icon = init_icon(icon_dir .. "pause.svg", dpi(80), beautiful.green)
-	local next_icon = init_icon(icon_dir .. "next.svg", dpi(60), beautiful.green)
-	local previous_icon = init_icon(icon_dir .. "previous.svg", dpi(60), beautiful.green)
+	local play_icon = init_icon(icons.play, dpi(80), beautiful.green)
+	local pause_icon = init_icon(icons.pause, dpi(80), beautiful.green)
+	local next_icon = init_icon(icons.next, dpi(60), beautiful.green)
+	local previous_icon = init_icon(icons.previous, dpi(60), beautiful.green)
 
 	-- Create buttons
 	local play_pause_button = wibox.widget({

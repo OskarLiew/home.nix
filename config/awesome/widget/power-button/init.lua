@@ -4,16 +4,17 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
-local icon_dir = require("helpers.widget").get_icon_dir("power-button")
 local clickable_container = require("widget.clickable-container")
 local init_icon = require("helpers.icon").init_icon
+
+local icon = beautiful.icons.misc.power
 
 local apps = require("configuration.apps")
 
 local function init_power_button(margins)
 	local power_icon = wibox.widget({
 		{
-			init_icon(icon_dir .. "power.svg", nil, beautiful.red),
+			init_icon(icon, nil, beautiful.red),
 			widget = wibox.container.margin,
 			margins = margins or dpi(8),
 		},

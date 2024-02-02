@@ -1,7 +1,6 @@
 pcall(require, "luarocks.loader")
 
 -- Standard awesome library
-local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
 
@@ -13,11 +12,6 @@ local beautiful = require("beautiful")
 
 -- Notification library
 local naughty = require("naughty")
-
--- Declarative object management
-local ruled = require("ruled")
-local menubar = require("menubar")
-local hotkeys_popup = require("awful.hotkeys_popup")
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -35,16 +29,14 @@ naughty.connect_signal("request::display_error", function(message, startup)
 end)
 -- }}}
 
-local config_dir = gears.filesystem.get_configuration_dir()
-
--- Daemons
-require("daemon")
-
 -- ░▀█▀░█░█░█▀▀░█▄█░█▀▀
 -- ░░█░░█▀█░█▀▀░█░█░█▀▀
 -- ░░▀░░▀░▀░▀▀▀░▀░▀░▀▀▀
 
 beautiful.init(require("theme"))
+
+-- Daemons
+require("daemon")
 
 -- ░█░░░█▀█░█░█░█▀█░█░█░▀█▀
 -- ░█░░░█▀█░░█░░█░█░█░█░░█░

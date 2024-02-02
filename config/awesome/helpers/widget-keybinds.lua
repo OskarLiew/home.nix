@@ -9,17 +9,18 @@ return function(widget, keys)
 		end
 	end
 
+	-- Start a keygrabber to use keyboard shortcuts while the widget is visible
 	keys = keys or {}
 	keys[#keys + 1] = awful.key({
 		modifiers = {},
 		key = "Escape",
 		on_press = toggle,
 	})
-
 	local keygrabber = awful.keygrabber({
 		keybindings = keys,
 	})
 
+	-- Hide widget when clicking outside it
 	widget:connect_signal("mouse::leave", function()
 		button.connect_signal("press", toggle)
 	end)

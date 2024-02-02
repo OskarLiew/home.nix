@@ -1,3 +1,4 @@
+local beautiful = require("beautiful")
 local wibox = require("wibox")
 local awful = require("awful")
 local gears = require("gears")
@@ -6,15 +7,14 @@ local dpi = require("beautiful").xresources.apply_dpi
 local apps = require("configuration.apps")
 local clickable_container = require("widget.clickable-container")
 
-local config_dir = gears.filesystem.get_configuration_dir()
-local widget_icon_dir = config_dir .. "widget/network/icons/"
+local icons = beautiful.icons.network
 
 local function return_button(wireless_interface)
 	local network_imagebox = wibox.widget({
 		nil,
 		{
 			id = "icon",
-			image = widget_icon_dir .. "wifi.svg",
+			image = icons.wifi,
 			widget = wibox.widget.imagebox,
 			resize = true,
 		},
@@ -73,21 +73,20 @@ local function return_button(wireless_interface)
 
 		network_widget.spacing = dpi(5)
 
-		local icon_name = "wifi"
-
+		local icon = icons.wifi
 		if network_strength < 0.33 then
-			icon_name = icon_name .. "-low"
+			icon = icons.wifi_low
 		elseif network_strength < 0.67 then
-			icon_name = icon_name .. "-mid"
+			icon = icons.wifi_mid
 		else
-			icon_name = icon_name .. "-high"
+			icon = icons.wifi_high
 		end
-		network_imagebox.icon:set_image(gears.surface.load_uncached(widget_icon_dir .. icon_name .. ".svg"))
+		network_imagebox.icon:set_image(gears.surface.load_uncached(icon))
 	end
 
 	local function update_network_disconnected()
 		network_widget.spacing = dpi(0)
-		network_imagebox.icon:set_image(gears.surface.load_uncached(widget_icon_dir .. "wifi-disconnected.svg"))
+		network_imagebox.icon:set_image(gears.surface.load_uncached(icons.wifi_disconnected))
 	end
 
 	awesome.connect_signal("daemon::network-strength", update_network_strength)

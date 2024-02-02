@@ -4,17 +4,27 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 local dpi = require("beautiful").xresources.apply_dpi
 
-local config_dir = gears.filesystem.get_configuration_dir()
-local widget_icon_dir = config_dir .. "widget/microphone/icons/"
+local apps = require("configuration.apps")
+local slider = require("widget.slider-popup")
+local clickable_container = require("widget.clickable-container")
+local recolor_image = require("helpers.icon").recolor_image
+
+local icons = beautiful.icons.audio
+
+local function get_icon(muted)
+	local icon_name = "mic"
+	if muted then
+		icon_name = icon_name .. "_mute"
+	end
+	return recolor_image(icons[icon_name], beautiful.fg)
+end
 
 local function init_mic_widget()
-	local image = gears.color.recolor_image(widget_icon_dir .. "microphone-mute.svg", beautiful.fg)
-
 	local mic_imagebox = wibox.widget({
 		nil,
 		{
 			id = "icon",
-			image = image,
+			image = get_icon(true),
 			widget = wibox.widget.imagebox,
 			resize = true,
 		},
@@ -27,7 +37,20 @@ local function init_mic_widget()
 		mic_imagebox,
 		layout = wibox.layout.fixed.horizontal,
 		spacing = dpi(0),
+	})
+
+	local mic_button = wibox.widget({
+		mic_widget,
+		widget = clickable_container,
 		visible = false,
+	})
+
+	mic_button:buttons(gears.table.join(awful.button({}, 1, nil, function()
+		awful.spawn(apps.default.volume_mixer, false)
+	end)))
+
+	local mic_slider = slider({
+		imagebox = mic_imagebox,
 	})
 
 	-- Functionality
@@ -39,21 +62,35 @@ local function init_mic_widget()
 				stdout = stdout:gsub("\n", "")
 				local muted = stdout == "[off]"
 
-				if muted then
-					mic_widget.visible = true
-				else
-					mic_widget.visible = false
-				end
+				local icon = get_icon(muted)
+				mic_imagebox.icon:set_image(gears.surface.load_uncached(icon))
+				mic_button.visible = muted
+
+				-- Set volume
+				awful.spawn.easy_async_with_shell(
+					[[awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Capture) | tr -d '\n%']],
+					function(stdout)
+						local volume_percentage = tonumber(stdout)
+
+						-- Stop if null
+						if not volume_percentage then
+							return
+						end
+
+						mic_slider.set_value(volume_percentage)
+					end
+				)
 			end
 		)
 	end
 
 	-- Trigger events
 	awesome.connect_signal("mic-mute", update_mic)
+	awesome.connect_signal("mic-mute", mic_slider.display)
 
 	update_mic()
 
-	return mic_widget
+	return mic_button
 end
 
 return init_mic_widget

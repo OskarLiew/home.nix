@@ -48,7 +48,7 @@ local function slider(args)
 		wibox.container.margin(args.imagebox, container_width * 0.25, container_width * 0.25),
 	})
 
-	-- create a 4 second timer to hide the volume adjust
+	-- create a short timer to hide the volume adjust
 	-- component whenever the timer is started
 	local hide_adjust = gears.timer({
 		timeout = 3,

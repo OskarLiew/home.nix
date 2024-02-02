@@ -1,3 +1,4 @@
+local beautiful = require("beautiful")
 local wibox = require("wibox")
 local awful = require("awful")
 local gears = require("gears")
@@ -7,15 +8,14 @@ local apps = require("configuration.apps")
 local slider = require("widget.slider-popup")
 local clickable_container = require("widget.clickable-container")
 
-local config_dir = gears.filesystem.get_configuration_dir()
-local widget_icon_dir = config_dir .. "widget/volume/icons/"
+local icons = beautiful.icons.audio
 
 local function return_button()
 	local volume_imagebox = wibox.widget({
 		nil,
 		{
 			id = "icon",
-			image = widget_icon_dir .. "volume-mute.svg",
+			image = icons.volume_mute,
 			widget = wibox.widget.imagebox,
 			resize = true,
 		},
@@ -79,16 +79,13 @@ local function return_button()
 				local icon_name = "volume"
 
 				if muted then
-					icon_name = icon_name .. "-mute"
+					icon_name = icon_name .. "_mute"
 				elseif volume_percentage < 50 then
-					icon_name = icon_name .. "-small"
+					icon_name = icon_name .. "_small"
 				else
-					icon_name = icon_name .. "-notice"
+					icon_name = icon_name .. "_notice"
 				end
-				volume_imagebox.icon:set_image(gears.surface.load_uncached(widget_icon_dir .. icon_name .. ".svg"))
-
-				-- make volume_adjust component visible
-				volume_slider.display()
+				volume_imagebox.icon:set_image(gears.surface.load_uncached(icons[icon_name]))
 			end
 		)
 	end
@@ -107,9 +104,8 @@ local function return_button()
 
 	-- Trigger events
 	awesome.connect_signal("volume-change", set_volume)
-	volume_widget:connect_signal("mouse::enter", set_volume)
+	awesome.connect_signal("volume-change", volume_slider.display)
 
-	set_volume()
 	return volume_button
 end
 

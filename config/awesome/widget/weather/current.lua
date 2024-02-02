@@ -1,13 +1,11 @@
 local awful = require("awful")
-local gears = require("gears")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 local naughty = require("naughty")
 
-local icon_dir = require("helpers.widget").get_icon_dir("weather")
-
 local json = require("cjson")
+local icons = beautiful.icons.weather
 
 local weather_helpers = require("widget.weather.common")
 
@@ -36,13 +34,13 @@ local function init_weather_widget()
 
 	awful.widget.watch(current_weather_cmd, 60 * 15, function(widget, stdout, stderr, exitreason, exitcode)
 		if exitcode == 0 then
-			current_weather_data = json.decode(stdout)
+			local current_weather_data = json.decode(stdout)
 			if current_weather_data.cod == 200 then
 				current_weather_temp.text = weather_helpers.convert_temp(current_weather_data.main.temp)
 				current_weather_desc.text = current_weather_data.weather[1].description:gsub("^%l", string.upper)
 				current_weather_icon.image = weather_helpers.get_weather_icon(current_weather_data.weather[1].icon)
 			else
-				current_weather_icon.image = icon_dir .. "error.svg"
+				current_weather_icon.image = icons.error
 				current_weather_desc.text = "Error"
 				naughty.notification({
 					title = "Error in the weather widget",
@@ -51,7 +49,7 @@ local function init_weather_widget()
 				})
 			end
 		else
-			current_weather_icon.image = icon_dir .. "error.svg"
+			current_weather_icon.image = icons.error
 			current_weather_desc.text = "Error"
 			naughty.notification({ message = "Error in weather widget: " .. stderr, urgency = "critical" })
 		end

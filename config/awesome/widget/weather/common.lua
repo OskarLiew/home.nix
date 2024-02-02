@@ -1,10 +1,6 @@
-local awful = require("awful")
-local gears = require("gears")
-local wibox = require("wibox")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
 
-local icon_dir = require("helpers.widget").get_icon_dir("weather")
 local init_icon = require("helpers.icon").init_icon
 local read_file = require("helpers.io").read_file
 
@@ -21,7 +17,7 @@ else
 	token = token:gsub("\n", "")
 end
 
-local json = require("cjson")
+local icons = beautiful.icons.weather
 
 local function convert_temp(degrees_k)
 	local degrees_c = tonumber(degrees_k) - 273.15
@@ -30,26 +26,26 @@ end
 
 local function get_weather_icon(icon_code)
 	local mapping = {
-		["01d"] = "sun.svg",
-		["01n"] = "moon.svg",
-		["02d"] = "sunny.svg",
-		["02n"] = "cloudy-night.svg",
-		["03d"] = "cloudy.svg",
-		["03n"] = "cloudy-night.svg",
-		["04d"] = "cloud.svg",
-		["04n"] = "cloud-dark.svg",
-		["09d"] = "light-rain.svg",
-		["09n"] = "light-rain-dark.svg",
-		["10d"] = "heavy-rain.svg",
-		["10n"] = "heavy-rain-dark.svg",
-		["11d"] = "thunderstorm.svg",
-		["11n"] = "thunderstorm-dark.svg",
-		["13d"] = "snow.svg",
-		["13n"] = "snow-dark.svg",
-		["50d"] = "fog.svg",
-		["50n"] = "fog-dark.svg",
+		["01d"] = icons.sun,
+		["01n"] = icons.moon,
+		["02d"] = icons.sunny,
+		["02n"] = icons.cloudy,
+		["03d"] = icons.cloudy,
+		["03n"] = icons.cloudy,
+		["04d"] = icons.cloud,
+		["04n"] = icons.cloud,
+		["09d"] = icons.light,
+		["09n"] = icons.light,
+		["10d"] = icons.heavy,
+		["10n"] = icons.heavy,
+		["11d"] = icons.thunderstorm,
+		["11n"] = icons.thunderstorm,
+		["13d"] = icons.snow,
+		["13n"] = icons.snow,
+		["50d"] = icons.fog,
+		["50n"] = icons.fog,
 	}
-	return icon_dir .. mapping[icon_code]
+	return mapping[icon_code]
 end
 
 local function init_weather_imagebox(size)
@@ -85,7 +81,7 @@ local function init_weather_imagebox(size)
 		.. ".error {stroke:"
 		.. beautiful.red
 		.. ";}"
-	local weather_icon = init_icon(icon_dir .. "error.svg", size)
+	local weather_icon = init_icon(icons.error, size)
 	weather_icon.stylesheet = icon_stylesheet
 	return weather_icon
 end
