@@ -134,7 +134,7 @@ function init_sidebar(s)
 	panel.toggle = function()
 		panel.visible = not panel.visible
 	end
-	require("helpers.close-outside-click")(panel)
+	require("helpers.widget-keybinds")(panel)
 	return panel
 end
 
