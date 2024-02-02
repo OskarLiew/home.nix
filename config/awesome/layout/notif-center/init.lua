@@ -69,7 +69,7 @@ local function init_notification_center(s)
 							text = "Clear notifications",
 							font = beautiful.base_font .. " 12",
 						},
-						init_icon(icon_dir .. "delete.svg", dpi(20), beautiful.fg),
+						init_icon(beautiful.icons.misc.delete, dpi(20), beautiful.fg),
 						layout = wibox.layout.fixed.horizontal,
 						spacing = dpi(12),
 					},

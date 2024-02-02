@@ -5,17 +5,41 @@ local naughty = require("naughty")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
+local clickable_container = require("widget.clickable-container")
+
+local init_icon = require("helpers.icon").init_icon
+
 local get_notif_template = require("daemon.notifications")
+
+local info_size = 8
+
 local function get_notification(n)
 	local time_ago = wibox.widget({
 		widget = wibox.widget.textbox,
-		font = beautiful.base_font .. " 9",
+		font = beautiful.base_font .. " " .. tostring(info_size),
 		text = n.get_duration(),
 		halign = "right",
 	})
 	awesome.connect_signal("notif-center::opened", function()
 		time_ago.text = n.get_duration()
 	end)
+
+	local close_button = wibox.widget({
+		init_icon(beautiful.icons.misc.close, dpi(info_size) + dpi(2), beautiful.fg),
+		widget = clickable_container,
+	})
+
+	local right = wibox.widget({
+		{
+			time_ago,
+			close_button,
+			layout = wibox.layout.fixed.horizontal,
+			spacing = dpi(6),
+		},
+		widget = wibox.container.place,
+		halign = "right",
+	})
+
 	local color = beautiful.notification_bg
 	if n.urgency == "critical" then
 		color = beautiful.notification_bg_urgent
@@ -27,11 +51,11 @@ local function get_notification(n)
 				{
 					{
 						widget = wibox.widget.textbox,
-						font = beautiful.base_font .. " 9",
+						font = beautiful.base_font .. " " .. tostring(info_size),
 						text = n.app_name,
 						halign = "left",
 					},
-					time_ago,
+					right,
 					layout = wibox.layout.flex.horizontal,
 				},
 				get_notif_template(n),
@@ -46,6 +70,10 @@ local function get_notification(n)
 		shape = beautiful.notification_shape,
 	})
 
+	close_button:buttons(gears.table.join(awful.button({}, 1, nil, function()
+		awesome.emit_signal("notif-center::destroy", notif)
+	end)))
+
 	return notif
 end
 
@@ -54,6 +82,9 @@ local notifbox_layout = wibox.widget({
 	spacing = dpi(6),
 })
 require("layout.notif-center.notif-scroller")(notifbox_layout)
+awesome.connect_signal("notif-center::destroy", function(notif)
+	notifbox_layout:remove_widgets(notif)
+end)
 
 local notifbox_add = function(n)
 	notifbox_layout:insert(1, get_notification(n))

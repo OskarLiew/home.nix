@@ -16,6 +16,8 @@ local icons = require("theme.icons")
 
 local theme = {}
 
+theme.icons = icons
+
 theme.base_font = "sans"
 theme.base_font_size = "10"
 theme.font = theme.base_font .. " " .. theme.base_font_size
@@ -147,8 +149,8 @@ theme.titlebar_color_float_fg = theme.blue
 
 -- Define the image to load
 
-theme.titlebar_close_button_normal = recolor_image(icons.close, theme.fg_inactive)
-theme.titlebar_close_button_focus = recolor_image(icons.close, theme.titlebar_color_close_fg)
+theme.titlebar_close_button_normal = recolor_image(icons.misc.close, theme.fg_inactive)
+theme.titlebar_close_button_focus = recolor_image(icons.misc.close, theme.titlebar_color_close_fg)
 
 theme.titlebar_ontop_button_normal_inactive = recolor_image(icons.titlebar.on_top, theme.fg_inactive)
 theme.titlebar_ontop_button_focus_inactive = recolor_image(icons.titlebar.on_top, theme.titlebar_color_on_top_fg)

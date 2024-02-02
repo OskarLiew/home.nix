@@ -96,10 +96,12 @@ local icons = {
 		brightness_high = "misc/brightness-high.svg",
 		brightness_low = "misc/brightness-low.svg",
 		brightness = "misc/brightness.svg",
+		close = dir .. "misc/close.svg",
+		close_small = dir .. "misc/close-small.svg",
+		delete = dir .. "misc/delete.svg",
 	},
 
 	-- Others/System UI
-	close = dir .. "close.svg",
 	logout = dir .. "logout.svg",
 	sleep = dir .. "power-sleep.svg",
 	power = dir .. "power.svg",
