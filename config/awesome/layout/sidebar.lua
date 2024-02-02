@@ -130,6 +130,11 @@ function init_sidebar(s)
 		top = 20,
 		widget = wibox.container.margin,
 	})
+
+	panel.toggle = function()
+		panel.visible = not panel.visible
+	end
+	require("helpers.close-outside-click")(panel)
 	return panel
 end
 

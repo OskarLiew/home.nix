@@ -2,11 +2,11 @@ local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
 
-local buffer = wibox.widget({
-	layout = wibox.layout.fixed.vertical,
-})
-
 local add_button_event = function(widget)
+	local buffer = wibox.widget({
+		layout = wibox.layout.fixed.vertical,
+	})
+
 	widget:buttons(gears.table.join(
 		awful.button({}, 5, nil, function()
 			if #widget.children <= 1 then

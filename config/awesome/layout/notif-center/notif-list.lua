@@ -81,7 +81,8 @@ local notifbox_layout = wibox.widget({
 	layout = wibox.layout.fixed.vertical,
 	spacing = dpi(6),
 })
-require("layout.notif-center.notif-scroller")(notifbox_layout)
+require("helpers.scroller")(notifbox_layout)
+
 awesome.connect_signal("notif-center::destroy", function(notif)
 	notifbox_layout:remove_widgets(notif)
 end)

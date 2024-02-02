@@ -5,7 +5,6 @@ local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
 local config_dir = gears.filesystem.get_configuration_dir()
-local icon_dir = config_dir .. "layout/notif-center/icons/"
 local init_icon = require("helpers.icon").init_icon
 local clickable_container = require("widget.clickable-container")
 
@@ -112,6 +111,8 @@ local function init_notification_center(s)
 		end
 		panel.visible = turn_on
 	end
+	require("helpers.close-outside-click")(panel)
+
 	return panel
 end
 
