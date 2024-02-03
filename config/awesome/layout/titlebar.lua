@@ -51,8 +51,13 @@ client.connect_signal("request::titlebars", function(c)
 			},
 			{ -- Middle
 				{ -- Title
-					halign = "center",
-					widget = awful.titlebar.widget.titlewidget(c),
+					{
+						widget = awful.titlebar.widget.titlewidget(c),
+						halign = "left",
+					},
+					widget = wibox.container.margin,
+					bg = "#00ff00",
+					left = dpi(6),
 				},
 				buttons = buttons,
 				layout = wibox.layout.flex.horizontal,
