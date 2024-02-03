@@ -63,9 +63,9 @@ naughty.connect_signal("request::display", function(n)
 				},
 				widget = naughty.container.background,
 				id = "backgorund_role",
-				forced_width = dpi(372),
 			},
 			widget = wibox.container.constraint,
+			strategy = "exact",
 		},
 	})
 end)

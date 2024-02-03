@@ -93,8 +93,13 @@ end
 
 local notifbox_add_expired = function(n)
 	n:connect_signal("destroyed", function(_, reason, _)
-		if reason == 1 then
+		if reason == 1 and n.urgency ~= "low" then
 			notifbox_add(n)
+		end
+
+		-- Open client if closing notification
+		if reason == 2 and #n.clients > 0 then
+			n.clients[1]:jump_to(false)
 		end
 	end)
 end

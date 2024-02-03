@@ -22,7 +22,8 @@ local function init_notification_center(s)
 	end
 
 	-- Create panel
-	local panel_width = dpi(384)
+	local panel_margins = dpi(12)
+	local panel_width = dpi(beautiful.notification_max_width + 2 * panel_margins)
 	local panel = wibox({
 		visible = false,
 		ontop = true,
@@ -99,7 +100,7 @@ local function init_notification_center(s)
 			fill_space = true,
 			spacing = dpi(6),
 		},
-		margins = dpi(12),
+		margins = panel_margins,
 		widget = wibox.container.margin,
 	})
 

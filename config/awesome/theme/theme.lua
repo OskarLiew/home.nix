@@ -103,6 +103,7 @@ theme.hotkeys_modifiers_fg = theme.bg_focus
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
+theme.notification_max_width = dpi(420)
 theme.notification_bg = theme.bg1 .. theme.bg_opacity2
 theme.notification_bg_urgent = theme.bg_red .. theme.bg_opacity2
 theme.notification_fg = theme.fg_normal
