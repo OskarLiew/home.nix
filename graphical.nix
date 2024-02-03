@@ -34,7 +34,10 @@
       enable = true;
       package = upkgs.kitty;
       theme = "Everforest Dark Hard";
-      settings = { confirm_os_window_close = 2; };
+      settings = { 
+        confirm_os_window_close = 2; 
+        enable_audio_bell = false;
+      };
     };
     autorandr.enable = true;
   };
