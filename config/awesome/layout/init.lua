@@ -56,7 +56,37 @@ ruled.client.connect_signal("request::rules", function()
 				"pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
 			},
 		},
-		properties = { floating = true, placement = awful.placement.centered },
+		properties = {
+			floating = true,
+			placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen,
+		},
+	})
+
+	-- Applications that should be floating in a small window
+	ruled.client.append_rule({
+		id = "floating-small",
+		rule_every = {
+			class = {
+				"Nautilus",
+			},
+		},
+		properties = {
+			floating = true,
+			placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen,
+			width = 1200,
+			height = 700,
+		},
+	})
+
+	-- Center floating
+	ruled.client.append_rule({
+		id = "floating-location",
+		rule_any = {
+			floating = true,
+		},
+		properties = {
+			placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen,
+		},
 	})
 end)
 -- }}}
