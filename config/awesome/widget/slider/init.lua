@@ -1,13 +1,8 @@
 local wibox = require("wibox")
 local awful = require("awful")
 local gears = require("gears")
-local clickable_container = require("widget.clickable-container")
 local dpi = require("beautiful").xresources.apply_dpi
-local config_dir = gears.filesystem.get_configuration_dir()
-local widget_icon_dir = config_dir .. "widget/volume/icons/"
-local apps = require("configuration.apps")
 local beautiful = require("beautiful")
-local naughty = require("naughty")
 
 local function slider(args)
 	local screen = args.screen or awful.screen.focused()

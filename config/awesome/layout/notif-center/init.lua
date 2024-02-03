@@ -4,7 +4,6 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
-local config_dir = gears.filesystem.get_configuration_dir()
 local init_icon = require("helpers.icon").init_icon
 local clickable_container = require("widget.clickable-container")
 

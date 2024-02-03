@@ -9,7 +9,7 @@ local clickable_container = require("widget.clickable-container")
 
 local init_icon = require("helpers.icon").init_icon
 
-local get_notif_template = require("daemon.notifications")
+local get_notif_template = require("notifications.template")
 
 local info_size = 8
 
