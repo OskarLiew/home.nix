@@ -100,6 +100,7 @@ local icons = {
 		close = dir .. "misc/close.svg",
 		close_small = dir .. "misc/close-small.svg",
 		delete = dir .. "misc/delete.svg",
+		announce = dir .. "misc/announcement.svg",
 	},
 }
 

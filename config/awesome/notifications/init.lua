@@ -56,13 +56,16 @@ naughty.connect_signal("request::display", function(n)
 		notification = n,
 		widget_template = {
 			{
-				get_notif_template(n),
-				widget = wibox.container.margin,
-				margins = dpi(12),
+				{
+					get_notif_template(n),
+					widget = wibox.container.margin,
+					margins = dpi(12),
+				},
+				widget = naughty.container.background,
+				id = "backgorund_role",
+				forced_width = dpi(372),
 			},
-			widget = naughty.container.background,
-			id = "backgorund_role",
-			forced_width = dpi(372),
+			widget = wibox.container.constraint,
 		},
 	})
 end)

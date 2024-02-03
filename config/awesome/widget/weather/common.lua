@@ -8,6 +8,7 @@ local config = require("configuration.widget").weather
 local token = read_file(config.api_key_path)
 if token == nil then
 	naughty.notification({
+		app_name = "Weather",
 		title = "Error in the weather widget",
 		message = "API key path at " .. config.api_key_path .. " not found.",
 		urgency = "critical",

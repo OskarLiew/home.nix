@@ -29,7 +29,7 @@ function init_sidebar(s)
 		y = s.geometry.y + s.geometry.height - s.tiling_area.height + 2 * beautiful.useless_gap,
 		shape = sidebar_shape,
 		stretch = false,
-		bg = beautiful.bg_dim .. "AA",
+		bg = beautiful.bg_dim .. beautiful.bg_opacity2,
 		fg = beautiful.fg_normal,
 	})
 
@@ -85,7 +85,7 @@ function init_sidebar(s)
 			margins = dpi(10),
 		},
 		widget = wibox.container.background,
-		bg = beautiful.bg_popup .. "90",
+		bg = beautiful.bg_popup .. beautiful.bg_opacity2,
 		shape = function(cr, w, h)
 			gears.shape.rounded_rect(cr, w, h, dpi(40))
 		end,

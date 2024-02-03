@@ -8,14 +8,14 @@ local add_button_event = function(widget)
 	})
 
 	widget:buttons(gears.table.join(
-		awful.button({}, 5, nil, function()
+		awful.button({}, 4, nil, function()
 			if #widget.children <= 1 then
 				return
 			end
 			buffer:insert(#buffer.children + 1, widget.children[1])
 			widget:remove(1)
 		end),
-		awful.button({}, 4, nil, function()
+		awful.button({}, 5, nil, function()
 			if #buffer.children == 0 then
 				return
 			end

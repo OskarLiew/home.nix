@@ -1,13 +1,12 @@
-local awful = require("awful")
 local beautiful = require("beautiful")
 local dpi = require("beautiful").xresources.apply_dpi
 local gears = require("gears")
-
+local awful = require("awful")
+local naughty = require("naughty")
 local wibox = require("wibox")
 
-local naughty = require("naughty")
-
 local clickable_container = require("widget.clickable-container")
+local recolor_image = require("helpers.icon").recolor_image
 
 local function get_notif_template(n)
 	local action = {
@@ -39,11 +38,11 @@ local function get_notif_template(n)
 		widget = naughty.list.actions,
 	}
 
-	return {
+	local template = wibox.widget({
 		{
 			{
 				widget = wibox.widget.imagebox,
-				image = n.icon,
+				image = n.icon or recolor_image(beautiful.icons.misc.announce, beautiful.fg),
 				resize = true,
 				clip_shape = function(cr, w, h)
 					gears.shape.rounded_rect(cr, w, h, dpi(6))
@@ -77,7 +76,15 @@ local function get_notif_template(n)
 		},
 		widget = wibox.layout.fixed.horizontal,
 		spacing = dpi(12),
-	}
+	})
+
+	template:buttons(gears.table.join(awful.button({}, 1, nil, function()
+		if #n.clients > 0 then
+			n.clients[1]:jump_to(false)
+		end
+	end)))
+
+	return template
 end
 
 return get_notif_template

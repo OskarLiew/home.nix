@@ -13,7 +13,7 @@ local function start_network_daemon(wireless_interface)
 	local show_disconnected_notification = function()
 		naughty.notification({
 			icon = icons.wifi_disconnected,
-			app_name = "System notification",
+			app_name = "System",
 			title = "Disconnection",
 			message = "You have been disconnected from a network",
 			urgency = "normal",
@@ -23,7 +23,7 @@ local function start_network_daemon(wireless_interface)
 	local show_connected_notification = function()
 		naughty.notification({
 			icon = icons.wifi_high,
-			app_name = "System notification",
+			app_name = "System",
 			title = "Connection",
 			message = "You have been connected to a network",
 			urgency = "normal",

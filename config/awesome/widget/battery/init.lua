@@ -88,7 +88,7 @@ local return_button = function()
 	local show_battery_warning = function()
 		naughty.notification({
 			icon = icons.alert,
-			app_name = "System notification",
+			app_name = "System",
 			title = "Battery is dying!",
 			message = "Battery is about to run out. Plug in the machine, or at least save!",
 			urgency = "critical",
