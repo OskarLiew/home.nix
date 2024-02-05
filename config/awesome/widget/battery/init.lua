@@ -114,7 +114,7 @@ local return_button = function()
 
 				-- Charging or fully charged
 				if status == "charging" or (status == "fully-charged" and battery_percentage == 100) then
-					battery_imagebox.icon:set_image(gears.surface.load_uncached(icons.charing))
+					battery_imagebox.icon:set_image(gears.surface.load_uncached(icons.charging))
 					return
 				end
 

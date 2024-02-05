@@ -228,7 +228,7 @@ awful.keyboard.append_global_keybindings({
 		s.sidebar.toggle()
 	end, { description = "open sidebar", group = "launcher" }),
 	-- Notification center
-	awful.key({ modkey }, "o", function()
+	awful.key({ modkey }, "u", function()
 		local s = awful.screen.focused()
 		s.notification_center.toggle()
 	end, { description = "open notification center", group = "launcher" }),
