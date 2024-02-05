@@ -49,6 +49,15 @@ ruled.notification.connect_signal("request::rules", function()
 		rule = { urgency = "critical" },
 		properties = { bg = beautiful.notification_bg_urgent, fg = beautiful.fg_normal },
 	})
+
+	-- Low urgency apps
+	ruled.notification.append_rule({
+		rules_any = { app_name = {
+			"Spotify",
+			"Flameshot",
+		} },
+		properties = { urgency = "low" },
+	})
 end)
 
 naughty.connect_signal("request::display", function(n)
