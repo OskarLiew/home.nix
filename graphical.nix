@@ -19,6 +19,8 @@
     simplescreenrecorder
     zotero
     insomnia
+    dconf
+    mpd
   ];
 
   programs = {
@@ -34,8 +36,8 @@
       enable = true;
       package = upkgs.kitty;
       theme = "Everforest Dark Hard";
-      settings = { 
-        confirm_os_window_close = 2; 
+      settings = {
+        confirm_os_window_close = 2;
         enable_audio_bell = false;
       };
     };
@@ -58,6 +60,11 @@
       "x-scheme-handler/https" = "firefox.desktop";
       "x-scheme-handler/about" = "firefox.desktop";
       "x-scheme-handler/unknown" = "firefox.desktop";
+    };
+    configFile = {
+      "awesome".source = ../config/awesome;
+      "picom".source = ../config/picom;
+      "rofi".source = ../config/rofi;
     };
   };
 }

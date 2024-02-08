@@ -1,83 +1,83 @@
 local M = {}
 
 M.treesitter = {
-	ensure_installed = {
-		"vim",
-		"lua",
-		"html",
-		"css",
-		"javascript",
-		"typescript",
-		"tsx",
-		"c",
-		"markdown",
-		"markdown_inline",
-		"rust",
-		"python",
-		"toml",
-		"json",
-		"yaml",
-		"bash",
-		"nix",
-	},
-	indent = {
-		enable = true,
-		-- disable = {
-		--   "python"
-		-- },
-	},
+    ensure_installed = {
+        "vim",
+        "lua",
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "tsx",
+        "c",
+        "markdown",
+        "markdown_inline",
+        "rust",
+        "python",
+        "toml",
+        "json",
+        "yaml",
+        "bash",
+        "nix",
+    },
+    indent = {
+        enable = true,
+        disable = {
+            "yaml",
+        },
+    },
 }
 
 M.mason = {
-	ensure_installed = {
-		-- lua stuff
-		"lua-language-server",
-		"stylua",
+    ensure_installed = {
+        -- lua stuff
+        "lua-language-server",
+        "stylua",
 
-		-- web dev stuff
-		"css-lsp",
-		"html-lsp",
-		"typescript-language-server",
-		"deno",
-		"prettier",
+        -- web dev stuff
+        "css-lsp",
+        "html-lsp",
+        "typescript-language-server",
+        "deno",
+        "prettier",
 
-		-- c/cpp stuff
-		"clangd",
-		"clang-format",
+        -- c/cpp stuff
+        "clangd",
+        "clang-format",
 
-		-- Python stuff
-		"pyright",
-		"black",
-		"ruff",
-		"mypy",
-		"debugpy",
+        -- Python stuff
+        "pyright",
+        "black",
+        "ruff",
+        "mypy",
+        "debugpy",
 
-		-- Rust stuff
-		"rust-analyzer",
+        -- Rust stuff
+        "rust-analyzer",
 
-		-- Nix struff
-		"nil",
-	},
+        -- Nix struff
+        "nil",
+    },
 }
 
 -- git support in nvimtree
 M.nvimtree = {
-	git = {
-		enable = true,
-	},
+    git = {
+        enable = true,
+    },
 
-	renderer = {
-		highlight_git = true,
-		icons = {
-			show = {
-				git = true,
-			},
-		},
-		root_folder_label = false,
-	},
-	view = {
-		hide_root_folder = nil,
-	},
+    renderer = {
+        highlight_git = true,
+        icons = {
+            show = {
+                git = true,
+            },
+        },
+        root_folder_label = false,
+    },
+    view = {
+        hide_root_folder = nil,
+    },
 }
 
 return M

@@ -27,7 +27,10 @@
       # NixOS
       homeConfigurations."oskar" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs extraSpecialArgs;
-        modules = [ ./home.nix ./graphical.nix ];
+        modules = [
+          ./home.nix
+          ./graphical.nix
+        ];
       };
       # Generic linux, with graphical interface
       homeConfigurations."oskar-generic" =
