@@ -10,9 +10,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, nixpkgs-unstable, nix-colors, ... }:
+  outputs = { nixpkgs, home-manager, nixpkgs-unstable, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -20,7 +24,7 @@
         system = "${system}";
         config.allowUnfree = true;
       };
-      extraSpecialArgs = { inherit nix-colors upkgs; };
+      extraSpecialArgs = { inherit inputs upkgs; };
     in
     {
       formatter.${system} = pkgs.nixpkgs-fmt;
