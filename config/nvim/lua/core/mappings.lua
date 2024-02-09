@@ -192,32 +192,32 @@ M.lspconfig = {
             "LSP references",
         },
 
-        ["<leader>cd"] = {
+        ["<leader>X"] = {
             function()
                 vim.diagnostic.open_float({ border = "rounded" })
             end,
-            "Floating diagnostic",
+            "Diagnostic hover",
         },
 
-        ["[d"] = {
+        ["[x"] = {
             function()
                 vim.diagnostic.goto_prev({ float = { border = "rounded" } })
             end,
             "Prev diagnostic",
         },
 
-        ["]d"] = {
+        ["]x"] = {
             function()
                 vim.diagnostic.goto_next({ float = { border = "rounded" } })
             end,
             "Next diagnostic",
         },
 
-        ["<leader>q"] = {
+        ["<leader>xq"] = {
             function()
                 vim.diagnostic.setloclist()
             end,
-            "Diagnostic setloclist",
+            "Setloclist with diagnostics",
         },
 
         ["<leader>wa"] = {
