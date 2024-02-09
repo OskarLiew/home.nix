@@ -51,20 +51,22 @@
     BROWSER = "firefox";
   };
 
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "text/plain" = [ "nvim.desktop" ];
-      "text/html" = "firefox.desktop";
-      "x-scheme-handler/http" = "firefox.desktop";
-      "x-scheme-handler/https" = "firefox.desktop";
-      "x-scheme-handler/about" = "firefox.desktop";
-      "x-scheme-handler/unknown" = "firefox.desktop";
+  xdg = {
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "text/plain" = [ "nvim.desktop" ];
+        "text/html" = "firefox.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+        "x-scheme-handler/about" = "firefox.desktop";
+        "x-scheme-handler/unknown" = "firefox.desktop";
+      };
     };
     configFile = {
-      "awesome".source = ../config/awesome;
-      "picom".source = ../config/picom;
-      "rofi".source = ../config/rofi;
+      "awesome".source = ./config/awesome;
+      "picom".source = ./config/picom;
+      "rofi".source = ./config/rofi;
     };
   };
 }

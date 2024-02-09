@@ -1,14 +1,11 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    # - Nix
-    nil
     # - Python
     python311
     python311Packages.pip
     python311Packages.mypy
     python311Packages.isort
     python311Packages.black
-    nodePackages.pyright
     poetry
     ruff
     # - js
@@ -16,16 +13,16 @@
     # - lua
     lua
     stylua
-    lua-language-server
     luarocks
     # - Go
     go
-    gopls
     # - C
     gcc
-    # Misc
-    dconf
-    mpd
+    # LSPs
+    lua-language-server
+    nodePackages.pyright
+    gopls
+    nil
   ];
 
   xdg.configFile = {
