@@ -7,9 +7,8 @@ local util = require("lspconfig.util")
 local servers = { "html", "cssls", "tsserver", "clangd", "nil_ls", "gopls", "pyright" }
 
 for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
-    })
+	lspconfig[lsp].setup({
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
 end
-

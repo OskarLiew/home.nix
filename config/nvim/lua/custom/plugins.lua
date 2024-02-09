@@ -39,6 +39,39 @@ local plugins = {
 	},
 
 	{
+		"NvChad/nvterm",
+		enabled = false,
+	},
+
+	{
+		"folke/which-key.nvim",
+		config = function(_, opts)
+			dofile(vim.g.base46_cache .. "whichkey")
+			require("which-key").setup(opts)
+			local present, wk = pcall(require, "which-key")
+			if not present then
+				return
+			end
+			wk.register({
+				-- add group
+				["<leader>"] = {
+					c = { name = "+code" },
+					d = { name = "+debug" },
+					f = { name = "+find" },
+					h = { name = "+help" },
+					g = { name = "+git" },
+					r = { name = "+refactor" },
+					s = { name = "+settings" },
+					w = { name = "+workspace/which-key" },
+				},
+			})
+		end,
+		setup = function()
+			require("core.utils").load_mappings("whichkey")
+		end,
+	},
+
+	{
 		"max397574/better-escape.nvim",
 		event = "InsertEnter",
 		config = function()
