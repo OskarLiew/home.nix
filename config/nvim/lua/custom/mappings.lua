@@ -77,6 +77,7 @@ M.dap = {
         ["<leader>dj"] = { "<cmd> DapStepOver <CR>", "Step over" },
         ["<leader>dh"] = { "<cmd> DapStepOut <CR>", "Step out" },
         ["<leader>dc"] = { "<cmd> DapContinue <CR>", "Continue" },
+        ["<leader>dX"] = { "<cmd> DapTerminate <CR>", "Terminate" },
         ["<leader>db"] = {
             function()
                 local ft = vim.bo.filetype
