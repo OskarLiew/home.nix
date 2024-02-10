@@ -23,15 +23,19 @@ client.connect_signal("request::titlebars", function(c)
 		if kind then
 			bg = beautiful["titlebar_color_" .. kind .. "_bg"]
 		end
+		local start_bg = bg_normal
+		if c.active then
+			start_bg = bg
+		end
 		local button = wibox.widget({
 			{
 				w,
 				widget = wibox.container.margin,
-				margins = dpi(3),
+				margins = dpi(2),
 			},
 			widget = wibox.container.background,
 			shape = gears.shape.circle,
-			bg = bg_normal,
+			bg = start_bg,
 		})
 		c:connect_signal("focus", function()
 			button.bg = bg
@@ -73,11 +77,12 @@ client.connect_signal("request::titlebars", function(c)
 			layout = wibox.layout.align.horizontal,
 		},
 		widget = wibox.container.margin,
-		top = dpi(3),
-		bottom = dpi(3),
-		left = dpi(10),
-		right = dpi(10),
+		top = dpi(4),
+		bottom = dpi(4),
+		left = dpi(12),
+		right = dpi(12),
 	}
+	awful.titlebar(c).size = dpi(30)
 end)
 -- }}}
 

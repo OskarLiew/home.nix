@@ -6,9 +6,11 @@
         "globals": [
             "awesome",
             "awful",
+            "button",
             "client",
+            "mouse",
             "screen",
-            "tag"
+            "tag",
         ]
     },
     "workspace": {

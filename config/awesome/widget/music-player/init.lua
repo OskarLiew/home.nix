@@ -10,7 +10,7 @@ local init_icon = require("helpers.icon").init_icon
 
 local icons = beautiful.icons.audio
 
-function init_music_player()
+local function init_music_player()
 	-- Create icons
 	local play_icon = init_icon(icons.play, dpi(80), beautiful.green)
 	local pause_icon = init_icon(icons.pause, dpi(80), beautiful.green)

@@ -4,8 +4,8 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
-function init_sidebar(s)
-	sidebar_shape = function(cr, width, height)
+local function init_sidebar(s)
+	local sidebar_shape = function(cr, width, height)
 		return gears.shape.partially_rounded_rect(
 			cr,
 			width,

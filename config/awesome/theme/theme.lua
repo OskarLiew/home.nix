@@ -138,14 +138,14 @@ theme.titlebar_bg_focus = theme.bg_normal
 theme.titlebar_fg_urgent = theme.bg_urgent
 theme.titlebar_bg_urgent = theme.fg_urgent
 
-theme.titlebar_color_close_bg = theme.bg_red
-theme.titlebar_color_close_fg = theme.red
-theme.titlebar_color_on_top_bg = theme.bg_yellow
-theme.titlebar_color_on_top_fg = theme.yellow
-theme.titlebar_color_max_bg = theme.bg_green
-theme.titlebar_color_max_fg = theme.green
-theme.titlebar_color_float_bg = theme.bg_blue
-theme.titlebar_color_float_fg = theme.blue
+theme.titlebar_color_close_bg = theme.red
+theme.titlebar_color_close_fg = theme.bg_red
+theme.titlebar_color_on_top_bg = theme.yellow
+theme.titlebar_color_on_top_fg = theme.bg_yellow
+theme.titlebar_color_max_bg = theme.green
+theme.titlebar_color_max_fg = theme.bg_green
+theme.titlebar_color_float_bg = theme.blue
+theme.titlebar_color_float_fg = theme.bg_blue
 
 -- Define the image to load
 

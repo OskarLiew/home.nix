@@ -84,7 +84,6 @@ local function init_tag_list(s, custom_style)
 				-- self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
 			end,
 		},
-		buttons = taglist_buttons,
 	})
 
 	return taglist

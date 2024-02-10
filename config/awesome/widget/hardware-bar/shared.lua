@@ -32,13 +32,12 @@ local bar_kinds = {
 	},
 }
 
-function init_hardware_bar(kind)
+local function init_hardware_bar(kind)
 	local kind_data = bar_kinds[kind]
 
 	local bar = wibox.widget({
 		widget = wibox.widget.progressbar,
 		shape = gears.shape.rounded_rect,
-		color = beautiful.fg_focus,
 		background_color = kind_data.bg,
 		color = kind_data.fg,
 		margins = dpi(10),

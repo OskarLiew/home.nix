@@ -58,7 +58,7 @@ local function init_forecast_widget()
 	awful.widget.watch(forecast_cmd, 60 * 60, function(widget, stdout, stderr, exitreason, exitcode)
 		layout:reset()
 		if exitcode == 0 then
-			forecast_data = json.decode(stdout)
+			local forecast_data = json.decode(stdout)
 			if forecast_data.cod == "200" then
 				for i = 1, 5 do
 					local weather = forecast_data.list[i]

@@ -129,7 +129,7 @@ tag.connect_signal("tagged", function(t)
 end)
 
 -- Focus on urgent clients
-awful.tag.attached_connect_signal(s, "property::selected", function()
+awful.tag.attached_connect_signal(nil, "property::selected", function()
 	local urgent_clients = function(c)
 		return awful.rules.match(c, { urgent = true })
 	end
