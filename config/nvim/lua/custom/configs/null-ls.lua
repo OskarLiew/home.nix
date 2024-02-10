@@ -66,7 +66,7 @@ local sources = {
     -- Python
     b.diagnostics.mypy,
     b.diagnostics.ruff.with({
-        extra_args = { "--ignore", "F821,F401,B018" },
+        extra_args = { "--ignore", "F821,F841,F401,B018" },
     }),
     ruff_format,
     ruff_isort,
