@@ -1,0 +1,10 @@
+# Python stuff
+venv/
+env/
+__pycache__/
+
+# Go stuff
+go/
+
+# Node
+node_modules

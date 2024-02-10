@@ -10,6 +10,7 @@
     less
     openssh
     neofetch
+    fd
     # TUI apps
     tmux
     lazydocker
@@ -18,7 +19,10 @@
     btop
   ];
 
-  xdg.configFile."tmux".source = ../config/tmux;
+  xdg.configFile = {
+    "tmux".source = ../config/tmux;
+    "fd".source = ../config/fd;
+  };
   home.file = {
     ".local/bin/tat".source = ../config/tmux/tat;
   };

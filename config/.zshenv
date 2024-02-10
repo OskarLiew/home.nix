@@ -25,14 +25,12 @@ export MANPAGER="less -R --use-color -Dd+r -Du+b"
 export BAT_THEME="ansi"
 
 # fzf
-export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+export FZF_DEFAULT_COMMAND="fd . $HOME"
+export FZF_DEFAULT_OPTS="--scroll-off=2 --reverse --height 40%"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-# Preview file content using bat (https://github.com/sharkdp/bat)
-export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
-
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -n 10'"
-export FZF_COMPLETION_DIR_COMMANDS="cd pushd rmdir tree ls"
+export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS --preview 'bat -n --color=always {}'"
+export FZF_ALT_C_COMMAND="fd --type d . $HOME"
+export FZF_ALT_C_OPTS="$FZF_DEFAULT_OPTS --preview 'tree -C {} | head -n 10'"
 
 # Ranger
 export RANGER_LOAD_DEFAULT_RC=false

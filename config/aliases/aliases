@@ -1,13 +1,9 @@
-myfzf () {
-    fzf --scroll-off=4 --reverse --height 40% $@
-}
-
 # Git
 alias gco='git checkout'
 alias gcob='git checkout -b'
 gcol () {  # List branches with fzf and checkout selected
     if [ -d "./.git" ]; then
-        git branch --format='%(refname:short)' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | myfzf --preview='git diff --stat {} --color=always' | xargs git checkout
+        git branch --format='%(refname:short)' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | fzf --preview='git diff --stat {} --color=always' | xargs git checkout
     else
         echo "Error: Not a git repository"
     fi
@@ -70,7 +66,7 @@ alias ldk='lazydocker'
 alias tmux='tmux -f "$XDG_CONFIG_HOME/tmux/tmux.conf"'
 tatls () {  # List tmux sessions to attach
     if [ -z "$TMUX" ]; then
-        tmux attach -t "$(tmux list-sessions | sed -E 's/:.*$//' | myfzf )"
+        tmux attach -t "$(tmux list-sessions | sed -E 's/:.*$//' | fzf )"
     else
         echo "Already in tmux"
     fi
