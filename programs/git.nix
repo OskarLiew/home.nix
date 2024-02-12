@@ -13,7 +13,15 @@
         enable = true;
         options = { syntax-theme = "ansi"; };
       };
-      extraConfig = { init.defaultBranch = "main"; };
+      extraConfig = { 
+          init.defaultBranch = "main"; 
+          rerere = {
+              enabled = true;
+              autoUpdate = true;
+          };
+          branch.sort = "-committerdate";
+          column.ui = "auto";
+        };
     };
     lazygit = {
       enable = true;
