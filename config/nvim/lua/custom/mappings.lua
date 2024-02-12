@@ -164,6 +164,30 @@ M.harpoon = {
 M.crawlerr = {
     n = {
         ["<leader>jn"] = { require("plugins.crawlerr").jump_to_node, "RR jump to node" },
+        ["<leader>jte"] = {
+            function()
+                require("plugins.crawlerr").jump_to_texts("en")
+            end,
+            "Go to node text en",
+        },
+        ["<leader>jts"] = {
+            function()
+                require("plugins.crawlerr").jump_to_texts("sv")
+            end,
+            "Go to node text sv",
+        },
+        ["<leader>jtf"] = {
+            function()
+                require("plugins.crawlerr").jump_to_texts("fi")
+            end,
+            "Go to node text fi",
+        },
+        ["<leader>jtn"] = {
+            function()
+                require("plugins.crawlerr").jump_to_texts("no")
+            end,
+            "Go to node text no",
+        },
     },
 }
 
