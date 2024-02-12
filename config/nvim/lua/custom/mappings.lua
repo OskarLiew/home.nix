@@ -161,6 +161,12 @@ M.harpoon = {
     },
 }
 
+M.crawlerr = {
+    n = {
+        ["<leader>jn"] = { require("plugins.crawlerr").jump_to_node, "RR jump to node" },
+    },
+}
+
 -- more keybinds!
 
 return M
