@@ -64,6 +64,7 @@ M.jump_to_texts = function(language)
         local pattern = "[^%w]" .. node_text .. ":"
         jump_to_pattern(pattern)
     else
+        node_text = node_text:gsub("[%(%)]", "%%%1") -- Escape parentheses
         local pattern = "[^%w]name: " .. node_text
         jump_to_pattern(pattern)
     end
