@@ -3,7 +3,6 @@ local M = {}
 
 M.general = {
     n = {
-        [";"] = { ":", "Enter command mode", opts = { nowait = true } },
         ["<C-d>"] = { "<C-d>zz", "Move half page down and center" },
         ["<C-u>"] = { "<C-u>zz", "Move half page up and center" },
         -- Search terms centered
@@ -72,13 +71,13 @@ M.telescope = {
 M.dap = {
     plugin = true,
     n = {
-        ["<leader>dd"] = { "<cmd> DapToggleBreakpoint <CR>", "Breakpoint" },
+        ["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", "Breakpoint" },
         ["<leader>dl"] = { "<cmd> DapStepInto <CR>", "Step into" },
         ["<leader>dj"] = { "<cmd> DapStepOver <CR>", "Step over" },
         ["<leader>dh"] = { "<cmd> DapStepOut <CR>", "Step out" },
         ["<leader>dc"] = { "<cmd> DapContinue <CR>", "Continue" },
         ["<leader>dX"] = { "<cmd> DapTerminate <CR>", "Terminate" },
-        ["<leader>db"] = {
+        ["<leader>dd"] = {
             function()
                 local ft = vim.bo.filetype
                 if ft == "python" then
@@ -164,29 +163,17 @@ M.harpoon = {
 M.crawlerr = {
     n = {
         ["<leader>jn"] = { require("plugins.crawlerr").jump_to_node, "RR jump to node" },
-        ["<leader>jte"] = {
+        ["<leader>je"] = {
             function()
                 require("plugins.crawlerr").jump_to_texts("en")
             end,
             "Go to node text en",
         },
-        ["<leader>jts"] = {
+        ["<leader>js"] = {
             function()
                 require("plugins.crawlerr").jump_to_texts("sv")
             end,
             "Go to node text sv",
-        },
-        ["<leader>jtf"] = {
-            function()
-                require("plugins.crawlerr").jump_to_texts("fi")
-            end,
-            "Go to node text fi",
-        },
-        ["<leader>jtn"] = {
-            function()
-                require("plugins.crawlerr").jump_to_texts("no")
-            end,
-            "Go to node text no",
         },
     },
 }
