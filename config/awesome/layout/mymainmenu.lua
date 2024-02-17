@@ -17,18 +17,13 @@ local myawesomemenu = {
 	},
 	{ "edit config", editor_cmd .. " " .. awesome.conffile },
 	{ "restart", awesome.restart },
-	{
-		"quit",
-		function()
-			awesome.quit()
-		end,
-	},
+	{ "quit", awesome.quit },
 }
 
 local mymainmenu = awful.menu({
 	items = {
 		{ "awesome", myawesomemenu, beautiful.awesome_icon },
-		{ "open terminal", apps.default.terminal },
+		{ "apps", apps.rofi_appmenu },
 		{ "Power", apps.default.rofi_powermenu },
 	},
 })

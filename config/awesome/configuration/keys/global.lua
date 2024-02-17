@@ -232,10 +232,11 @@ awful.keyboard.append_global_keybindings({
 		local s = awful.screen.focused()
 		s.notification_center.toggle()
 	end, { description = "open notification center", group = "launcher" }),
-	-- Screenshot
-	awful.key({}, "", function()
-		awful.util.spawn(apps.default.screenshot)
-	end, { description = "screenshot", group = "launcher" }),
+	-- Prompt
+	awful.key({ modkey }, ";", function()
+		local s = awful.screen.focused()
+		s.promptbox:run()
+	end, { description = "Promptbox", group = "launcher" }),
 })
 
 -- etc
