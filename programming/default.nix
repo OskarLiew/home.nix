@@ -27,6 +27,7 @@
 
   xdg.configFile = {
     "pypoetry".source = ../config/pypoetry;
+    "snippets".source = ../config/snippets;
   };
 
   programs = {

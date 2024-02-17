@@ -1,0 +1,12 @@
+{
+    "shell": {
+        "prefix": "shell",
+        "body": [
+            "{ pkgs ? import <nixpkgs> {} }:",
+            "pkgs.mkShell {",
+            "  nativeBuildInputs = with pkgs.buildPackages; [ ${1:package} ];",
+            "}"
+        ],
+        "description": "Boilerplate for a shell.nix file"
+    }
+}

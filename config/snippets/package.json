@@ -16,6 +16,10 @@
       {
         "language": "python",
         "path": "./python.json"
+      },
+      {
+        "language": "nix",
+        "path": "./nix.json"
       }
     ]
   }
