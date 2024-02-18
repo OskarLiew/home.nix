@@ -4,9 +4,33 @@
         "body": [
             "{ pkgs ? import <nixpkgs> {} }:",
             "pkgs.mkShell {",
-            "  nativeBuildInputs = with pkgs.buildPackages; [ ${1:package} ];",
+            "  nativeBuildInputs = with pkgs.buildPackages; [ ",
+            "    ${1:package}",
+            "  ];",
+            "  shellHook = \"${2:exec zsh}\";",
             "}"
         ],
         "description": "Boilerplate for a shell.nix file"
+    },
+    "flake": {
+        "prefix": "flake",
+        "body": [
+            "{",
+            "  description = \"${1:my project description}\";",
+            "",
+            "  inputs = { };",
+            "",
+            "  outputs = { self, nixpkgs }:",
+            "    let",
+            "      system = \"x86_64-linux\";",
+            "      pkgs = nixpkgs.legacyPackages.\\${system};",
+            "    in",
+            "    {",
+            "      formatter.\\${system} = pkgs.nixpkgs-fmt;",
+            "      devShells.\\${system}.default = import ./shell.nix { inherit pkgs; };",
+            "    };",
+            "}"
+        ],
+        "description": "Basic flake with a dev shell"
     }
 }
