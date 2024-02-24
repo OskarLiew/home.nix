@@ -13,19 +13,24 @@
         enable = true;
         options = { syntax-theme = "ansi"; };
       };
-      extraConfig = { 
-          init.defaultBranch = "main"; 
-          rerere = {
-              enabled = true;
-              autoUpdate = true;
-          };
-          branch.sort = "-committerdate";
-          column.ui = "auto";
+      extraConfig = {
+        init.defaultBranch = "main";
+        rerere = {
+          enabled = true;
+          autoUpdate = true;
         };
+        branch.sort = "-committerdate";
+        column.ui = "auto";
+      };
     };
     lazygit = {
       enable = true;
       settings = {
+        gui = {
+          theme = {
+            selectedLineBgColor = [ "black" ];
+          };
+        };
         git = {
           paging = {
             colorArg = "always";
