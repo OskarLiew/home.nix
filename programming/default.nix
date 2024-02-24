@@ -10,6 +10,7 @@
     ruff
     # - js
     nodejs_20
+    nodePackages.prettier
     # - lua
     lua
     stylua

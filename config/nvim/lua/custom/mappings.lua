@@ -55,6 +55,18 @@ M.trouble = {
             end,
             "Loclist diagnostics",
         },
+        ["]x"] = {
+            function()
+                require("trouble").next({ skip_groups = true, jump = true })
+            end,
+            "Next trouble",
+        },
+        ["[x"] = {
+            function()
+                require("trouble").previous({ skip_groups = true, jump = true })
+            end,
+            "Previous trouble",
+        },
     },
 }
 
