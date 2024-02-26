@@ -30,6 +30,7 @@
         modules = [
           ./home.nix
           ./graphical.nix
+          ./programs/syncthing.nix
         ];
       };
       # Generic linux, with graphical interface
