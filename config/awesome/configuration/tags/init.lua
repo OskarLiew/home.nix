@@ -57,6 +57,7 @@ local tags = {
 		type = "meeting",
 		icon = icons.meeting,
 		layout = awful.layout.suit.tile,
+		gap = beautiful.useless_gap,
 	},
 	{
 		type = "chat",
@@ -79,7 +80,7 @@ end)
 -- Create tags for each screen
 screen.connect_signal("request::desktop_decoration", function(s)
 	for i, tag in pairs(tags) do
-		awful.tag.add(nil, {
+		awful.tag.add(tag.type, {
 			icon = tag.icon,
 			icon_only = true,
 			layout = tag.layout or awful.layout.suit.spiral.dwindle,
@@ -88,6 +89,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
 			screen = s,
 			default_app = tag.default_app,
 			selected = i == 1,
+			index = i,
 		})
 	end
 end)
@@ -107,7 +109,7 @@ local update_gap_and_shape = function(t)
 			end
 		end
 	else
-		t.gap = beautiful.useless_gap
+		t.gap = tags[t.index].gap
 		for _, c in ipairs(t:clients()) do
 			if not c.round_corners or c.maximized or c.fullscreen then
 				c.shape = beautiful.client_shape_rectangle
