@@ -48,5 +48,8 @@ client.connect_signal("request::default_mousebindings", function()
 		awful.button({ modkey }, 3, function(c)
 			c:activate({ context = "mouse_click", action = "mouse_resize" })
 		end),
+		awful.button({ modkey }, 2, function(c)
+			c:kill()
+		end),
 	})
 end)

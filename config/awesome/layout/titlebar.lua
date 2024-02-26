@@ -86,35 +86,30 @@ client.connect_signal("request::titlebars", function(c)
 end)
 -- }}}
 
--- Titlebars only for floating windows
-
-client.connect_signal("property::floating", function(c)
+local function toggle_client_titlebar(c)
 	local layout_name = nil
 	if c.first_tag then
 		layout_name = c.first_tag.layout.name
 	end
-	if c.floating or layout_name == "floating" then
-		awful.titlebar.show(c)
-	else
-		awful.titlebar.hide(c)
-	end
-end)
 
-client.connect_signal("manage", function(c)
-	if c.floating or c.first_tag.layout.name == "floating" then
+	if c.floating or layout_name == "floating" then
+		local full_geometry = c:geometry()
 		awful.titlebar.show(c)
+		-- Keep dimensions the same as before adding titlebars
+		c:geometry(full_geometry)
 	else
 		awful.titlebar.hide(c)
 	end
-end)
+end
+
+-- Titlebars only for floating windows
+client.connect_signal("property::floating", toggle_client_titlebar)
+
+client.connect_signal("manage", toggle_client_titlebar)
 
 tag.connect_signal("property::layout", function(t)
 	local clients = t:clients()
 	for _, c in pairs(clients) do
-		if c.floating or c.first_tag.layout.name == "floating" then
-			awful.titlebar.show(c)
-		else
-			awful.titlebar.hide(c)
-		end
+		toggle_client_titlebar(c)
 	end
 end)
