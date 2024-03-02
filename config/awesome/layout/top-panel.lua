@@ -51,18 +51,12 @@ local top_panel = function(s)
 	-- Initialize screen-specific widgets
 	s.layoutbox = require("widget.layoutbox")(s)
 	s.tag_list = require("widget.tag-list")(s, { spacing = widget_spacing, margins = icon_margins })
-	s.promptbox = awful.widget.prompt({
-		prompt = " Run: ",
-		bg = beautiful.transparent,
-		fg = beautiful.fg,
-	})
 
 	-- Create layouts
 	local left = {
 		{
 			{
 				s.tag_list,
-				s.promptbox,
 				widget = wibox.layout.fixed.horizontal,
 			},
 			widget = wibox.container.margin,

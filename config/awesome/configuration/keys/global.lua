@@ -234,8 +234,7 @@ awful.keyboard.append_global_keybindings({
 	end, { description = "open notification center", group = "launcher" }),
 	-- Prompt
 	awful.key({ modkey }, ";", function()
-		local s = awful.screen.focused()
-		s.promptbox:run()
+		awesome.emit_signal("prompt:run")
 	end, { description = "Promptbox", group = "launcher" }),
 })
 
