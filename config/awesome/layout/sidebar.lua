@@ -134,7 +134,6 @@ local function init_sidebar(s)
 	panel.toggle = function()
 		panel.visible = not panel.visible
 	end
-	require("helpers.widget-keybinds")(panel)
 	return panel
 end
 

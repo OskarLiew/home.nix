@@ -111,7 +111,6 @@ local function init_notification_center(s)
 		end
 		panel.visible = turn_on
 	end
-	require("helpers.widget-keybinds")(panel)
 
 	return panel
 end
