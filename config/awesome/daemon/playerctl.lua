@@ -1,16 +1,19 @@
 local awful = require("awful")
 
 local script = [[
-  sh -c "playerctl metadata --format 'artist_start{{artist}}title_start{{title}}status_start{{status}}player_start{{playerName}}' --follow"
+  sh -c "playerctl metadata --format 'artist_start{{artist}}title_start{{title}}status_start{{status}}player_start{{playerName}}art_url{{artUrl}}' --follow"
 ]]
 
 local function emit_info(stdout)
-	local artist = stdout:match("artist_start(.*)title_start")
-	local title = stdout:match("title_start(.*)status_start")
-	local status = stdout:match("status_start(.*)player_start"):lower()
-	local player = stdout:match("player_start(.*)")
+	local data = {
+		artist = stdout:match("artist_start(.*)title_start"),
+		title = stdout:match("title_start(.*)status_start"),
+		status = stdout:match("status_start(.*)player_start"):lower(),
+		player = stdout:match("player_start(.*)art_url"),
+		art_url = stdout:match("art_url(.*)"),
+	}
 
-	awesome.emit_signal("daemon::playerctl", { artist = artist, title = title, status = status, player = player })
+	awesome.emit_signal("daemon::playerctl", data)
 end
 
 -- Kill old playerctl process
