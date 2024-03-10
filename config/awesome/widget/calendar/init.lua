@@ -9,7 +9,7 @@ local init_icon = require("helpers.icon").init_icon
 local icons = beautiful.icons.misc
 
 local function init_calendar_widget()
-	local date = os.date("*t")
+	local display_date = os.date("*t")
 	local current_date = os.date("*t")
 
 	local function init_calendar(d)
@@ -59,8 +59,8 @@ local function init_calendar_widget()
 		widget = clickable_container,
 	})
 	left:buttons(gears.table.join(awful.button({}, 1, nil, function()
-		next_month(date)
-		local c = init_calendar(date)
+		prev_month(display_date)
+		local c = init_calendar(display_date)
 		cal:set_widget(c)
 	end)))
 	local right = wibox.widget({
@@ -68,8 +68,8 @@ local function init_calendar_widget()
 		widget = clickable_container,
 	})
 	right:buttons(gears.table.join(awful.button({}, 1, nil, function()
-		prev_month(date)
-		local c = init_calendar(date)
+		next_month(display_date)
+		local c = init_calendar(display_date)
 		cal:set_widget(c)
 	end)))
 
