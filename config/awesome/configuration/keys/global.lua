@@ -233,15 +233,18 @@ awful.keyboard.append_global_keybindings({
 		s.notification_center.toggle()
 	end, { description = "open notification center", group = "launcher" }),
 	-- Prompt
-	awful.key({ modkey }, ";", function()
-		awesome.emit_signal("prompt:run")
+	awful.key({ modkey }, "r", function()
+		awesome.emit_signal("prompt::run")
 	end, { description = "Promptbox", group = "launcher" }),
 })
 
--- etc
+-- misc
 awful.keyboard.append_global_keybindings({
 	-- Screenshot
 	awful.key({}, "Print", function()
 		awful.util.spawn(apps.default.screenshot)
-	end, { description = "screenshot", group = "etc" }),
+	end, { description = "screenshot", group = "misc" }),
+	awful.key({ modkey, "Control" }, "s", function()
+		awful.util.spawn("autorandr -c")
+	end, { description = "autorandr", group = "misc" }),
 })

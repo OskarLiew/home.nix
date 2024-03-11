@@ -6,14 +6,10 @@ local dpi = beautiful.xresources.apply_dpi
 
 local function init_promptbox(args)
 	args = args or {}
-	local screen = awful.screen.focused()
 	local container_height = args.height or dpi(42)
 	local container_width = args.width or dpi(256)
 
 	local container = wibox({
-		screen = screen,
-		x = screen.geometry.x + screen.geometry.width / 2 - container_width / 2,
-		y = screen.geometry.y + screen.geometry.height * 0.15 - container_height / 2,
 		width = container_width,
 		height = container_height,
 		shape = gears.shape.rounded_rect,
@@ -41,11 +37,17 @@ local function init_promptbox(args)
 	})
 
 	container.run = function()
+		-- Update screen and position
+		screen = awful.screen.focused()
+		container.screen = screen
+		container.x = screen.geometry.x + screen.geometry.width / 2 - container_width / 2
+		container.y = screen.geometry.y + screen.geometry.height * 0.15 - container_height / 2
+
 		container.visible = true
 		promptbox:run()
 	end
 
-	awesome.connect_signal("prompt:run", container.run)
+	awesome.connect_signal("prompt::run", container.run)
 
 	return promptbox
 end
