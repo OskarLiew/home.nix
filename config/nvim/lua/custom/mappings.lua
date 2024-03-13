@@ -78,7 +78,8 @@ M.telescope = {
         ["<leader>gf"] = { "<cmd> Telescope git_files <CR>", "Git files" },
         ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
         ["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "Git status" },
-        ["<leader>fm"] = { "<cmd> Telescope marks <CR>", "Marks" },
+        ["<leader>fm"] = { "<cmd> Telescope marks <CR>", "Find marks" },
+        ["<leader>fr"] = { "<cmd> Telescope registers <CR>", "Find registers" },
     },
 }
 
