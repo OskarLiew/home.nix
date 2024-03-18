@@ -80,6 +80,8 @@ M.telescope = {
         ["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "Git status" },
         ["<leader>fm"] = { "<cmd> Telescope marks <CR>", "Find marks" },
         ["<leader>fr"] = { "<cmd> Telescope registers <CR>", "Find registers" },
+        ["<leader>cs"] = { "<cmd> Telescope lsp_document_symbols <CR>", "Find registers" },
+        ["<leader>cr"] = { "<cmd> Telescope lsp_refereces <CR>", "Find registers" },
     },
 }
 
