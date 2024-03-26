@@ -12,10 +12,71 @@ local function init_calendar_widget()
 	local display_date = os.date("*t")
 	local current_date = os.date("*t")
 
-	local function init_calendar(d)
+	local function init_calendar(day)
+		local styles = {}
+
+		local function circle(cr, width, height)
+			return gears.shape.circle(cr, width, height, dpi(10))
+		end
+
+		styles.month = {}
+		styles.normal = {}
+		styles.focus = {
+			fg_color = beautiful.fg_focus,
+			markup = function(t)
+				return "<b>" .. t .. "</b>"
+			end,
+			shape = circle,
+			bg_color = beautiful.bg_focus,
+		}
+		styles.header = {
+			markup = function(t)
+				return "<b>" .. t .. "</b>"
+			end,
+		}
+		styles.weekday = {
+			fg_color = beautiful.fg,
+			markup = function(t)
+				return "<b>" .. t .. "</b>"
+			end,
+		}
+		styles.weeknumber = {
+			fg_color = beautiful.gray0,
+			markup = function(t)
+				return "<i>" .. t .. "</i>"
+			end,
+		}
+		local function decorate_cell(widget, flag, date)
+			if flag == "monthheader" and not styles.monthheader then
+				flag = "header"
+			end
+			local props = styles[flag] or {}
+			if props.markup and widget.get_text and widget.set_markup then
+				widget:set_markup(props.markup(widget:get_text()))
+			end
+
+			-- Change bg color for weekends
+			local d = { year = date.year, month = (date.month or 1), day = (date.day or 1) }
+			local weekday = tonumber(os.date("%w", os.time(d)))
+			local default_fg = weekday == 0 and beautiful.red or beautiful.fg
+			local ret = wibox.widget({
+				{
+					widget,
+					margins = (props.padding or 2) + (props.border_width or 0),
+					widget = wibox.container.margin,
+				},
+				shape = props.shape,
+				fg = props.fg_color or default_fg,
+				bg = props.bg_color,
+				widget = wibox.container.background,
+			})
+			return ret
+		end
+
 		return wibox.widget({
 			widget = wibox.widget.calendar.month,
-			date = d,
+			fn_embed = decorate_cell,
+			date = day,
 			week_numbers = true,
 		})
 	end
