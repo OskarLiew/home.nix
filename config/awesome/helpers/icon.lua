@@ -23,18 +23,15 @@ local function fetch_image(url, callback)
 	local temp_filepath = os.getenv("XDG_CACHE_HOME") .. "/awesome/temp_image.jpg"
 
 	-- Download the image using wget
-	awful.spawn.easy_async_with_shell(
-		"wget -q -O " .. temp_filepath .. " " .. url .. " && sleep 0.5",
-		function(exit_code)
-			local img = gears.surface.load(temp_filepath)
-			if img then
-				callback(img)
-			else
-				callback(nil)
-			end
-			os.remove(temp_filepath)
+	awful.spawn.easy_async_with_shell("wget -q -O " .. temp_filepath .. " " .. url, function(exit_code)
+		local img = gears.surface.load_uncached(temp_filepath)
+		if img then
+			callback(img)
+		else
+			callback(nil)
 		end
-	)
+		os.remove(temp_filepath)
+	end)
 end
 
 return {
