@@ -52,6 +52,7 @@ local icons = {
 		pause = dir .. "audio/pause.svg",
 		play = dir .. "audio/play.svg",
 		previous = dir .. "audio/previous.svg",
+		music = dir .. "audio/music.svg",
 		mic_mute = dir .. "audio/microphone-mute.svg",
 		mic = dir .. "audio/microphone.svg",
 		volume_up = dir .. "audio/volume-up.svg",

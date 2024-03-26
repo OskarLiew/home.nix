@@ -7,10 +7,11 @@ local dpi = beautiful.xresources.apply_dpi
 local clickable_container = require("widget.clickable-container")
 
 local init_icon = require("helpers.icon").init_icon
+local fetch_image = require("helpers.icon").fetch_image
 
 local icons = beautiful.icons.audio
 
-local function init_music_player()
+local function init_music_player(with_icon)
 	-- Create icons
 	local play_icon = init_icon(icons.play, dpi(80), beautiful.green)
 	local pause_icon = init_icon(icons.pause, dpi(80), beautiful.green)
@@ -86,6 +87,27 @@ local function init_music_player()
 		widget = wibox.widget.textbox,
 	})
 
+	local album_art_container = nil
+	if with_icon then
+		local album_art = wibox.widget({
+			widget = wibox.widget.imagebox,
+			image = icons.music,
+			clip_shape = function(cr, w, h)
+				gears.shape.rounded_rect(cr, w, h, dpi(18))
+			end,
+		})
+		awesome.connect_signal("daemon::playerctl", function(status)
+			fetch_image(status.art_url, function(icon)
+				album_art:set_image(icon or icons.music)
+			end)
+		end)
+		album_art_container = wibox.widget({
+			album_art,
+			widget = wibox.container.margin,
+			margins = dpi(12),
+		})
+	end
+
 	-- Logic
 	awesome.connect_signal("daemon::playerctl", function(status)
 		song_title.text = status.title
@@ -99,11 +121,12 @@ local function init_music_player()
 
 	-- Create the final widget
 	local music_player = wibox.widget({
+		album_art_container,
 		song_title,
 		artist,
 		player_controls,
 		layout = wibox.layout.fixed.vertical,
-		spacing = dpi(10),
+		spacing = dpi(6),
 	})
 
 	return music_player

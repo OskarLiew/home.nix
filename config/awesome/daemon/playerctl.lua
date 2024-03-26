@@ -1,7 +1,7 @@
 local awful = require("awful")
 
 local script = [[
-  sh -c "playerctl metadata --format 'artist_start{{artist}}title_start{{title}}status_start{{status}}player_start{{playerName}}art_url{{artUrl}}' --follow"
+  sh -c "playerctl metadata --format 'artist_start{{artist}}title_start{{title}}status_start{{status}}player_start{{playerName}}art_url{{mpris:artUrl}}' --follow"
 ]]
 
 local function emit_info(stdout)
