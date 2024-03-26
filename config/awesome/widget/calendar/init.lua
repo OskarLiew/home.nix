@@ -16,7 +16,7 @@ local function init_calendar_widget()
 		local styles = {}
 
 		local function circle(cr, width, height)
-			return gears.shape.circle(cr, width, height, dpi(10))
+			return gears.shape.circle(cr, width, height, dpi(14))
 		end
 
 		styles.month = {}
@@ -78,6 +78,8 @@ local function init_calendar_widget()
 			fn_embed = decorate_cell,
 			date = day,
 			week_numbers = true,
+			font = "Monospace 14",
+			flex_height = true,
 		})
 	end
 
