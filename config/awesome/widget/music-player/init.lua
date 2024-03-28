@@ -6,17 +6,16 @@ local dpi = beautiful.xresources.apply_dpi
 
 local clickable_container = require("widget.clickable-container")
 
-local init_icon = require("helpers.icon").init_icon
-local fetch_image = require("helpers.icon").fetch_image
+local icon_helpers = require("helpers.icon")
 
 local icons = beautiful.icons.audio
 
 local function init_music_player(with_icon)
 	-- Create icons
-	local play_icon = init_icon(icons.play, dpi(80), beautiful.green)
-	local pause_icon = init_icon(icons.pause, dpi(80), beautiful.green)
-	local next_icon = init_icon(icons.next, dpi(60), beautiful.green)
-	local previous_icon = init_icon(icons.previous, dpi(60), beautiful.green)
+	local play_icon = icon_helpers.init_icon(icons.play, dpi(80), beautiful.green)
+	local pause_icon = icon_helpers.init_icon(icons.pause, dpi(80), beautiful.green)
+	local next_icon = icon_helpers.init_icon(icons.next, dpi(60), beautiful.green)
+	local previous_icon = icon_helpers.init_icon(icons.previous, dpi(60), beautiful.green)
 
 	-- Create buttons
 	local play_pause_button = wibox.widget({
@@ -76,6 +75,7 @@ local function init_music_player(with_icon)
 		font = "Inter, Bold 20",
 		halign = "center",
 		ellipsize = "end",
+		forced_height = dpi(30),
 		widget = wibox.widget.textbox,
 	})
 
@@ -84,6 +84,7 @@ local function init_music_player(with_icon)
 		font = "Inter 14",
 		halign = "center",
 		ellipsize = "end",
+		forced_height = dpi(21),
 		widget = wibox.widget.textbox,
 	})
 
@@ -91,13 +92,13 @@ local function init_music_player(with_icon)
 	if with_icon then
 		local album_art = wibox.widget({
 			widget = wibox.widget.imagebox,
-			image = icons.music,
+			image = icon_helpers.recolor_image(icons.music, beautiful.fg),
 			clip_shape = function(cr, w, h)
 				gears.shape.rounded_rect(cr, w, h, dpi(18))
 			end,
 		})
 		awesome.connect_signal("daemon::playerctl", function(status)
-			fetch_image(status.art_url, function(icon)
+			icon_helpers.fetch_image(status.art_url, function(icon)
 				album_art:set_image(icon or icons.music)
 			end)
 		end)

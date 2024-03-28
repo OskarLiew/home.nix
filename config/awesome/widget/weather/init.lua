@@ -2,9 +2,9 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
-local function init_weather_widget()
-	local current_weather = require("widget.weather.current")()
-	local forecast = require("widget.weather.forecast")()
+local function init_weather_widget(config)
+	local current_weather = require("widget.weather.current")(config)
+	local forecast = require("widget.weather.forecast")(config)
 	local widget = wibox.widget({
 		current_weather,
 		forecast,

@@ -40,11 +40,12 @@ local function init_forecast_subwidget(time, temp, icon_code)
 	return widget
 end
 
-local function init_forecast_widget()
+local function init_forecast_widget(config)
+	local n_times = config.forecasts or 5
 	local layout = wibox.widget({
 		layout = wibox.layout.grid,
 		homogenous = true,
-		forced_num_cols = 5,
+		forced_num_cols = n_times,
 		forced_num_rows = 1,
 		expand = true,
 	})
@@ -60,7 +61,7 @@ local function init_forecast_widget()
 		if exitcode == 0 then
 			local forecast_data = json.decode(stdout)
 			if forecast_data.cod == "200" then
-				for i = 1, 5 do
+				for i = 1, n_times do
 					local weather = forecast_data.list[i]
 					layout:add(
 						init_forecast_subwidget(weather.dt_txt:sub(12, 13), weather.main.temp, weather.weather[1].icon)

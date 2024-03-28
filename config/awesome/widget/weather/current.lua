@@ -9,7 +9,7 @@ local icons = beautiful.icons.weather
 
 local weather_helpers = require("widget.weather.common")
 
-local function init_weather_widget()
+local function init_weather_widget(config)
 	local current_weather_desc = wibox.widget({
 		text = "No data",
 		font = "Inter 20",

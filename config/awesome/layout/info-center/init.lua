@@ -12,6 +12,12 @@ local function init_info_panel(s)
 			return gears.shape.rounded_rect(cr, width, height, 2 * beautiful.edge_radius)
 		end
 
+		widget = {
+			widget,
+			widget = wibox.container.margin,
+			margins = dpi(12),
+		}
+
 		if not fill then
 			widget = {
 				widget,
@@ -27,13 +33,13 @@ local function init_info_panel(s)
 				margins = dpi(12),
 			},
 			widget = wibox.container.background,
-			bg = beautiful.bg0 .. beautiful.bg_opacity,
+			bg = beautiful.bg0 .. "EE",
 			shape = sub_panel_shape,
 		})
 	end
 
 	-- Create panel
-	local panel_width = s.geometry.width * 3 / 5
+	local panel_width = s.geometry.width * 5 / 7
 	local panel_height = s.geometry.height * 3 / 4
 	local panel = wibox({
 		visible = false,
@@ -75,8 +81,6 @@ local function init_info_panel(s)
 		widget = wibox.layout.fixed.vertical,
 	})
 
-	local weather = require("widget.weather")()
-
 	local uptime_textbox = wibox.widget({
 		text = "uptime...",
 		widget = wibox.widget.textbox,
@@ -86,7 +90,7 @@ local function init_info_panel(s)
 	awesome.connect_signal("daemon::uptime", function(uptime)
 		uptime_textbox.text = uptime
 	end)
-	local power_button = {
+	local uptime_widget = {
 		init_icon(icons.misc.time, dpi(32), beautiful.fg),
 		{
 			uptime_textbox,
@@ -99,37 +103,45 @@ local function init_info_panel(s)
 		spacing = dpi(12),
 	}
 
-	local music_player = require("widget.music-player")(true)
-	local calendar = require("widget.calendar")(10)
-
-	local notif_center = require("widget.notif-center")()
-
-	-- Place widgets
-	local col1_width = 5
-	local col2_width = 4
-	local col3_width = 5
-
-	local n_rows = 20
-
+	local n_rows = 80
+	local col_widths = { 5, 4, 5 }
 	local l = wibox.widget({
 		homogeneous = true,
 		spacing = dpi(12),
 		forced_num_rows = n_rows,
-		forced_num_cols = col1_width + col2_width + col3_width,
+		forced_num_cols = 14,
 		expand = true,
 		layout = wibox.layout.grid,
 	})
 
-	-- row-idx, col-idx, row-span, col-span
-	l:add_widget_at(init_sub_panel(big_clock), 1, 1, 6, col1_width)
-	l:add_widget_at(init_sub_panel(hardware), 7, 1, 5, col1_width)
-	l:add_widget_at(init_sub_panel(weather), 12, 1, 7, col1_width)
-	l:add_widget_at(init_sub_panel(power_button), 19, 1, 2, col1_width)
+	local widgets = {
+		{
+			{ big_clock, 22 },
+			{ hardware, 15 },
+			{ require("widget.weather")({ forecasts = 6 }), 24 },
+			{ uptime_widget, 9 },
+		},
+		{
+			{ require("widget.music-player")(true), 43 },
+			{ require("widget.calendar")(12), 37 },
+		},
+		{
+			{ require("widget.notif-center")(), n_rows, true },
+		},
+	}
 
-	l:add_widget_at(init_sub_panel(music_player), 1, col1_width + 1, 12, col2_width)
-	l:add_widget_at(init_sub_panel(calendar), 13, col1_width + 1, 8, col2_width)
-
-	l:add_widget_at(init_sub_panel(notif_center, true), 1, col1_width + col2_width + 1, n_rows, col3_width)
+	for col, cw in ipairs(widgets) do
+		local y = 1
+		for _, w in ipairs(cw) do
+			local x = 1
+			for i = 1, col do
+				x = x + (col_widths[i - 1] or 0)
+			end
+			-- row-idx, col-idx, row-span, col-span
+			l:add_widget_at(init_sub_panel(w[1], w[3]), y, x, w[2], col_widths[col])
+			y = y + w[2]
+		end
+	end
 
 	panel:setup({
 		l,
