@@ -8,7 +8,9 @@ local clickable_container = require("widget.clickable-container")
 local init_icon = require("helpers.icon").init_icon
 local icons = beautiful.icons.misc
 
-local function init_calendar_widget()
+local function init_calendar_widget(fontsize)
+	fontsize = fontsize or 14
+
 	local display_date = os.date("*t")
 	local current_date = os.date("*t")
 
@@ -16,7 +18,7 @@ local function init_calendar_widget()
 		local styles = {}
 
 		local function circle(cr, width, height)
-			return gears.shape.circle(cr, width, height, dpi(14))
+			return gears.shape.circle(cr, width, height, fontsize)
 		end
 
 		styles.month = {}
@@ -78,7 +80,7 @@ local function init_calendar_widget()
 			fn_embed = decorate_cell,
 			date = day,
 			week_numbers = true,
-			font = "Monospace 14",
+			font = "Monospace " .. tostring(fontsize),
 			flex_height = true,
 		})
 	end
@@ -138,13 +140,13 @@ local function init_calendar_widget()
 
 	local widget = wibox.widget({
 		{
-			{ left, widget = wibox.container.place, valign = "top" },
+			{ left, widget = wibox.container.place, valign = "center" },
 			cal,
-			{ right, widget = wibox.container.place, valign = "top" },
+			{ right, widget = wibox.container.place, valign = "center" },
 			layout = wibox.layout.fixed.horizontal,
 			spacing = dpi(12),
 		},
-		widget = wibox.container.margin,
+		widget = wibox.container.place,
 	})
 
 	return widget

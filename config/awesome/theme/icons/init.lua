@@ -104,6 +104,7 @@ local icons = {
 		announce = dir .. "misc/announcement.svg",
 		left = dir .. "misc/left.svg",
 		right = dir .. "misc/right.svg",
+		time = dir .. "misc/time.svg",
 	},
 }
 

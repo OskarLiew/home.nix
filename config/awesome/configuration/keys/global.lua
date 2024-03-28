@@ -222,16 +222,11 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ modkey }, "e", function()
 		awful.spawn(apps.default.web_browser)
 	end, { description = "open firefox", group = "launcher" }),
-	-- Sidebar
-	awful.key({ modkey }, "d", function()
+	-- Info center
+	awful.key({ modkey }, "i", function()
 		local s = awful.screen.focused()
-		s.sidebar.toggle()
-	end, { description = "open sidebar", group = "launcher" }),
-	-- Notification center
-	awful.key({ modkey }, "u", function()
-		local s = awful.screen.focused()
-		s.notification_center.toggle()
-	end, { description = "open notification center", group = "launcher" }),
+		s.info_center:toggle()
+	end, { description = "Promptbox", group = "launcher" }),
 	-- Prompt
 	awful.key({ modkey }, "r", function()
 		awesome.emit_signal("prompt::run")

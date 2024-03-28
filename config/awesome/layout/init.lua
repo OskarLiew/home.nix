@@ -5,13 +5,10 @@ require("layout.titlebar")
 require("layout.mymainmenu")
 
 local top_panel = require("layout.top-panel")
-local sidebar = require("layout.sidebar")
-local notification_center = require("layout.notif-center")
 
 screen.connect_signal("request::desktop_decoration", function(s)
 	s.top_panel = top_panel(s)
-	s.sidebar = sidebar(s)
-	s.notification_center = notification_center(s)
+	s.info_center = require("layout.info-center")(s)
 end)
 
 -- {{{ Rules
