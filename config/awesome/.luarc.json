@@ -10,12 +10,12 @@
             "client",
             "mouse",
             "screen",
-            "tag",
+            "tag"
         ]
     },
     "workspace": {
         "library": [
-            "/usr/share/awesome/lib/"
+            "$HOME/.cache/awesome/code-doc"
         ],
         "maxPreload": 2000,
         "preloadFileSize": 1000

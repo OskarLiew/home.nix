@@ -1,4 +1,6 @@
 { pkgs, ... }: {
+  imports = [ ./awesome-code-doc.nix ];
+
   home.packages = with pkgs; [
     # - Python
     python311
