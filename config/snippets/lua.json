@@ -1,0 +1,9 @@
+{
+    "notif": {
+        "prefix": "notif",
+        "body": [
+            "require(\"naughty\").notification({ message = ${1:\"msg\"}})"
+        ],
+        "description": "AwesomeWM lua notification"
+    }
+}
