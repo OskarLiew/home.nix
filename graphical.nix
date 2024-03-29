@@ -39,7 +39,6 @@
       settings = {
         confirm_os_window_close = 2;
         enable_audio_bell = false;
-        background_opacity = "0.90";
       };
     };
     autorandr.enable = true;
