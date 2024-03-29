@@ -10,9 +10,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
+    awesomewm = {
+      url = "github:awesomeWM/awesome";
+      flake = false;
+    };
+    awesomewm-doc = {
+      url = "github:kosorin/awesome-code-doc";
+      flake = false;
+    };
   };
 
-  outputs = { nixpkgs, home-manager, nixpkgs-unstable,  ... }@inputs:
+  outputs = { nixpkgs, home-manager, nixpkgs-unstable, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {

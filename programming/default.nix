@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-  imports = [ ./awesome-code-doc.nix ];
+{ pkgs, inputs, ... }: {
 
   home.packages = with pkgs; [
     # - Python
@@ -28,9 +27,14 @@
     nil
   ];
 
-  xdg.configFile = {
-    "pypoetry".source = ../config/pypoetry;
-    "snippets".source = ../config/snippets;
+  xdg = {
+    configFile = {
+      "pypoetry".source = ../config/pypoetry;
+      "snippets".source = ../config/snippets;
+    };
+    dataFile = {
+      "awesome-code-doc".source = inputs.awesomewm-doc;
+    };
   };
 
   programs = {

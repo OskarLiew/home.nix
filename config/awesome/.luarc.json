@@ -15,7 +15,7 @@
     },
     "workspace": {
         "library": [
-            "$HOME/.cache/awesome/code-doc"
+            "$XDG_DATA_HOME/awesome-code-doc"
         ],
         "maxPreload": 2000,
         "preloadFileSize": 1000

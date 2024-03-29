@@ -1,5 +1,37 @@
 {
   "nodes": {
+    "awesomewm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711259403,
+        "narHash": "sha256-ZGZ53IWfQfNU8q/hKexFpb/2mJyqtK5M9t9HrXoEJCg=",
+        "owner": "awesomeWM",
+        "repo": "awesome",
+        "rev": "8b1f8958b46b3e75618bc822d512bb4d449a89aa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "awesomeWM",
+        "repo": "awesome",
+        "type": "github"
+      }
+    },
+    "awesomewm-doc": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1704923505,
+        "narHash": "sha256-FYofpQOVrGKrHqjgvTR48Kw1Fbn0E0fBbjr54iTPNT8=",
+        "owner": "kosorin",
+        "repo": "awesome-code-doc",
+        "rev": "362f15f795c9df1ae11a35f5ccf72ed00a353cef",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kosorin",
+        "repo": "awesome-code-doc",
+        "type": "github"
+      }
+    },
     "base16-schemes": {
       "flake": false,
       "locked": {
@@ -105,6 +137,8 @@
     },
     "root": {
       "inputs": {
+        "awesomewm": "awesomewm",
+        "awesomewm-doc": "awesomewm-doc",
         "home-manager": "home-manager",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs",
