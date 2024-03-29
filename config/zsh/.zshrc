@@ -65,11 +65,14 @@ key[Shift-Tab]="${terminfo[kcbt]}"
 # Find character with `showkey -a`
 bindkey "^A" vi-beginning-of-line
 bindkey "^E" vi-end-of-line
-bindkey "^?" backward-delete-char  # Make backspace work on non-inserted text in vi-mode
 bindkey '^H' backward-kill-word
 bindkey '^[[3;5~' kill-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+
+# Fix deletion of non-inseted text in viins mode
+bindkey "^?" backward-delete-char
+bindkey '^W' backward-kill-word
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
