@@ -12,15 +12,18 @@
     nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { nixpkgs, home-manager, nixpkgs-unstable, nix-colors, ... }:
+  outputs = { nixpkgs, home-manager, nixpkgs-unstable,  ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        system = "${system}";
+        config.allowUnfree = true;
+      };
       upkgs = import nixpkgs-unstable {
         system = "${system}";
         config.allowUnfree = true;
       };
-      extraSpecialArgs = { inherit nix-colors upkgs; };
+      extraSpecialArgs = { inherit inputs upkgs; };
     in
     {
       formatter.${system} = pkgs.nixpkgs-fmt;

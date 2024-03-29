@@ -1,11 +1,9 @@
-{ pkgs, config, nix-colors, ... }: {
+{ config, inputs, ... }: {
   home.username = "oskar";
   home.homeDirectory = "/home/oskar";
 
-  nixpkgs.config.allowUnfree = true;
-
   imports = [
-    nix-colors.homeManagerModules.default
+    inputs.nix-colors.homeManagerModules.default
     ./programs/git.nix
     ./programs/neovim.nix
     ./programs/shell-tools.nix
@@ -13,7 +11,7 @@
     ./programming
   ];
 
-  colorScheme = nix-colors.colorSchemes.everforest;
+  colorScheme = inputs.nix-colors.colorSchemes.everforest;
 
   programs.home-manager.enable = true;
 
