@@ -46,7 +46,8 @@ key[PageUp]="${terminfo[kpp]}"
 key[PageDown]="${terminfo[knp]}"
 key[Shift-Tab]="${terminfo[kcbt]}"
 
-# setup key accordingly
+# Setup keybindings
+# Sensible default keys
 [[ -n "${key[Home]}"      ]] && bindkey -- "${key[Home]}"       beginning-of-line
 [[ -n "${key[End]}"       ]] && bindkey -- "${key[End]}"        end-of-line
 [[ -n "${key[Insert]}"    ]] && bindkey -- "${key[Insert]}"     overwrite-mode
@@ -59,8 +60,16 @@ key[Shift-Tab]="${terminfo[kcbt]}"
 [[ -n "${key[PageUp]}"    ]] && bindkey -- "${key[PageUp]}"     beginning-of-buffer-or-history
 [[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"   end-of-buffer-or-history
 [[ -n "${key[Shift-Tab]}" ]] && bindkey -- "${key[Shift-Tab]}"  reverse-menu-complete
+
+# Cusotm keys
+# Find character with `showkey -a`
 bindkey "^A" vi-beginning-of-line
 bindkey "^E" vi-end-of-line
+bindkey "^?" backward-delete-char  # Make backspace work on non-inserted text in vi-mode
+bindkey '^H' backward-kill-word
+bindkey '^[[3;5~' kill-word
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
@@ -74,12 +83,6 @@ fi
 
 [[ -n "${key[Control-Left]}"  ]] && bindkey -- "${key[Control-Left]}"  backward-word
 [[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
-
-# Find character with `showkey -a`
-bindkey '^H' backward-kill-word
-bindkey '^[[3;5~' kill-word
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
 
 ### History
 
