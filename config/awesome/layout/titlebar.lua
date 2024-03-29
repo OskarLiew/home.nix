@@ -60,7 +60,6 @@ client.connect_signal("request::titlebars", function(c)
 						halign = "left",
 					},
 					widget = wibox.container.margin,
-					bg = "#00ff00",
 					left = dpi(6),
 				},
 				buttons = buttons,
@@ -92,7 +91,7 @@ local function toggle_client_titlebar(c)
 		layout_name = c.first_tag.layout.name
 	end
 
-	if c.floating or layout_name == "floating" then
+	if (c.floating or layout_name == "floating") and c.titlebar then
 		local full_geometry = c:geometry()
 		awful.titlebar.show(c)
 		-- Keep dimensions the same as before adding titlebars

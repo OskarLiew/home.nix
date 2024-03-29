@@ -23,6 +23,7 @@ ruled.client.connect_signal("request::rules", function()
 			raise = true,
 			screen = awful.screen.preferred,
 			placement = awful.placement.no_overlap + awful.placement.no_offscreen,
+			titlebar = true,
 		},
 	})
 
@@ -59,7 +60,7 @@ ruled.client.connect_signal("request::rules", function()
 		},
 	})
 
-	-- Applications that should be floating in a small window
+	-- Clients that should be floating in a small window
 	ruled.client.append_rule({
 		id = "floating-small",
 		rule_every = {
@@ -72,6 +73,19 @@ ruled.client.connect_signal("request::rules", function()
 			placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen,
 			width = 1200,
 			height = 700,
+		},
+	})
+
+	-- Clients that should never have titlebar
+	ruled.client.append_rule({
+		id = "no-titlebar",
+		rule_every = {
+			class = {
+				"Nautilus",
+			},
+		},
+		properties = {
+			titlebar = false,
 		},
 	})
 
