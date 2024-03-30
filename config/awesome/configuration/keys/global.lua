@@ -198,11 +198,11 @@ awful.keyboard.append_global_keybindings({
 awful.keyboard.append_global_keybindings({
 	awful.key({}, "XF86MonBrightnessDown", function()
 		awesome.emit_signal("backlight_change")
-		awful.util.spawn("xbacklight -dec 10 -perceived")
+		awful.util.spawn("xbacklight -dec 5 -perceived")
 	end, { description = "Decrease brightness", group = "backlight" }),
 	awful.key({}, "XF86MonBrightnessUp", function()
 		awesome.emit_signal("backlight_change")
-		awful.util.spawn("xbacklight -inc 10 -perceived")
+		awful.util.spawn("xbacklight -inc 5 -perceived")
 	end, { description = "Increase brightness", group = "backlight" }),
 })
 
