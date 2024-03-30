@@ -177,32 +177,32 @@ awful.keyboard.append_global_keybindings({
 		awesome.emit_signal("daemon::playerctl-previous")
 	end),
 	awful.key({}, "XF86AudioRaiseVolume", function()
-		awesome.emit_signal("volume-change")
 		awful.util.spawn("pactl -- set-sink-volume 0 +5%")
+		awesome.emit_signal("volume-change")
 	end),
 	awful.key({}, "XF86AudioLowerVolume", function()
-		awesome.emit_signal("volume-change")
 		awful.util.spawn("pactl -- set-sink-volume 0 -5%")
+		awesome.emit_signal("volume-change")
 	end),
 	awful.key({}, "XF86AudioMute", function()
-		awesome.emit_signal("volume-change")
 		awful.util.spawn("pactl set-sink-mute 0 toggle")
+		awesome.emit_signal("volume-change")
 	end),
 	awful.key({}, "XF86AudioMicMute", function()
-		awesome.emit_signal("mic-mute")
 		awful.util.spawn("pactl set-source-mute 0 toggle")
+		awesome.emit_signal("mic-mute")
 	end),
 })
 
 -- Backlight keybindings
 awful.keyboard.append_global_keybindings({
 	awful.key({}, "XF86MonBrightnessDown", function()
-		awesome.emit_signal("backlight_change")
 		awful.util.spawn("xbacklight -dec 5 -perceived")
+		awesome.emit_signal("backlight_change")
 	end, { description = "Decrease brightness", group = "backlight" }),
 	awful.key({}, "XF86MonBrightnessUp", function()
-		awesome.emit_signal("backlight_change")
 		awful.util.spawn("xbacklight -inc 5 -perceived")
+		awesome.emit_signal("backlight_change")
 	end, { description = "Increase brightness", group = "backlight" }),
 })
 
