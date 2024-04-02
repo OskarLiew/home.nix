@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, upkgs, ... }: {
   home.packages = with pkgs; [
     # Shell
     bat
@@ -16,7 +16,6 @@
     lazydocker
     neofetch
     ranger
-    btop
   ];
 
   xdg.configFile = {
@@ -29,6 +28,7 @@
   programs = {
     btop = {
       enable = true;
+      package = upkgs.btop;
       settings = {
         color_theme = "everforest-dark-hard";
         theme_background = false;
