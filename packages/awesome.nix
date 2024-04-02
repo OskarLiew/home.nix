@@ -2,7 +2,7 @@
 let
   awesome = pkgs.awesome.overrideAttrs (oa: {
     version = "d36e1324d17efd571cec252374a2ef5f1eeae4fd";
-    src = inputs.awesome;
+    src = inputs.awesomewm;
 
     patches = [ ];
 
