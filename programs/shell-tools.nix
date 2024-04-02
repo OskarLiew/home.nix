@@ -11,6 +11,8 @@
     openssh
     neofetch
     fd
+    jq
+    yq
     # TUI apps
     tmux
     lazydocker
