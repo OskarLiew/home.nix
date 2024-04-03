@@ -21,6 +21,12 @@
         };
         branch.sort = "-committerdate";
         column.ui = "auto";
+        pager = {
+          blame  = "delta";
+          diff   = "delta";
+          reflog = "delta";
+          show   = "delta";
+        };
       };
     };
     lazygit = {

@@ -75,7 +75,7 @@ M.trouble = {
 M.telescope = {
     n = {
         ["<C-p>"] = { "<cmd> Telescope git_files <CR>", "Git files" },
-        ["<leader>gf"] = { "<cmd> Telescope git_files <CR>", "Git files" },
+        ["<leader>fg"] = { "<cmd> Telescope git_files <CR>", "Git files" },
         ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
         ["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "Git status" },
         ["<leader>fm"] = { "<cmd> Telescope marks <CR>", "Find marks" },
@@ -119,6 +119,11 @@ M.fugitive = {
         ["<leader>gg"] = { "<cmd> Git <CR>", "Fugitive" },
         ["<leader>gd"] = { "<cmd> Gdiffsplit <CR>", "Diffsplit" },
         ["<leader>gB"] = { "<cmd> Git blame <CR>", "Blame file" },
+        ["<leader>gf"] = { "<cmd> Git log -- %  <CR>", "File history" },
+        ["<leader>gl"] = {
+            "<cmd> execute 'Git log --format=reference -L ' . line('.') . ',' . line('.') . ':%' <CR>",
+            "Line history",
+        },
     },
 }
 
