@@ -1,16 +1,37 @@
 { pkgs, config, ... }: {
-  home.file.".zshenv".source = ../config/.zshenv;
+  programs = {
+    zsh = {
+      enable = true;
+      enableAutosuggestions = true;
+      initExtra = builtins.readFile ../config/zsh/.zshrc;
+      envExtra = builtins.readFile ../config/.zshenv;
+      dotDir = ".config/zsh";
+      history = {
+        path = "$XDG_DATA_HOME/zsh/history";
+      };
+      plugins = [
+        {
+          name = "pure";
+          src = "${pkgs.pure-prompt}/share/zsh/site-functions";
+        }
+        {
+          name = "fast-syntax-highlighting";
+          src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+        }
+        {
+          name = "nix-zsh-completions";
+          src = "${pkgs.nix-zsh-completions}/share/zsh/plugins/nix";
+        }
+        {
+          name = "bd";
+          src = ../config/zsh/plugins/bd;
+        }
+      ];
+    };
 
-  xdg = {
-    configFile."zsh".source = ../config/zsh;
-    dataFile = {
-      "zsh/zsh-autosuggestions".source = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
-      "zsh/zsh-fast-syntax-highlighting".source =
-        "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
-      "zsh/nix-zsh-completions".source =
-        "${pkgs.nix-zsh-completions}/share/zsh/plugins/nix";
-      "zsh/pure".source =
-        "${pkgs.pure-prompt}/share/zsh/site-functions";
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
     };
   };
 }

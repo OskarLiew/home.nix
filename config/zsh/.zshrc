@@ -2,10 +2,6 @@
 [ -f $HOME/.profile ] && . $HOME/.profile
 
 ### Comlpetion
-source $HOME/.local/share/zsh/nix-zsh-completions/nix-zsh-completions.plugin.zsh
-fpath+=($HOME/.local/share/zsh/nix-zsh-completions)
-fpath+=($HOME/.local/share/zsh/pure)
-
 autoload -Uz compinit promptinit select-word-style
 
 mkdir -p $XDG_CACHE_HOME/zsh
@@ -18,8 +14,6 @@ select-word-style bash
 
 ### Theme
 
-# source $ZDOTDIR/prompts/pure/async.zsh
-# source $ZDOTDIR/prompts/pure/pure.zsh
 prompt pure
 RPROMPT="%F{yellow}%D{%H:%M:%S}"  # Clock on right side
 
@@ -108,43 +102,4 @@ setopt PUSHD_SILENT         # Do not print the directory stack after pushd or po
 ### Aliases
 
 source $XDG_CONFIG_HOME/aliases/aliases
-
-### Plugins
-
-# fzf
-if command -v fzf-share >/dev/null; then
-    source "$(fzf-share)/key-bindings.zsh"
-    source "$(fzf-share)/key-bindings.zsh"
-fi
-
-# Syntax highlighting and autosuggestions
-
-# source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/.local/share/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOME/.local/share/zsh/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-
-# bd
-source $ZDOTDIR/plugins/bd.zsh
-
-# Auto-launch ssh-agent
-env=~/.ssh/agent.env
-
-agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
-
-agent_start () {
-    (umask 077; ssh-agent >| "$env")
-    . "$env" >| /dev/null ; }
-
-agent_load_env
-
-# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2= agent not running
-agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
-
-if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
-    agent_start
-    ssh-add
-elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
-    ssh-add
-fi
 

@@ -27,6 +27,7 @@
   home.file = {
     ".local/bin/tat".source = ../config/tmux/tat;
   };
+
   programs = {
     btop = {
       enable = true;
@@ -37,6 +38,13 @@
         vim_keys = true;
       };
     };
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+  };
 
+  services = {
+    ssh-agent.enable = true;
   };
 }

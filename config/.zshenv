@@ -1,13 +1,3 @@
-# Read nix env vars
-. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-
-# XDG
-[ -z "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME="$HOME/.config"
-[ -z "$XDG_CACHE_HOME" ] && export XDG_CACHE_HOME="$HOME/.cache"
-[ -z "$XDG_DATA_HOME" ] && export XDG_DATA_HOME="$HOME/.local/share"
-[ -z "$XDG_STATE_HOME" ] && export XDG_STATE_HOME="$HOME/.local/state"
-[ -z "$XDG_BIN_HOME" ] && export XDG_BIN_HOME="$HOME/.local/bin"
-
 # Set ZSH config path
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
@@ -34,5 +24,4 @@ export FZF_ALT_C_OPTS="$FZF_DEFAULT_OPTS --preview 'tree -C {} | head -n 10'"
 
 # Ranger
 export RANGER_LOAD_DEFAULT_RC=false
-
 

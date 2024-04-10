@@ -13,19 +13,24 @@
         enable = true;
         options = { syntax-theme = "ansi"; };
       };
+      ignores = [
+        ".direnv"
+        ".envrc"
+      ];
       extraConfig = {
         init.defaultBranch = "main";
         rerere = {
+          # Reuse recorded resolution - Smoother rebases
           enabled = true;
           autoUpdate = true;
         };
         branch.sort = "-committerdate";
         column.ui = "auto";
         pager = {
-          blame  = "delta";
-          diff   = "delta";
+          blame = "delta";
+          diff = "delta";
           reflog = "delta";
-          show   = "delta";
+          show = "delta";
         };
       };
     };
