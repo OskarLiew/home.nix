@@ -2,7 +2,7 @@
 [ -f $HOME/.profile ] && . $HOME/.profile
 
 ### Comlpetion
-autoload -Uz compinit promptinit select-word-style
+autoload -Uz compinit promptinit select-word-style edit-command-line
 
 mkdir -p $XDG_CACHE_HOME/zsh
 compinit -d $XDG_CACHE_HOME/zsh/.zcompdump
@@ -67,6 +67,10 @@ bindkey "^[[1;5D" backward-word
 # Fix deletion of non-inseted text in viins mode
 bindkey "^?" backward-delete-char
 bindkey '^W' backward-kill-word
+
+# Edit commands in editor
+zle -N edit-command-line
+bindkey '^e' edit-command-line
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
