@@ -73,3 +73,5 @@ tl () {  # List tmux sessions to attach
     fi
 }
 
+# russ
+alias russ='russ -d $HOME/Sync/rss/russ-feeds.db'

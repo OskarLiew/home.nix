@@ -18,6 +18,7 @@
     lazydocker
     neofetch
     ranger
+    russ
   ];
 
   xdg.configFile = {
