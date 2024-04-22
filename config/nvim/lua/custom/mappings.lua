@@ -26,6 +26,7 @@ M.general = {
 }
 
 M.trouble = {
+    plugin = true,
     n = {
         ["<leader>xx"] = {
             function()
@@ -73,6 +74,7 @@ M.trouble = {
 }
 
 M.telescope = {
+    plugin = true,
     n = {
         ["<C-p>"] = { "<cmd> Telescope git_files <CR>", "Git files" },
         ["<leader>fg"] = { "<cmd> Telescope git_files <CR>", "Git files" },
@@ -109,12 +111,14 @@ M.dap = {
 }
 
 M.undotree = {
+    plugin = true,
     n = {
         ["<leader>u"] = { "<cmd> UndotreeToggle <CR>", "Undotree" },
     },
 }
 
 M.fugitive = {
+    plugin = true,
     n = {
         ["<leader>gg"] = { "<cmd> Git <CR>", "Fugitive" },
         ["<leader>gd"] = { "<cmd> Gdiffsplit <CR>", "Diffsplit" },
@@ -142,6 +146,7 @@ M.refactor = {
 }
 
 M.harpoon = {
+    plugin = true,
     n = {
         ["<leader>a"] = {
             function()
@@ -196,6 +201,17 @@ M.crawlerr = {
                 require("plugins.crawlerr").jump_to_texts("sv")
             end,
             "Go to node text sv",
+        },
+    },
+}
+
+M.filetype_mappings = {
+    plugin = true, -- So it's not automatically loaded
+    n = {
+        ["<leader>e"] = {
+            "<cmd> !python % <CR>",
+            "Execute script",
+            filetypes = { "python" },
         },
     },
 }
