@@ -1,25 +1,23 @@
 # Run profile, which is not version controlled
 [ -f $HOME/.profile ] && . $HOME/.profile
 
-### Comlpetion
-autoload -Uz compinit promptinit select-word-style edit-command-line
+# With inspiration from https://wiki.archlinux.org/title/Zsh
 
-mkdir -p $XDG_CACHE_HOME/zsh
-compinit -d $XDG_CACHE_HOME/zsh/.zcompdump
-promptinit
+autoload -Uz promptinit select-word-style edit-command-line
+
+### Comlpetion
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 _comp_options+=(globdots) # With hidden files
 select-word-style bash
 
 ### Theme
-
+promptinit
 prompt pure
 RPROMPT="%F{yellow}%D{%H:%M:%S}"  # Clock on right side
 
 ### Key bindings
-
-bindkey -v
+bindkey -v  # Use vi mode
 KEYTIMEOUT=1  # 10ms for key sequences: https://www.reddit.com/r/vim/comments/60jl7h/zsh_vimode_no_delay_entering_normal_mode/
 # Might make it harder to get of command mode
 

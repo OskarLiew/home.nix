@@ -2,6 +2,7 @@
   programs = {
     zsh = {
       enable = true;
+      enableCompletion = false;  # Already enabled in /etc/zsh/zshrc, made WSL slow
       enableAutosuggestions = true;
       initExtra = builtins.readFile ../config/zsh/.zshrc;
       envExtra = builtins.readFile ../config/.zshenv;
