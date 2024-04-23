@@ -9,6 +9,7 @@
     ./programs/shell-tools.nix
     ./programs/zsh.nix
     ./programming
+    ./theme/shell.nix
   ];
 
   colorScheme = inputs.nix-colors.colorSchemes.everforest;

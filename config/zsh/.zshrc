@@ -7,9 +7,20 @@ autoload -Uz promptinit select-word-style edit-command-line
 
 ### Comlpetion
 zstyle ':completion:*' menu select  # Select in menu
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'  # Case insensitive
+
+zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}  # Use ls colors
+
+zstyle ':completion:*' complete-options true  # Complete options for cd
+
+zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'  # Show errors
+zstyle ':completion:*:*:*:*:descriptions' format '%F{cyan}-- %D %d --%f' # Show completion tag
+# Order of completion groups
+zstyle ':completion:*' group-name '' 
+zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions commands
+
 _comp_options+=(globdots)  # With hidden files
-select-word-style bash
 
 ### Theme
 promptinit
@@ -61,6 +72,7 @@ bindkey '^H' backward-kill-word
 bindkey '^[[3;5~' kill-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+select-word-style bash  # Jumping words uses path components
 
 # Fix deletion of non-inseted text in viins mode
 bindkey "^?" backward-delete-char
