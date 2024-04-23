@@ -4,7 +4,7 @@ function copy_table(t)
     local t2 = {}
     for k, v in pairs(t) do
         if type(v) == "table" then
-            t2[k] = table.copy(v)
+            t2[k] = copy_table(v)
         else
             t2[k] = v
         end
