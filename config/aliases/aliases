@@ -5,7 +5,7 @@ gcol () {  # List branches with fzf and checkout selected
     if [ -d "./.git" ]; then
         git branch --format='%(refname:short)' \
         | grep -v "$(git rev-parse --abbrev-ref HEAD)" \
-        | fzf --preview='git log --color=always --pretty=format:"%Cgreen+ %h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset" ..{};git log --color=always --pretty=format:"%Cred- %h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset" {}..' \
+        | fzf --preview='git log --color=always --pretty=format:"%Cgreen+ %h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset" ..{};echo;git log --color=always --pretty=format:"%Cred- %h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset" {}..' \
         | xargs git checkout
     else
         echo "Error: Not a git repository"
