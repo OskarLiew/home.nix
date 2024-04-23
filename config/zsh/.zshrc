@@ -6,9 +6,9 @@
 autoload -Uz promptinit select-word-style edit-command-line
 
 ### Comlpetion
-zstyle ':completion:*' menu select
+zstyle ':completion:*' menu select  # Select in menu
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-_comp_options+=(globdots) # With hidden files
+_comp_options+=(globdots)  # With hidden files
 select-word-style bash
 
 ### Theme
@@ -69,6 +69,21 @@ bindkey '^W' backward-kill-word
 # Edit commands in editor
 zle -N edit-command-line
 bindkey '^e' edit-command-line
+
+# Enable da" and ci( type vi commands
+autoload -Uz select-bracketed select-quoted
+zle -N select-quoted
+zle -N select-bracketed
+for km in viopp visual; do
+  bindkey -M $km -- '-' vi-up-line-or-history
+  for c in {a,i}${(s..)^:-\'\"\`\|,./:;=+@}; do
+    bindkey -M $km $c select-quoted
+  done
+  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+    bindkey -M $km $c select-bracketed
+  done
+done
+
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
