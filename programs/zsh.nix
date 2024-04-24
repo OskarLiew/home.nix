@@ -1,4 +1,13 @@
-{ pkgs, config, ... }: {
+{ pkgs, ... }:
+let
+  dockerCLI = pkgs.fetchFromGitHub {
+    owner = "docker";
+    repo = "cli";
+    rev = "master";
+    hash = "sha256-8sC66O2jOy5gl1VSQAl68gNaririQAT8e+8zTOdrJt8=";
+  };
+  in
+{
   programs = {
     zsh = {
       enable = true;
@@ -7,11 +16,11 @@
       envExtra = builtins.readFile ../config/zsh/.zshenv;
       initExtra = builtins.readFile ../config/zsh/.zshrc;
       completionInit = ''# Faster load 
-        autoload -Uz compinit
-        for dump in $\{ZDOTDIR\}/.zcompdump(N.mh+18); do
-          compinit
-        done
-        compinit -C
+autoload -Uz compinit
+for dump in $ZDOTDIR/.zcompdump(N.mh+18); do
+  compinit
+done
+compinit -C
       '';
       dotDir = ".config/zsh";
       history = {
@@ -31,8 +40,16 @@
           src = "${pkgs.nix-zsh-completions}/share/zsh/plugins/nix";
         }
         {
+          name = "zsh-completions";
+          src = "${pkgs.zsh-completions}/share/zsh/site-functions";
+        }
+        {
           name = "bd";
           src = ../config/zsh/plugins/bd;
+        }
+        {
+            name = "docker-completions";
+            src = "${dockerCLI}/contrib/completion/zsh";
         }
       ];
     };

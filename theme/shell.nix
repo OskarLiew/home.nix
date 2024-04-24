@@ -1,5 +1,5 @@
 {
-    programs.dircolors = {
-        enable = true;
-    };
+  programs.dircolors = {
+    enable = true;
+  };
 }
