@@ -39,8 +39,11 @@ local function init_info_panel(s)
 	end
 
 	-- Create panel
-	local panel_width = s.geometry.width * 5 / 7
-	local panel_height = s.geometry.height * 3 / 4
+	local width_ratio = 5 / 7
+	local height_ratio = 3 / 4
+	local panel_width = math.min(s.geometry.width * width_ratio, dpi(1920) * width_ratio)
+	local panel_height = math.min(s.geometry.height * height_ratio, dpi(1080) * height_ratio)
+
 	local panel = wibox({
 		visible = false,
 		ontop = true,

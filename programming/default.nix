@@ -23,6 +23,7 @@
     # LSPs
     lua-language-server
     nodePackages.pyright
+    nodePackages.bash-language-server
     gopls
     nil
   ];

@@ -80,7 +80,7 @@ local function get_notif_template(n)
 
 	template:buttons(gears.table.join(awful.button({}, 1, nil, function()
 		if #n.clients > 0 then
-			n.clients[1]:jump_to(false)
+			n.clients[1]:jump_to(true)
 		end
 	end)))
 

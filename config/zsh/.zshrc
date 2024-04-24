@@ -1,31 +1,34 @@
 # Run profile, which is not version controlled
 [ -f $HOME/.profile ] && . $HOME/.profile
 
+# With inspiration from https://wiki.archlinux.org/title/Zsh
+
+autoload -Uz promptinit select-word-style edit-command-line
+
 ### Comlpetion
-source $HOME/.local/share/zsh/nix-zsh-completions/nix-zsh-completions.plugin.zsh
-fpath+=($HOME/.local/share/zsh/nix-zsh-completions)
-fpath+=($HOME/.local/share/zsh/pure)
+zstyle ':completion:*' menu select  # Select in menu
 
-autoload -Uz compinit promptinit select-word-style
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'  # Case insensitive
 
-mkdir -p $XDG_CACHE_HOME/zsh
-compinit -d $XDG_CACHE_HOME/zsh/.zcompdump
-promptinit
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-_comp_options+=(globdots) # With hidden files
-select-word-style bash
+zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}  # Use ls colors
+
+zstyle ':completion:*' complete-options true  # Complete options for cd
+
+zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'  # Show errors
+zstyle ':completion:*:*:*:*:descriptions' format '%F{cyan}-- %D %d --%f' # Show completion tag
+# Order of completion groups
+zstyle ':completion:*' group-name '' 
+zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions commands
+
+_comp_options+=(globdots)  # With hidden files
 
 ### Theme
-
-# source $ZDOTDIR/prompts/pure/async.zsh
-# source $ZDOTDIR/prompts/pure/pure.zsh
+promptinit
 prompt pure
 RPROMPT="%F{yellow}%D{%H:%M:%S}"  # Clock on right side
 
 ### Key bindings
-
-bindkey -v
+bindkey -v  # Use vi mode
 KEYTIMEOUT=1  # 10ms for key sequences: https://www.reddit.com/r/vim/comments/60jl7h/zsh_vimode_no_delay_entering_normal_mode/
 # Might make it harder to get of command mode
 
@@ -69,10 +72,30 @@ bindkey '^H' backward-kill-word
 bindkey '^[[3;5~' kill-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+select-word-style bash  # Jumping words uses path components
 
 # Fix deletion of non-inseted text in viins mode
 bindkey "^?" backward-delete-char
 bindkey '^W' backward-kill-word
+
+# Edit commands in editor
+zle -N edit-command-line
+bindkey '^e' edit-command-line
+
+# Enable da" and ci( type vi commands
+autoload -Uz select-bracketed select-quoted
+zle -N select-quoted
+zle -N select-bracketed
+for km in viopp visual; do
+  bindkey -M $km -- '-' vi-up-line-or-history
+  for c in {a,i}${(s..)^:-\'\"\`\|,./:;=+@}; do
+    bindkey -M $km $c select-quoted
+  done
+  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+    bindkey -M $km $c select-bracketed
+  done
+done
+
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
@@ -108,43 +131,4 @@ setopt PUSHD_SILENT         # Do not print the directory stack after pushd or po
 ### Aliases
 
 source $XDG_CONFIG_HOME/aliases/aliases
-
-### Plugins
-
-# fzf
-if command -v fzf-share >/dev/null; then
-    source "$(fzf-share)/key-bindings.zsh"
-    source "$(fzf-share)/key-bindings.zsh"
-fi
-
-# Syntax highlighting and autosuggestions
-
-# source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/.local/share/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOME/.local/share/zsh/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-
-# bd
-source $ZDOTDIR/plugins/bd.zsh
-
-# Auto-launch ssh-agent
-env=~/.ssh/agent.env
-
-agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
-
-agent_start () {
-    (umask 077; ssh-agent >| "$env")
-    . "$env" >| /dev/null ; }
-
-agent_load_env
-
-# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2= agent not running
-agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
-
-if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
-    agent_start
-    ssh-add
-elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
-    ssh-add
-fi
 

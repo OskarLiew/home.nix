@@ -90,11 +90,17 @@ local plugins = {
 
     {
         "mbbill/undotree",
+        init = function()
+            require("core.utils").load_mappings("undotree")
+        end,
         cmd = "UndotreeToggle",
     },
 
     {
         "tpope/vim-fugitive",
+        init = function()
+            require("core.utils").load_mappings("fugitive")
+        end,
         event = "BufRead",
         cmd = { "Git", "G" },
     },
@@ -115,6 +121,9 @@ local plugins = {
 
     {
         "ThePrimeagen/harpoon",
+        init = function()
+            require("core.utils").load_mappings("harpoon")
+        end,
         event = {
             "BufEnter",
         },
@@ -130,6 +139,9 @@ local plugins = {
 
     {
         "folke/trouble.nvim",
+        init = function()
+            require("core.utils").load_mappings("trouble")
+        end,
         dependencies = { "nvim-tree/nvim-web-devicons" },
         event = {
             "BufEnter",

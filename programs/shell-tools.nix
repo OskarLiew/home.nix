@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, upkgs, ... }: {
   home.packages = with pkgs; [
     # Shell
     bat
@@ -11,12 +11,14 @@
     openssh
     neofetch
     fd
+    jq
+    yq
     # TUI apps
     tmux
     lazydocker
     neofetch
     ranger
-    btop
+    russ
   ];
 
   xdg.configFile = {
@@ -26,15 +28,24 @@
   home.file = {
     ".local/bin/tat".source = ../config/tmux/tat;
   };
+
   programs = {
     btop = {
       enable = true;
+      package = upkgs.btop;
       settings = {
         color_theme = "everforest-dark-hard";
         theme_background = false;
         vim_keys = true;
       };
     };
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+  };
 
+  services = {
+    ssh-agent.enable = true;
   };
 }
