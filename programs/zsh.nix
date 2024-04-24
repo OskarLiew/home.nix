@@ -2,10 +2,9 @@
   programs = {
     zsh = {
       enable = true;
-      enableCompletion = false;  # Already enabled in /etc/zsh/zshrc, made WSL slow
       enableAutosuggestions = true;
       initExtra = builtins.readFile ../config/zsh/.zshrc;
-      envExtra = builtins.readFile ../config/.zshenv;
+      envExtra = builtins.readFile ../config/zsh/.zshenv;
       dotDir = ".config/zsh";
       history = {
         path = "$XDG_DATA_HOME/zsh/history";

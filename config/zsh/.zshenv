@@ -1,3 +1,5 @@
+skip_global_compinit=1  # Disable ubuntu global compinit
+
 # Set ZSH config path
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
