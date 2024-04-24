@@ -1,12 +1,20 @@
 { pkgs, ... }:
 let
-  dockerCLI = pkgs.fetchFromGitHub {
-    owner = "docker";
-    repo = "cli";
-    rev = "master";
-    hash = "sha256-8sC66O2jOy5gl1VSQAl68gNaririQAT8e+8zTOdrJt8=";
+  # The completion script must be in a directory to work
+  dockerCompletions = pkgs.stdenv.mkDerivation {
+    name = "docker-completions";
+    src = pkgs.fetchurl {
+      url = "https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker";
+      sha256 = "sha256-wsuSNFsCDZF7VI9Sjshmf0Hr4bJUmq/Sh9b7EqOzA9A=";
+    };
+
+    phases = [ "installPhase" ];
+    installPhase = ''
+      mkdir -p $out/
+      cp $src $out/_docker
+    '';
   };
-  in
+in
 {
   programs = {
     zsh = {
@@ -48,8 +56,8 @@ compinit -C
           src = ../config/zsh/plugins/bd;
         }
         {
-            name = "docker-completions";
-            src = "${dockerCLI}/contrib/completion/zsh";
+          name = "docker-completions";
+          src = dockerCompletions;
         }
       ];
     };
