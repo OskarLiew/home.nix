@@ -3,8 +3,9 @@
     zsh = {
       enable = true;
       enableAutosuggestions = true;
-      initExtra = builtins.readFile ../config/zsh/.zshrc;
+      loginExtra = builtins.readFile ../config/zsh/.zlogin;
       envExtra = builtins.readFile ../config/zsh/.zshenv;
+      initExtra = builtins.readFile ../config/zsh/.zshrc;
       completionInit = ''# Faster load 
         autoload -Uz compinit
         for dump in $\{ZDOTDIR\}/.zcompdump(N.mh+18); do
