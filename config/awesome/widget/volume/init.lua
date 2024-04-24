@@ -106,6 +106,7 @@ local function return_button()
 	awesome.connect_signal("volume-change", set_volume)
 	awesome.connect_signal("volume-change", volume_slider.display)
 
+	set_volume()
 	return volume_button
 end
 
