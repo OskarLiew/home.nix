@@ -5,6 +5,13 @@
       enableAutosuggestions = true;
       initExtra = builtins.readFile ../config/zsh/.zshrc;
       envExtra = builtins.readFile ../config/zsh/.zshenv;
+      completionInit = ''# Faster load 
+        autoload -Uz compinit
+        for dump in $\{ZDOTDIR\}/.zcompdump(N.mh+18); do
+          compinit
+        done
+        compinit -C
+      '';
       dotDir = ".config/zsh";
       history = {
         path = "$XDG_DATA_HOME/zsh/history";
