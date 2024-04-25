@@ -1,3 +1,82 @@
+local function get_last_path_component(path)
+    -- Check if filePath ends with '/'
+    if string.sub(path, -1) == "/" then
+        -- Remove trailing '/'
+        path = string.sub(path, 1, -2)
+    end
+
+    -- Find the last occurrence of '/'
+    local last_slash_index, _ = string.find(path, "/[^/]*$")
+    -- Extract the last component
+    local last_component = string.sub(path, (last_slash_index or 0) + 1)
+    if last_component then
+        return last_component
+    end
+end
+
+local function get_file_name(str)
+    local index = str:find("%.")
+    if index then
+        return str:sub(1, index - 1)
+    else
+        return str
+    end
+end
+
+local function tiebreak(current_ordinal, existing_ordinal, prompt)
+    local current_last = get_last_path_component(current_ordinal)
+    local existing_last = get_last_path_component(existing_ordinal)
+
+    -- Perfect file name matches
+    local current_file_name = get_file_name(current_last)
+    if current_file_name == prompt then
+        local existing_file_name = get_file_name(existing_last)
+        if current_file_name ~= existing_file_name then
+            return true
+        else
+            if #current_last ~= #existing_last then
+                return #current_last == #existing_last
+            else
+                return #current_ordinal < #existing_ordinal
+            end
+        end
+    end
+
+    -- Files with prompt early in last component
+    local start_pos1, _ = current_last:find(prompt)
+    local start_pos2, _ = existing_last:find(prompt)
+    if start_pos1 then
+        if start_pos2 then
+            if start_pos1 ~= start_pos2 then -- If same pos, then continue
+                return start_pos1 < start_pos2
+            end
+        else
+            return true
+        end
+    end
+
+    -- Files with a match early on
+    start_pos1, _ = current_ordinal:find(prompt)
+    start_pos2, _ = existing_ordinal:find(prompt)
+    if start_pos1 then
+        if start_pos2 then
+            if start_pos1 ~= start_pos2 then -- If same pos, then continue
+                return start_pos1 < start_pos2
+            end
+        end
+    end
+
+    -- Files higher in the file hierarchy
+    local _, count1 = current_ordinal:gsub("/", "/")
+    local _, count2 = existing_ordinal:gsub("/", "/")
+    if count1 ~= count2 then
+        return count1 < count2
+    end
+
+    -- Fallback to shortest first
+    return #current_ordinal < #existing_ordinal
+end
+
 local options = {
     defaults = {
         vimgrep_arguments = {
@@ -48,40 +127,7 @@ local options = {
             n = { ["q"] = require("telescope.actions").close },
         },
         tiebreak = function(current_entry, existing_entry, prompt)
-            local function get_last_path_component(file_path)
-                -- Check if filePath ends with '/'
-                if string.sub(file_path, -1) == "/" then
-                    -- Remove trailing '/'
-                    file_path = string.sub(file_path, 1, -2)
-                end
-
-                -- Find the last occurrence of '/'
-                local last_slash_index, _ = string.find(file_path, "/[^/]*$")
-                -- Extract the last component
-                local last_component = string.sub(file_path, (last_slash_index or 0) + 1)
-                if last_component then
-                    return last_component
-                end
-            end
-
-            local current_last = get_last_path_component(current_entry.ordinal)
-            local existing_last = get_last_path_component(existing_entry.ordinal)
-
-            -- Prefer files with prompt in last component
-            local start_pos1, _ = current_last:find(prompt)
-            if start_pos1 then
-                local start_pos2, _ = existing_last:find(prompt)
-                if start_pos2 then
-                    if start_pos1 ~= start_pos2 then -- If same pos, then continue
-                        return start_pos1 < start_pos2
-                    end
-                else
-                    return true
-                end
-            end
-
-            -- Fallback to shortest first
-            return #current_entry.ordinal < #existing_entry.ordinal
+            return tiebreak(current_entry.ordinal, existing_entry.ordinal, prompt)
         end,
     },
 
