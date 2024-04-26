@@ -23,58 +23,46 @@ local function get_file_name(str)
     end
 end
 
+local function filename_cmp(current, existing, prompt)
+    local current_file_name = get_file_name(current)
+    if current_file_name == prompt then
+        local existing_file_name = get_file_name(existing)
+        if current_file_name ~= existing_file_name then
+            return true
+        end
+    end
+end
+
+local function first_match_cmp(current, existing, prompt)
+    local start_pos1, _ = current:find(prompt)
+    local start_pos2, _ = existing:find(prompt)
+    if start_pos1 then
+        if start_pos2 then
+            if start_pos1 < start_pos2 then -- If same pos, then continue
+                return true
+            end
+        else
+            return true
+        end
+    end
+end
+
 local function tiebreak(current_ordinal, existing_ordinal, prompt)
     local current_last = get_last_path_component(current_ordinal)
     local existing_last = get_last_path_component(existing_ordinal)
 
     -- Perfect file name matches
-    local current_file_name = get_file_name(current_last)
-    if current_file_name == prompt then
-        local existing_file_name = get_file_name(existing_last)
-        if current_file_name ~= existing_file_name then
-            return true
-        else
-            if #current_last ~= #existing_last then
-                return #current_last == #existing_last
-            else
-                return #current_ordinal < #existing_ordinal
-            end
-        end
+    if filename_cmp(current_last, existing_last, prompt) then
+        return true
     end
 
-    -- Files with prompt early in last component
-    local start_pos1, _ = current_last:find(prompt)
-    local start_pos2, _ = existing_last:find(prompt)
-    if start_pos1 then
-        if start_pos2 then
-            if start_pos1 ~= start_pos2 then -- If same pos, then continue
-                return start_pos1 < start_pos2
-            end
-        else
-            return true
-        end
+    -- Files with prompt early in file component
+    if first_match_cmp(current_last, existing_last, prompt) then
+        return true
     end
 
-    -- Files with a match early on
-    start_pos1, _ = current_ordinal:find(prompt)
-    start_pos2, _ = existing_ordinal:find(prompt)
-    if start_pos1 then
-        if start_pos2 then
-            if start_pos1 ~= start_pos2 then -- If same pos, then continue
-                return start_pos1 < start_pos2
-            end
-        end
-    end
-
-    -- Files higher in the file hierarchy
-    local _, count1 = current_ordinal:gsub("/", "/")
-    local _, count2 = existing_ordinal:gsub("/", "/")
-    if count1 ~= count2 then
-        return count1 < count2
-    end
-
-    -- Fallback to shortest first
-    return #current_ordinal < #existing_ordinal
+    -- Fallback to alphabetical
+    return current_ordinal < existing_ordinal
 end
 
 local options = {
