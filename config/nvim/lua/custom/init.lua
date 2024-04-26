@@ -36,5 +36,7 @@ opt.colorcolumn = "88"
 -- Snippets
 vim.g.vscode_snippets_path = os.getenv("XDG_CONFIG_HOME") .. "/snippets"
 
+opt.clipboard = nil
+
 -- Autocmds
 require("custom.configs.autocmds")
