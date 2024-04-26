@@ -209,9 +209,14 @@ M.filetype_mappings = {
     plugin = true, -- So it's not automatically loaded
     n = {
         ["<leader>e"] = {
-            "<cmd> !python % <CR>",
-            "Execute script",
-            filetypes = { "python" },
+            ["python"] = {
+                "<cmd> !python % <CR>",
+                "Execute python",
+            },
+            ["lua"] = {
+                "<cmd> !lua % <CR>",
+                "Execute lua",
+            },
         },
     },
 }
