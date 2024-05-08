@@ -24,8 +24,8 @@ autocmd("BufEnter", {
                     if filetype == vim.bo.filetype then
                         local opts = {}
                         opts.desc = mapping_info[2] or {}
-                        opts.desc.noremap = true
-                        opts.desc.silent = true
+                        opts.noremap = true
+                        opts.silent = true
                         vim.keymap.set(mode, mapping, mapping_info[1], opts)
                     end
                 end
