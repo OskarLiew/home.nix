@@ -1,5 +1,5 @@
 { config, ... }: {
-  text = with config.colorScheme.colors; ''
+  text = with config.colorScheme.palette; ''
     @define-color accent_color #${base08};
     @define-color accent_bg_color mix(#${base08}, #${base00},0.3);
     @define-color accent_fg_color #${base05};
