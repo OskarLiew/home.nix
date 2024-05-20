@@ -29,7 +29,8 @@
             "if [ -z \"\\$TMUX\" ]; then  # In tmux",
             "    tmux attach-session -t \\$session",
             "else",
-            "    tmux switch-client -t \\$session"
+            "    tmux switch-client -t \\$session",
+            "fi"
         ],
         "description": "Startup script for a tmux workspace"
     }
