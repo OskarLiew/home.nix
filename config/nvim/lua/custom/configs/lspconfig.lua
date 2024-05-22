@@ -4,7 +4,18 @@ local lspconfig = require("lspconfig")
 local util = require("lspconfig.util")
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "clangd", "nil_ls", "gopls", "pyright", "bashls" }
+local servers = {
+    "html",
+    "cssls",
+    "tsserver",
+    "clangd",
+    "nil_ls",
+    "gopls",
+    "pyright",
+    "bashls",
+    "docker_compose_language_service",
+    "dockerls",
+}
 
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup({

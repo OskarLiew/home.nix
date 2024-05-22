@@ -26,6 +26,8 @@
     nodePackages.bash-language-server
     gopls
     nil
+    dockerfile-language-server-nodejs
+    docker-compose-language-service
   ];
 
   xdg = {
