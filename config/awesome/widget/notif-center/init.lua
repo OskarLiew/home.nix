@@ -12,7 +12,7 @@ local function init_notification_center()
 	local title = wibox.widget({
 		{
 			widget = wibox.widget.textbox,
-			text = "Notification center",
+			text = "Notifications",
 			font = beautiful.base_font .. ", bold 20",
 			align = "center",
 		},
