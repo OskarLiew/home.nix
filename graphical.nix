@@ -3,28 +3,40 @@
   imports = [ ./theme ./programs/vscode.nix ];
 
   home.packages = with pkgs; [
-    # Apps
-    upkgs.obsidian
+    # Utils
     arandr
+    dconf
+    mpd
+    simplescreenrecorder
+
+    # Apps
     inkscape
     deluge
     gimp
-    gnome.nautilus
     spotify
     discord
     deluge-gtk
     vlc
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
-    slack
-    simplescreenrecorder
-    zotero
+
+    # Productivity
+    gnome.nautilus
+    upkgs.obsidian
     insomnia
-    dconf
-    mpd
+    zotero
+
+    # Other
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
+
+    # Work
+    upkgs.slack  # White screen bug
+    zoom-us
   ];
 
   programs = {
-    firefox.enable = true;
+    firefox = {
+      enable = true;
+      package = upkgs.firefox; # Fixes webgl
+    };
     chromium = {
       enable = true;
       extensions = [
