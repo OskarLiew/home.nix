@@ -44,6 +44,28 @@ local function border(hl_name)
     }
 end
 
+local function lspkind_comparator(conf)
+    local lsp_types = require("cmp.types").lsp
+    return function(entry1, entry2)
+        if entry1.source.name ~= "nvim_lsp" then
+            if entry2.source.name == "nvim_lsp" then
+                return false
+            else
+                return nil
+            end
+        end
+        local kind1 = lsp_types.CompletionItemKind[entry1:get_kind()]
+        local kind2 = lsp_types.CompletionItemKind[entry2:get_kind()]
+
+        local priority1 = conf.kind_priority[kind1] or 0
+        local priority2 = conf.kind_priority[kind2] or 0
+        if priority1 == priority2 then
+            return nil
+        end
+        return priority2 < priority1
+    end
+end
+
 local options = {
     completion = {
         completeopt = "menu,menuone",
@@ -102,10 +124,64 @@ local options = {
     },
     sources = {
         { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "nvim_lua" },
         { name = "path" },
+        { name = "luasnip" },
+        { name = "buffer", keyword_length = 5 },
+        { name = "nvim_lua" },
+    },
+
+    sorting = {
+        comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            -- Special rules for underscore methods
+            function(entry1, entry2)
+                local _, entry1_under = entry1.completion_item.label:find("^_+")
+                local _, entry2_under = entry2.completion_item.label:find("^_+")
+                entry1_under = entry1_under or 0
+                entry2_under = entry2_under or 0
+                if entry1_under > entry2_under then
+                    return false
+                elseif entry1_under < entry2_under then
+                    return true
+                end
+            end,
+            lspkind_comparator({
+                kind_priority = {
+                    Parameter = 14,
+                    Variable = 12,
+                    Field = 12,
+                    Property = 12,
+                    EnumMember = 12,
+                    Constant = 11,
+                    Function = 10,
+                    Method = 10,
+                    Event = 10,
+                    Struct = 9,
+                    Class = 9,
+                    Enum = 9,
+                    Module = 8,
+                    Operator = 7,
+                    Reference = 7,
+                    File = 6,
+                    Folder = 6,
+                    Color = 5,
+                    Constructor = 1,
+                    Interface = 1,
+                    Snippet = 1,
+                    Text = 1,
+                    TypeParameter = 1,
+                    Unit = 1,
+                    Value = 1,
+                    Keyword = 0,
+                },
+            }),
+            cmp.config.compare.locality,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+        },
     },
 }
 
