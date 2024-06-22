@@ -48,30 +48,29 @@
     ruff = {
       enable = true;
       settings = {
-        select = [
-          "E"
-          "F"
-          "W"
-          "C4"
-          "B"
-          "I"
-          "PL"
-        ];
-        ignore = [
-          "B008"
-          "B905"
-          "PLR2004"
-          "PLR0913"
-          "PLW2901"
-        ];
-        per-file-ignores = {
-          "__init__.py" = [ "F401" ];
+        lint = {
+          select = [
+            "E"
+            "F"
+            "W"
+            "C4"
+            "B"
+            "I"
+            "PL"
+          ];
+          ignore = [
+            "B008"
+            "B905"
+            "PLR2004"
+            "PLR0913"
+            "PLW2901"
+          ];
+          per-file-ignores = {
+            "__init__.py" = [ "F401" ];
+          };
         };
       };
     };
   };
 
-
-
 }
-
