@@ -14,7 +14,7 @@
     deluge
     gimp
     spotify
-    discord
+    upkgs.discord
     deluge-gtk
     vlc
 
