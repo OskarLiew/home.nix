@@ -2,6 +2,7 @@
   programs = {
     git = {
       enable = true;
+      lfs.enable = true;
       userName = "Oskar Liew";
       userEmail = "oskar@liew.se";
       aliases = {
