@@ -19,7 +19,7 @@ in
   programs = {
     zsh = {
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       loginExtra = builtins.readFile ../config/zsh/.zlogin;
       envExtra = builtins.readFile ../config/zsh/.zshenv;
       initExtra = builtins.readFile ../config/zsh/.zshrc;
