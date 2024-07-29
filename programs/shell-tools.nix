@@ -17,7 +17,6 @@
     tmux
     lazydocker
     neofetch
-    ranger
     russ
   ];
 
@@ -42,6 +41,10 @@
     direnv = {
       enable = true;
       nix-direnv.enable = true;
+    };
+    yazi = {
+        enable = true;
+        enableZshIntegration = true;
     };
   };
 
