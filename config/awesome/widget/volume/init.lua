@@ -57,9 +57,9 @@ local function return_button()
 
 	local function update_volume(muted)
 		awful.spawn.easy_async_with_shell(
-			[[awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master) | tr -d '\n%']],
+			[[pactl get-sink-volume 0 | awk '{print $5 }' | tr -d '\n$']],
 			function(stdout)
-				local volume_percentage = tonumber(stdout)
+				local volume_percentage = tonumber(stdout:match("%d+"))
 
 				-- Stop if null
 				if not volume_percentage then
