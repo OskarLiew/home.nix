@@ -1,6 +1,6 @@
 { pkgs, upkgs, ... }: {
 
-  imports = [ ./theme ./programs/vscode.nix ];
+  imports = [ ./theme ./programs/vscode.nix ./programs/gaming.nix ];
 
   home.packages = with pkgs; [
     # Utils

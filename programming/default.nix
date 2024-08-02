@@ -4,9 +4,7 @@
     # - Python
     python311
     python311Packages.pip
-    python311Packages.mypy
-    python311Packages.isort
-    python311Packages.black
+    mypy
     poetry
     ruff
     # - js
