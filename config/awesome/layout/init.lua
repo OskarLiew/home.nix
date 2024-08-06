@@ -66,6 +66,10 @@ ruled.client.connect_signal("request::rules", function()
 		rule_every = {
 			class = {
 				"Nautilus",
+				".blueman-manager-wrapped",
+				"Pavucontrol",
+				".arandr-wrapped",
+				"SimpleScreenRecorder",
 			},
 		},
 		properties = {
