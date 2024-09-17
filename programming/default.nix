@@ -26,6 +26,8 @@
     nil
     dockerfile-language-server-nodejs
     docker-compose-language-service
+    # Tools
+    llm
   ];
 
   xdg = {
