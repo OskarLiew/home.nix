@@ -2,17 +2,14 @@
 
 {
   home.packages = with pkgs; [
-    # Games
-    runelite
-
     # Utils
     path-of-building
   ];
   xdg.desktopEntries = {
-    RuneLite = {
-      name = "RuneLite";
-      icon = "runelite";
-      exec = ''sh -c "command -v gpu >/dev/null && gpu runelite || runelite"'';
+    # Installing OSRS: https://github.com/USA-RedDragon/jagex-launcher-linux-flatpak
+    JagexLauncher = {
+      name = "RuneScape";
+      exec = "flatpak run com.jagex.Launcher";
       type = "Application";
       categories = [ "Game" ];
     };

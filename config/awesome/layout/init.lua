@@ -70,6 +70,7 @@ ruled.client.connect_signal("request::rules", function()
 				"Pavucontrol",
 				".arandr-wrapped",
 				"SimpleScreenRecorder",
+				"jagexlauncher.exe",
 			},
 		},
 		properties = {
