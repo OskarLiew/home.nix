@@ -90,7 +90,7 @@ local return_button = function()
 			icon = icons.alert,
 			app_name = "System",
 			title = "Battery is dying!",
-			message = "Battery is about to run out. Plug in the machine, or at least save!",
+			message = "Battery is about to run out.\n Plug in the machine!",
 			urgency = "critical",
 		})
 	end

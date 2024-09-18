@@ -46,14 +46,9 @@ ruled.notification.connect_signal("request::rules", function()
 		},
 	})
 
-	ruled.notification.append_rule({
-		rule = { urgency = "critical" },
-		properties = { bg = beautiful.notification_bg_urgent, fg = beautiful.fg_normal },
-	})
-
 	-- Low urgency apps
 	ruled.notification.append_rule({
-		rules_any = { app_name = {
+		rule_any = { app_name = {
 			"Spotify",
 			"Flameshot",
 		} },
@@ -62,11 +57,16 @@ ruled.notification.connect_signal("request::rules", function()
 
 	-- Normal urgency apps
 	ruled.notification.append_rule({
-		rules_any = { app_name = {
+		rule_any = { app_name = {
 			"Discord",
 			"Slack",
 		} },
 		properties = { urgency = "normal" },
+	})
+
+	ruled.notification.append_rule({
+		rule = { urgency = "critical" },
+		properties = { bg = beautiful.notification_bg_urgent, fg = beautiful.fg_normal },
 	})
 end)
 

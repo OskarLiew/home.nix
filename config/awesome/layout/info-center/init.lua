@@ -153,6 +153,9 @@ local function init_info_panel(s)
 
 	panel.toggle = function(self)
 		self.visible = not self.visible
+		if self.visible then
+			awesome.emit_signal("notif-center::opened")
+		end
 	end
 
 	return panel
