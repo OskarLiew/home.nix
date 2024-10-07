@@ -18,6 +18,8 @@
     go
     # - C
     gcc
+    # - Rust
+    cargo
     # LSPs
     lua-language-server
     nodePackages.pyright
@@ -26,6 +28,7 @@
     nil
     dockerfile-language-server-nodejs
     docker-compose-language-service
+    rust-analyzer
     # Tools
     llm
   ];

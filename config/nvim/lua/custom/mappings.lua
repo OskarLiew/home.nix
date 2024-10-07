@@ -217,6 +217,10 @@ M.filetype_mappings = {
                 "<cmd> !lua % <CR>",
                 "Execute lua",
             },
+            ["rust"] = {
+                "<cmd> !cargo run <CR>",
+                "Execute rust",
+            },
         },
     },
 }
