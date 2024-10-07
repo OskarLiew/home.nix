@@ -19,6 +19,16 @@ local function init_icon(image, size, color)
 end
 
 local function fetch_image(url, callback)
+	-- Check if the url is already a cached file
+	if url:sub(1, 7) == "file://" then
+		local img = gears.surface.load_uncached(url:sub(8))
+		if img then
+			callback(img)
+		else
+			callback(nil)
+		end
+	end
+
 	-- Generate a temporary file path to save the image
 	local temp_filepath = os.getenv("XDG_CACHE_HOME") .. "/awesome/temp_image.jpg"
 
