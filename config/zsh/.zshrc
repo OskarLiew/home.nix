@@ -132,3 +132,8 @@ setopt PUSHD_SILENT         # Do not print the directory stack after pushd or po
 
 source $XDG_CONFIG_HOME/aliases/aliases
 
+# ensure compatibility tmux <-> direnv
+if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
+    unset -m "DIRENV_*"
+fi
+eval "$(direnv hook bash)"
