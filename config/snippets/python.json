@@ -20,12 +20,46 @@
     ],
     "description": "The current file's directory as a constant"
   },
-  "import logger": {
+  "initialize logger": {
     "prefix": "log",
     "body": [
       "import logging",
       "logger = logging.getLogger(__name__)"
     ],
     "description": "Import and initialize logger"
+  },
+  "open file": {
+    "prefix": "op",
+    "body": [
+      "with open(${1:path}, \"${2:r}\") as f:",
+      "    ${3:data = f.read()}"
+    ],
+    "description": "Open a file"
+  },
+  "for enumerate": {
+    "prefix": "fore",
+    "body": [
+      "for i, ${1:item} in enumerate(${2:iterable}):",
+      "    ${0:pass}"
+    ],
+    "description": "Iterate with enumerate"
+  },
+  "string enum": {
+    "prefix": "enumstr",
+    "body": [
+      "from enum import Enum",
+      "class ${1:MyEnum}(str, Enum):",
+      "    ${2:FIELD} = \"${3:field}\""
+    ],
+    "description": "String enum"
+  },
+  "enum": {
+    "prefix": "enum",
+    "body": [
+      "from enum import Enum, auto",
+      "class ${1:MyEnum}(Enum):",
+      "    ${2:FIELD} = auto()"
+    ],
+    "description": "enum"
   }
 }
