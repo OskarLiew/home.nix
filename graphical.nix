@@ -23,6 +23,7 @@
     upkgs.obsidian
     insomnia
     zotero
+    libreoffice
 
     # Other
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
