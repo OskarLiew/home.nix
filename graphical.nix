@@ -19,7 +19,7 @@
     vlc
 
     # Productivity
-    gnome.nautilus
+    nautilus
     upkgs.obsidian
     insomnia
     zotero
@@ -48,7 +48,7 @@
     kitty = {
       enable = true;
       package = upkgs.kitty;
-      theme = "Everforest Dark Hard";
+      themeFile = "everforest_dark_hard";
       settings = {
         confirm_os_window_close = 2;
         enable_audio_bell = false;
@@ -74,6 +74,7 @@
         "x-scheme-handler/https" = "firefox.desktop";
         "x-scheme-handler/about" = "firefox.desktop";
         "x-scheme-handler/unknown" = "firefox.desktop";
+        "application/pdf" = "firefox.desktop";
         "inode/directory" = "yazi.desktop";
       };
     };
@@ -83,7 +84,7 @@
       "rofi".source = ./config/rofi;
     };
     desktopEntries = {
-      # Make yazi open in kitty
+      # Make apps open in kitty
       yazi = {
         name = "Yazi";
         icon = "yazi";
@@ -92,6 +93,23 @@
         type = "Application";
         categories = [ "Utility" "Core" "System" "FileTools" "FileManager" "ConsoleOnly" ];
         mimeType = [ "inode/directory" ];
+      };
+      nvim = {
+        name = "Neovim";
+        icon = "nvim";
+        exec = "kitty -e nvim";
+        terminal = false;
+        type = "Application";
+        categories = [ "Utility" "TextEditor" ];
+        mimeType = [ "text/english" "text/plain" "text/x-makefile" "text/x-c++hdr" "text/x-c++src" "text/x-chdr" "text/x-csrc" "text/x-java" "text/x-moc" "text/x-pascal" "text/x-tcl" "text/x-tex" "application/x-shellscript" "text/x-c" "text/x-c++" ];
+      };
+      btop = {
+        name = "btop";
+        icon = "btop";
+        exec = "kitty -e btop";
+        terminal = false;
+        type = "Application";
+        categories = [ "Utility" "Core" "System" ];
       };
     };
   };
