@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, upkgs, inputs, ... }: {
 
   home.packages = with pkgs; [
     # - Python
@@ -22,7 +22,7 @@
     cargo
     # LSPs
     lua-language-server
-    nodePackages.pyright
+    upkgs.pyright
     nodePackages.bash-language-server
     gopls
     nil

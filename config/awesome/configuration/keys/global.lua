@@ -177,19 +177,19 @@ awful.keyboard.append_global_keybindings({
 		awesome.emit_signal("daemon::playerctl-previous")
 	end),
 	awful.key({}, "XF86AudioRaiseVolume", function()
-		awful.util.spawn("pactl -- set-sink-volume 0 +5%")
+		awful.util.spawn("pactl -- set-sink-volume @DEFAULT_SINK@ +5%")
 		awesome.emit_signal("volume-change")
 	end),
 	awful.key({}, "XF86AudioLowerVolume", function()
-		awful.util.spawn("pactl -- set-sink-volume 0 -5%")
+		awful.util.spawn("pactl -- set-sink-volume @DEFAULT_SINK@ -5%")
 		awesome.emit_signal("volume-change")
 	end),
 	awful.key({}, "XF86AudioMute", function()
-		awful.util.spawn("pactl set-sink-mute 0 toggle")
+		awful.util.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")
 		awesome.emit_signal("volume-change")
 	end),
 	awful.key({}, "XF86AudioMicMute", function()
-		awful.util.spawn("pactl set-source-mute 0 toggle")
+		awful.util.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle")
 		awesome.emit_signal("mic-mute")
 	end),
 })

@@ -57,7 +57,7 @@ local function return_button()
 
 	local function update_volume(muted)
 		awful.spawn.easy_async_with_shell(
-			[[pactl get-sink-volume 0 | awk '{print $5 }' | tr -d '\n$']],
+			[[pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5 }' | tr -d '\n$']],
 			function(stdout)
 				local volume_percentage = tonumber(stdout:match("%d+"))
 
@@ -93,7 +93,7 @@ local function return_button()
 	local function set_volume()
 		awful.spawn.easy_async_with_shell(
 			-- Sleep to avoid race condition
-			[[sleep 0.01 && pactl get-sink-mute 0 | awk ' { print $2 }']],
+			[[sleep 0.01 && pactl get-sink-mute @DEFAULT_SINK@ | awk ' { print $2 }']],
 			function(stdout)
 				local muted = stdout:gsub("%s+", "") == "yes"
 
