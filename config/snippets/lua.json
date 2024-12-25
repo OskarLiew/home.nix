@@ -5,5 +5,21 @@
             "require(\"naughty\").notification({ message = ${1:\"msg\"}})"
         ],
         "description": "AwesomeWM lua notification"
+    },
+    "class": {
+        "prefix": "class",
+        "body": [
+            "local ${1:class} = {",
+            "   ${0:field = value}",
+            "}",
+            "",
+            "function ${1:class}:new(o)",
+            "   o = o or {}",
+            "   setmetatable(o, self)",
+            "   self.__index = self",
+            "   return o",
+            "end"
+        ],
+        "description": "AwesomeWM lua notification"
     }
 }
