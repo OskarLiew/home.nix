@@ -17,6 +17,7 @@
     upkgs.discord
     deluge-gtk
     vlc
+    audacity
 
     # Productivity
     gnome.nautilus
