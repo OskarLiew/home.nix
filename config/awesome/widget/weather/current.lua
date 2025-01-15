@@ -51,12 +51,7 @@ local function init_weather_widget(config)
 			end
 		else
 			current_weather_icon.image = icons.error
-			current_weather_desc.text = "Error"
-			naughty.notification({
-				app_name = "Weather",
-				message = "Error in weather widget: " .. stderr,
-				urgency = "critical",
-			})
+			current_weather_desc.text = "Error fetching weather data"
 		end
 	end)
 

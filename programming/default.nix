@@ -7,28 +7,31 @@
     mypy
     poetry
     ruff
+    upkgs.pyright
     # - js
     nodejs_20
     nodePackages.prettier
+    dockerfile-language-server-nodejs
     # - lua
     lua
     stylua
     luarocks
+    lua-language-server
     # - Go
     go
+    gopls
     # - C
     gcc
     # - Rust
     cargo
-    # LSPs
-    lua-language-server
-    upkgs.pyright
-    nodePackages.bash-language-server
-    gopls
-    nil
-    dockerfile-language-server-nodejs
-    docker-compose-language-service
     rust-analyzer
+    # - PHP
+    php
+    phpactor
+    # LSPs
+    nodePackages.bash-language-server
+    nil
+    docker-compose-language-service
     # Tools
     llm
   ];
