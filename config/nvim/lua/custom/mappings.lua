@@ -25,6 +25,16 @@ M.general = {
     },
 }
 
+M.disabled = {
+    n = {
+        -- Clashes with vim-tmux-navigator
+        ["<C-h>"] = { "<C-w>h", "Window left" },
+        ["<C-l>"] = { "<C-w>l", "Window right" },
+        ["<C-j>"] = { "<C-w>j", "Window down" },
+        ["<C-k>"] = { "<C-w>k", "Window up" },
+    },
+}
+
 M.trouble = {
     plugin = true,
     n = {
