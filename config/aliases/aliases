@@ -77,4 +77,4 @@ tl () {  # List tmux sessions to attach
 }
 
 # russ
-alias russ='russ -d $HOME/Sync/rss/russ-feeds.db'
+alias russ-read='russ read -d $HOME/Sync/rss/russ-feeds.db'
