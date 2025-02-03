@@ -229,6 +229,15 @@ local plugins = {
         },
     },
 
+    {
+        "stevearc/oil.nvim",
+        dependencies = { { "nvim-tree/nvim-web-devicons" } },
+        lazy = false,
+        config = function()
+            require("custom.configs.oil")
+        end,
+    },
+
     -- To make a plugin not be loaded
     -- {
     --   "NvChad/nvim-colorizer.lua",
