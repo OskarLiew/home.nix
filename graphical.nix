@@ -11,13 +11,14 @@
 
     # Apps
     inkscape
-    deluge
+    qbittorrent
+    (pkgs.callPackage ./packages/filebot.nix {})
     gimp
     spotify
     upkgs.discord
-    deluge-gtk
     vlc
     audacity
+    mullvad-browser
 
     # Productivity
     nautilus
