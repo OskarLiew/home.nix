@@ -22,6 +22,7 @@
     gopls
     # - C
     gcc
+    llvmPackages_19.clang-tools
     # - Rust
     cargo
     rust-analyzer
