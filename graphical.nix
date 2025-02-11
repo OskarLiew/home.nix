@@ -12,7 +12,7 @@
     # Apps
     inkscape
     qbittorrent
-    (pkgs.callPackage ./packages/filebot.nix {})
+    (pkgs.callPackage ./packages/filebot.nix { })
     gimp
     spotify
     upkgs.discord
