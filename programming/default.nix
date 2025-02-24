@@ -35,6 +35,10 @@
     docker-compose-language-service
     # Tools
     llm
+
+    # Markup
+    taplo
+    yaml-language-server
   ];
 
   xdg = {

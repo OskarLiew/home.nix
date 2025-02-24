@@ -15,6 +15,9 @@ opt.showmode = false
 -- opt.clipboard = "unnamed"
 opt.cursorline = true
 
+opt.modeline = false -- Inline vim settings
+opt.synmaxcol = 256 -- Limit syntax highlighting for long lines
+
 -- Indenting
 opt.expandtab = true
 opt.shiftwidth = 2
